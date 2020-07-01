@@ -6,15 +6,35 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://stevehuge.gitee.io/blog">
-  <title>Archives | Steve&#39;s Blog</title>
+  <title>算法4（Algorithms4）- Part 1  算法分析（Analysis Of Algorithms）2 | Steve&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Steve&#39;s Blog">
-<meta property="og:url" content="https://stevehuge.gitee.io/blog/archives/index.html">
+  <meta name="description" content="4. 增长级数分类（order-of-growth classifications）4.1 常见的增长级数分类常见的函数： \(1\)， \(\log_2 N\)， N， \(N \log_2 N\)， \(N^2\), \(N^3\) 和 \(2^N\)这些函数已经能足以描述常见算法的增长级数。（系数在此暂不做考虑）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法4（Algorithms4）- Part 1  算法分析（Analysis Of Algorithms）2">
+<meta property="og:url" content="https://stevehuge.gitee.io/blog/2017/10/16/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%201%20%20%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%EF%BC%88Analysis%20Of%20Algorithms%EF%BC%892/index.html">
 <meta property="og:site_name" content="Steve&#39;s Blog">
+<meta property="og:description" content="4. 增长级数分类（order-of-growth classifications）4.1 常见的增长级数分类常见的函数： \(1\)， \(\log_2 N\)， N， \(N \log_2 N\)， \(N^2\), \(N^3\) 和 \(2^N\)这些函数已经能足以描述常见算法的增长级数。（系数在此暂不做考虑）">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Typical%20orders%20of%20growth.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Common%20order-of-growth%20classifications.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Practical%20implications%20of%20order-of-growth.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/binary%20search.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Binary%20search%20Java%20implementation.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/An%20N2%20log%20N%20algorithm%20for%203-SUM.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/3-sum%20Comparing%20programs.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Commonly-used%20notations%20in%20the%20theory%20of%20algorithms.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Typical%20memory%20usage%20for%20primitive%20types%20and%20arrays.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/date%20object%20memory%20usage.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/String%20object%20usage.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/WeightedQuickUnionUF%20memory%20usage.jpg?raw=true">
+<meta property="article:published_time" content="2017-10-16T14:38:24.000Z">
+<meta property="article:modified_time" content="2020-07-01T05:26:22.942Z">
 <meta property="article:author" content="Steve Hu">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="算法分析">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Typical%20orders%20of%20growth.jpg?raw=true">
   
     <link rel="alternative" href="/atom.xml" title="Steve&#39;s Blog" type="application/atom+xml">
   
@@ -154,73 +174,138 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-算法4（Algorithms4）- Part 1  算法分析（Analysis Of Algorithms）2" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2020/06/30/hello-world/" class="archive-article-date">
-  	<time datetime="2020-06-30T13:43:16.739Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2020/06/30/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      算法4（Algorithms4）- Part 1  算法分析（Analysis Of Algorithms）2
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2018-07-21T13:20:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-21</time>
+        
+        <a href="/blog/2017/10/16/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%201%20%20%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%EF%BC%88Analysis%20Of%20Algorithms%EF%BC%892/" class="archive-article-date">
+  	<time datetime="2017-10-16T14:38:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-16</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/">Java中Lambda表达式的常见用法</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="4-增长级数分类（order-of-growth-classifications）"><a href="#4-增长级数分类（order-of-growth-classifications）" class="headerlink" title="4. 增长级数分类（order-of-growth classifications）"></a>4. 增长级数分类（order-of-growth classifications）</h1><h3 id="4-1-常见的增长级数分类"><a href="#4-1-常见的增长级数分类" class="headerlink" title="4.1 常见的增长级数分类"></a>4.1 常见的增长级数分类</h3><p>常见的函数： \(1\)， \(\log_2 N\)， N， \(N \log_2 N\)， \(N^2\), \(N^3\) 和 \(2^N\)<br>这些函数已经能足以描述常见算法的增长级数。（系数在此暂不做考虑）</p>
+<a id="more"></a>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Typical%20orders%20of%20growth.jpg?raw=true" alt=""></p>
+<p>下图是以上函数对应的常见算法。</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Common%20order-of-growth%20classifications.jpg?raw=true" alt=""></p>
+<p>实践中的增长级数</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Practical%20implications%20of%20order-of-growth.jpg?raw=true" alt=""></p>
+<p>极限： 为了能摩尔定律（Moore’s law）保持同步，我们需要线性（linear）或者线性对数级别（linearithmic）的算法。</p>
+<h3 id="4-2-二分查找"><a href="#4-2-二分查找" class="headerlink" title="4.2 二分查找"></a>4.2 二分查找</h3><h4 id="1-目标"><a href="#1-目标" class="headerlink" title="1. 目标"></a>1. 目标</h4><p>给定一个有序数组和其中的一个数，在数组中找到这个数的下标。</p>
+<h4 id="2-二分查找"><a href="#2-二分查找" class="headerlink" title="2. 二分查找"></a>2. 二分查找</h4><p>将此数和数组下标中点的数比较</p>
+<ul>
+<li>给定的数太小，查找左边</li>
+<li>给定的数太大，查找右边</li>
+<li>相等的话，找到了</li>
+</ul>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/binary%20search.jpg?raw=true" alt=""></p>
+<h4 id="3-Java实现"><a href="#3-Java实现" class="headerlink" title="3. Java实现"></a>3. Java实现</h4><p>这个问题的实现简单吗？<br>事实上</p>
+<ul>
+<li>第一个二分查找算法于1946年发表；第一个没有bug的二分查找于1962年发表</li>
+<li>Java中的<code>Arrays.binarySearch()</code>实现在2006年被发现有bug</li>
+</ul>
+<p>提这些只是为了说明，正确的二分查找<strong>并没有想象中的简单</strong>..</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Binary%20search%20Java%20implementation.jpg?raw=true" alt=""></p>
+<p>如果<code>key</code>在数组<code>a[]</code>中，那么必有 <code>a[lo] &lt;= key &lt;= a[hi]</code>。</p>
+<h4 id="4-数学分析"><a href="#4-数学分析" class="headerlink" title="4. 数学分析"></a>4. 数学分析</h4><p>命题： 在长度为N的有序数组中进行二分查找，最多比较1 + lg N次。<br>证明：设T(N)为在长度为N的有序数组中进行二分查找时比较的次数。<br>易得T(1) = 1<br>N &gt; 1时， T(N) = T(N / 2) + 1  （其中的1次是在和中点的数进行比较，T(N / 2)是之后左半部分或者右半部分进行比较）。<br>证明过程： </p>
+<pre><code>T (N) ≤ T (N / 2) + 1               // 小于等于是可能第一次比较就等于
+    ≤ T (N / 4) + 1 + 1
+    ≤ T (N / 8) + 1 + 1 + 1
+    . . .
+    ≤ T (N / N) + 1 + 1 + … + 1     // 停止， 此时T(1) = 1
+    = 1 + lg N</code></pre><h3 id="4-3-3-SUM算法的一个-N-2-log-N-实现"><a href="#4-3-3-SUM算法的一个-N-2-log-N-实现" class="headerlink" title="4.3 3 - SUM算法的一个\(N ^ 2 \log N\) 实现"></a>4.3 3 - SUM算法的一个\(N ^ 2 \log N\) 实现</h3><p>基于排序的算法</p>
+<ul>
+<li>步骤一： 对N个不同的数进行排序</li>
+<li>步骤二： 对于每对<code>a[i]</code>和<code>a[j]</code>, 在数组中二分查找 <code>-(a[i] + a[j])</code></li>
+<li><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/An%20N2%20log%20N%20algorithm%20for%203-SUM.jpg?raw=true" alt=""></li>
+</ul>
+<p>分析： 增长级为 \(N ^ 2 \log N\)。</p>
+<ul>
+<li>步骤一： 插入排序（insertion sort） – \(N ^ 2\)</li>
+<li>步骤二： 二分查找（binary search） – \(N ^ 2 \log N\)</li>
+</ul>
+<h3 id="4-4-算法比较"><a href="#4-4-算法比较" class="headerlink" title="4.4 算法比较"></a>4.4 算法比较</h3><p>假设： 对于3-SUM 问题的两个实现</p>
+<ul>
+<li>基于排序的增长级为\(N ^ 2 \log N\) 的算法</li>
+<li>暴力算法\(N ^ 3\) 算法<br>前者比后者要快。</li>
+</ul>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/3-sum%20Comparing%20programs.jpg?raw=true" alt=""></p>
+<p>事实证明， 增长级更好 =&gt; 速度更快</p>
+<h3 id="4-5-算法理论中常用的符号表示"><a href="#4-5-算法理论中常用的符号表示" class="headerlink" title="4.5 算法理论中常用的符号表示"></a>4.5 算法理论中常用的符号表示</h3><p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Commonly-used%20notations%20in%20the%20theory%20of%20algorithms.jpg?raw=true" alt=""></p>
+<p>其中有三种符号： \(\Theta (N^2)\)， \(O (N^2)\)和\(\Omega (N^2)\)。</p>
+<p>\(O \)是用于描述函数渐近行为的数学符号。更确切地说，它是用另一个（通常更简单的）函数来描述一个函数数量级的渐近上界。</p>
+<p>\(\Omega \)的定义与\(O \)的定义类似，但主要区别是，\(O \)表示函数在增长到一定程度时总小于一个特定函数的常数倍，\(\Omega \)则表示总大于，来描述一个函数数量级的渐近下界。<br>\(\Theta \)是\(O \)和\(\Omega \)的结合，是用来定义一个函数的数量级。</p>
+<p>常见错误时：使用\(O \)表示近似时间模型。</p>
+<p>本文使用波浪线~ (tlide notation)用来表示算法的近似时间模型。</p>
+<h1 id="5-内存"><a href="#5-内存" class="headerlink" title="5. 内存"></a>5. 内存</h1><h3 id="5-1-基础"><a href="#5-1-基础" class="headerlink" title="5.1 基础"></a>5.1 基础</h3><ul>
+<li>比特（Bit）： 0 或 1</li>
+<li>字节（Byte）： 8个比特</li>
+<li>兆（MB， Megabyte）： 10 ^ 6或者2 ^ 20个比特</li>
+<li>吉（GB， Gigabyte）： 10 ^ 9或者2 ^ 30个比特</li>
+</ul>
+<p>64-bit计算机：其中指针长度为8bytes</p>
+<ul>
+<li>可以为更大的内存提供地址</li>
+<li>指针消耗内存更多（一些JVM会“压缩”对象指针到4字节以节省内存）</li>
+</ul>
+<h3 id="5-2-基本数据类型和数组的内存占用"><a href="#5-2-基本数据类型和数组的内存占用" class="headerlink" title="5.2 基本数据类型和数组的内存占用"></a>5.2 基本数据类型和数组的内存占用</h3><p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Typical%20memory%20usage%20for%20primitive%20types%20and%20arrays.jpg?raw=true" alt=""></p>
+<h3 id="5-3-Java中对象的内存占用"><a href="#5-3-Java中对象的内存占用" class="headerlink" title="5.3 Java中对象的内存占用"></a>5.3 Java中对象的内存占用</h3><ul>
+<li>对象头（Object overhead）： 16bytes</li>
+<li>引用（Reference）： 8bytes</li>
+<li>对齐填充（Padding）： 每个对象使用内存均为8bytes的整数倍</li>
+</ul>
+<p>例1： 一个Date对象使用32bytes的内存<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/date%20object%20memory%20usage.jpg?raw=true" alt=""><br>例2：一个长度为N的String类使用N ~ 2N bytes的内存<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/String%20object%20usage.jpg?raw=true" alt=""></p>
+<h3 id="5-4-总结"><a href="#5-4-总结" class="headerlink" title="5.4 总结"></a>5.4 总结</h3><p>各种数据类型的内存使用</p>
+<ul>
+<li>基本数据类型（primitive type）： int型 4bytes， double型 8bytes</li>
+<li>对象引用（object reference）： 8bytes</li>
+<li>数组（array）： 24bytes + 每个数组成员的内存 + 8bytes（如果有内部类的话， 指向内部类的指针）</li>
+<li>对齐（padding）： 为了让对象长度为8bytes的整数倍</li>
+</ul>
+<p>浅层次内存的计算： 不计算引用对象<br>深层次内存的计算： 如果数组成员是一个对象引用， 需要将引用的对象内存也计算在内</p>
+<p>举例： 一个<code>WeightedQuickUnionUF</code>对象，其中数据长度为N， 计算其对象大小<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/WeightedQuickUnionUF%20memory%20usage.jpg?raw=true" alt=""></p>
+<p>其大小为 \(8 N + 88\) ~ \(8 N\) bytes。</p>
+<h1 id="参考网址"><a href="#参考网址" class="headerlink" title="参考网址"></a>参考网址</h1><p>[1] <a href="http://algs4.cs.princeton.edu/11model/" target="_blank" rel="noopener">Algorithms4</a><br>[2] <a href="http://blog.csdn.net/zuochao_2013/article/details/53428837" target="_blank" rel="noopener">大O符号/大Ω符号/大Θ符号/小o符号/小w符号等各种算法复杂度记法含义</a><br>[3] <a href="http://blog.csdn.net/xiahouzuoxin/article/details/26478179" target="_blank" rel="noopener">Markdown中插入数学公式的方法</a><br>[4] <a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="noopener">MathJax basic tutorial and quick reference</a></p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -230,234 +315,137 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Lambda表达式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sort</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/" class="archive-article-date">
-  	<time datetime="2018-04-23T08:09:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/">Java反射初探 -- 1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/" class="archive-article-date">
-  	<time datetime="2017-11-10T13:30:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/">算法4（Algorithms4）- Part 5 图（Graph）-无向图（Undirected Graph）1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Graph</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">算法分析</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://stevehuge.gitee.io/blog/2017/10/16/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%201%20%20%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%EF%BC%88Analysis%20Of%20Algorithms%EF%BC%892/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2017-11-04T14:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-04</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/blog/2017/10/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BC%96%E7%A0%81%E7%AE%80%E4%BB%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          计算机编码简介
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2017/10/16/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%201%20%20%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%EF%BC%88Analysis%20Of%20Algorithms%EF%BC%891/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">算法4（Algorithms4）- Part 1  算法分析（Analysis Of Algorithms）1</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/">LaTeX简介及其在Mardown中的用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LaTeX</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#4-增长级数分类（order-of-growth-classifications）"><span class="toc-number">1.</span> <span class="toc-text">4. 增长级数分类（order-of-growth classifications）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-常见的增长级数分类"><span class="toc-number">1.0.1.</span> <span class="toc-text">4.1 常见的增长级数分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-二分查找"><span class="toc-number">1.0.2.</span> <span class="toc-text">4.2 二分查找</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-目标"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">1. 目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-二分查找"><span class="toc-number">1.0.2.2.</span> <span class="toc-text">2. 二分查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Java实现"><span class="toc-number">1.0.2.3.</span> <span class="toc-text">3. Java实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-数学分析"><span class="toc-number">1.0.2.4.</span> <span class="toc-text">4. 数学分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-3-SUM算法的一个-N-2-log-N-实现"><span class="toc-number">1.0.3.</span> <span class="toc-text">4.3 3 - SUM算法的一个\(N ^ 2 \log N\) 实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-算法比较"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.4 算法比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-算法理论中常用的符号表示"><span class="toc-number">1.0.5.</span> <span class="toc-text">4.5 算法理论中常用的符号表示</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-内存"><span class="toc-number">2.</span> <span class="toc-text">5. 内存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-基础"><span class="toc-number">2.0.1.</span> <span class="toc-text">5.1 基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-基本数据类型和数组的内存占用"><span class="toc-number">2.0.2.</span> <span class="toc-text">5.2 基本数据类型和数组的内存占用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-Java中对象的内存占用"><span class="toc-number">2.0.3.</span> <span class="toc-text">5.3 Java中对象的内存占用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-总结"><span class="toc-number">2.0.4.</span> <span class="toc-text">5.4 总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考网址"><span class="toc-number">3.</span> <span class="toc-text">参考网址</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2017-10-29T07:50:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-29</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/">算法4（Algorithms4） - Part 2 快速排序（Quick Sort）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Sorting</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分治法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/blog/archives/page/2/">2</a><a class="page-number" href="/blog/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/archives/page/5/">5</a><a class="extend next" rel="next" href="/blog/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
   
 
 
@@ -481,8 +469,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

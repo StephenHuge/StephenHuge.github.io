@@ -6,15 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://stevehuge.gitee.io/blog">
-  <title>Archives | Steve&#39;s Blog</title>
+  <title>Java中Lambda表达式的常见用法 | Steve&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Steve&#39;s Blog">
-<meta property="og:url" content="https://stevehuge.gitee.io/blog/archives/index.html">
+  <meta name="description" content="Java在1.8版本中新增了对Lambda表达式的支持，通过Lambda表达式，软件开发人员可以更加便利地实现之前操作麻烦的操作，如针对某种特定的规则对集合进行排序等，Lambda表达式使得程序变得简洁而更加易于理解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中Lambda表达式的常见用法">
+<meta property="og:url" content="https://stevehuge.gitee.io/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/index.html">
 <meta property="og:site_name" content="Steve&#39;s Blog">
+<meta property="og:description" content="Java在1.8版本中新增了对Lambda表达式的支持，通过Lambda表达式，软件开发人员可以更加便利地实现之前操作麻烦的操作，如针对某种特定的规则对集合进行排序等，Lambda表达式使得程序变得简洁而更加易于理解。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/Java/lambda.jpg?raw=true">
+<meta property="article:published_time" content="2018-07-21T13:20:47.000Z">
+<meta property="article:modified_time" content="2020-07-01T05:26:22.941Z">
 <meta property="article:author" content="Steve Hu">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Lambda表达式">
+<meta property="article:tag" content="sort">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/Java/lambda.jpg?raw=true">
   
     <link rel="alternative" href="/atom.xml" title="Steve&#39;s Blog" type="application/atom+xml">
   
@@ -154,73 +163,114 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java中Lambda表达式的常见用法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2020/06/30/hello-world/" class="archive-article-date">
-  	<time datetime="2020-06-30T13:43:16.739Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2020/06/30/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      Java中Lambda表达式的常见用法
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/" class="archive-article-date">
+        
+        <a href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/" class="archive-article-date">
   	<time datetime="2018-07-21T13:20:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-21</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/">Java中Lambda表达式的常见用法</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/Java/lambda.jpg?raw=true" alt="lambda"></p>
+<p>Java在1.8版本中新增了对Lambda表达式的支持，通过Lambda表达式，软件开发人员可以更加便利地实现之前操作麻烦的操作，如针对某种特定的规则对集合进行排序等，Lambda表达式使得程序变得简洁而更加易于理解。</p>
+<a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
+<p>Lambda表达式通常要配合流（Stream）进行使用，常见获得流的方式有以下几种方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从Collection和数组</span></span><br><span class="line">Collection.stream()</span><br><span class="line">Collection.parallelStream()</span><br><span class="line">Arrays.stream(T array) or Stream.of()</span><br><span class="line"><span class="comment">// 从 BufferedReader</span></span><br><span class="line">java.io.BufferedReader.lines()</span><br><span class="line"><span class="comment">// 静态工厂</span></span><br><span class="line">java.util.stream.IntStream.range()</span><br><span class="line">java.nio.file.Files.walk()</span><br><span class="line"><span class="comment">// 自己构建</span></span><br><span class="line">java.util.Spliterator</span><br><span class="line"><span class="comment">// 其它</span></span><br><span class="line">Random.ints()</span><br><span class="line">BitSet.stream()</span><br><span class="line">Pattern.splitAsStream(java.lang.CharSequence)</span><br><span class="line">JarFile.stream()</span><br></pre></td></tr></table></figure>
+
+<p>而对于流的操作也可以分为三种：</p>
+<ul>
+<li><strong>Intermediate</strong>：map (mapToInt, flatMap 等)、 filter、 distinct、 sorted、 peek、 limit、 skip、 parallel、 sequential、 unordered</li>
+<li><strong>Terminal</strong>：forEach、 forEachOrdered、 toArray、 reduce、 collect、 min、 max、 count、 anyMatch、 allMatch、 noneMatch、 findFirst、 findAny、 iterator</li>
+<li><strong>Short-circuiting</strong>：anyMatch、 allMatch、 noneMatch、 findFirst、 findAny、 limit</li>
+</ul>
+<p>区别是：</p>
+<ul>
+<li><p><strong>Intermediate</strong>：一个流可以后面跟随零个或多个 intermediate 操作。其目的主要是打开流，做出某种程度的数据映射/过滤，然后返回一个新的流，交给下一个操作使用。这类操作都是惰性化的（lazy），就是说，仅仅调用到这类方法，并没有真正开始流的遍历。</p>
+</li>
+<li><p><strong>Terminal</strong>：一个流只能有一个 terminal 操作，当这个操作执行后，流就被使用“光”了，无法再被操作。所以这必定是流的最后一个操作。Terminal 操作的执行，才会真正开始流的遍历，并且会生成一个结果，或者一个 side effect。</p>
+</li>
+<li><p>还有一种操作被称为 <strong>short-circuiting</strong>。用以指：</p>
+<ul>
+<li>对于一个 intermediate 操作，如果它接受的是一个无限大（infinite/unbounded）的 Stream，但返回一个有限的新 Stream。</li>
+<li>对于一个 terminal 操作，如果它接受的是一个无限大的 Stream，但能在有限的时间计算出结果。</li>
+</ul>
+<p>当操作一个无限大的 Stream，而又希望在有限时间内完成操作，则在管道内拥有一个 short-circuiting 操作是必要非充分条件。</p>
+</li>
+</ul>
+<h1 id="1-常用的方法"><a href="#1-常用的方法" class="headerlink" title="1. 常用的方法"></a>1. 常用的方法</h1><h3 id="1-filter-方法"><a href="#1-filter-方法" class="headerlink" title="1. filter()方法"></a>1. filter()方法</h3><p>例如获取list中满足特定条件的子list</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; a = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">a.add(<span class="number">1</span>);</span><br><span class="line">a.add(<span class="number">2</span>);</span><br><span class="line">a.add(<span class="number">10</span>);</span><br><span class="line">a.add(<span class="number">100</span>);</span><br><span class="line"><span class="comment">// 获取list中满足特定条件的子list</span></span><br><span class="line">List&lt;Integer&gt; b = a.stream().filter(x -&gt; x &gt; <span class="number">5</span>)</span><br><span class="line">        .collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+<h3 id="2-allMatch-amp-anyMatch-amp-nonMatch-方法"><a href="#2-allMatch-amp-anyMatch-amp-nonMatch-方法" class="headerlink" title="2. allMatch() &amp; anyMatch() &amp; nonMatch() 方法"></a>2. allMatch() &amp; anyMatch() &amp; nonMatch() 方法</h3><p>返回值是boolean类型的，满足条件则返回true，否则返回false<br>例如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; a = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">     a.add(<span class="number">1</span>);</span><br><span class="line">     a.add(<span class="number">2</span>);</span><br><span class="line">     a.add(<span class="number">10</span>);</span><br><span class="line">     a.add(<span class="number">100</span>);</span><br><span class="line">     <span class="comment">// 判断是否满足特定条件</span></span><br><span class="line">     <span class="keyword">if</span> (a.stream().allMatch(x -&gt; x &gt; <span class="number">5</span>)) &#123;</span><br><span class="line">	System.out.println(<span class="string">"all greater than 5"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	System.out.println(<span class="string">"not all greater than 5"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-map-方法"><a href="#3-map-方法" class="headerlink" title="3. map()方法"></a>3. map()方法</h3><p>传入的方法会对当前Stream进行操作，之后得到新的元素组成一个流作为该方法的返回值。</p>
+<p>进行数据重新装配</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 匿名内部类必须在后一个&lt;&gt;中添加类型</span></span><br><span class="line">  List&lt;Fruit&gt; fruits = <span class="keyword">new</span> ArrayList&lt;Fruit&gt;() &#123;</span><br><span class="line">      &#123;</span><br><span class="line">          add(<span class="keyword">new</span> Fruit(<span class="string">"苹果"</span>, <span class="number">1.25</span>));</span><br><span class="line">          add(<span class="keyword">new</span> Fruit(<span class="string">"香蕉"</span>, <span class="number">0.99</span>));</span><br><span class="line">          add(<span class="keyword">new</span> Fruit(<span class="string">"梨"</span>, <span class="number">1.02</span>));</span><br><span class="line">          add(<span class="keyword">new</span> Fruit(<span class="string">"西瓜"</span>, <span class="number">2.03</span>));</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"><span class="comment">// 生成新的String类型的list</span></span><br><span class="line">  List&lt;String&gt; fruitNames = fruits.stream()</span><br><span class="line">          .map(f -&gt; f.getName()).collect(Collectors.toList());</span><br><span class="line">  <span class="comment">// for (String f : fruitNames) &#123;</span></span><br><span class="line">  <span class="comment">//     System.out.println(f);</span></span><br><span class="line">  <span class="comment">// &#125;</span></span><br><span class="line">  	fruitNames.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-distinct-方法"><a href="#4-distinct-方法" class="headerlink" title="4. distinct()方法"></a>4. distinct()方法</h3><p>去除集合中重复的值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; nums = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">nums.add(<span class="number">10</span>);</span><br><span class="line">nums.add(<span class="number">20</span>);</span><br><span class="line">nums.add(<span class="number">30</span>);</span><br><span class="line">nums.add(<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">List&lt;Integer&gt; newNums = nums.stream().distinct().collect(Colletors.toList());</span><br></pre></td></tr></table></figure>
+<h3 id="5-forEach-方法"><a href="#5-forEach-方法" class="headerlink" title="5. forEach()方法"></a>5. forEach()方法</h3><p>可以直接使用forEach()方法遍历集合。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; users = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">users.add(<span class="keyword">new</span> User(<span class="string">"Jim"</span>));</span><br><span class="line">users.add(<span class="keyword">new</span> User(<span class="string">"Jim"</span>));</span><br><span class="line">users.add(<span class="keyword">new</span> User(<span class="string">"Tom"</span>));</span><br><span class="line">users.add(<span class="keyword">new</span> User(<span class="string">"Leo"</span>));</span><br><span class="line">users.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-Lambda表达式实战"><a href="#2-Lambda表达式实战" class="headerlink" title="2. Lambda表达式实战"></a>2. Lambda表达式实战</h2><ul>
+<li>拿出两个list中重复的值。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">   List&lt;User&gt; users1 = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">   users1.add(<span class="keyword">new</span> User(<span class="string">"Jim"</span>));</span><br><span class="line">   users1.add(<span class="keyword">new</span> User(<span class="string">"Jim"</span>));</span><br><span class="line">   users1.add(<span class="keyword">new</span> User(<span class="string">"Tom"</span>));</span><br><span class="line">   users1.add(<span class="keyword">new</span> User(<span class="string">"Leo"</span>));</span><br><span class="line"></span><br><span class="line">   List&lt;User&gt; users2 = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">   users2.add(<span class="keyword">new</span> User(<span class="string">"Tom"</span>));</span><br><span class="line">   users2.add(<span class="keyword">new</span> User(<span class="string">"Sam"</span>));</span><br><span class="line">   users2.add(<span class="keyword">new</span> User(<span class="string">"Amy"</span>));</span><br><span class="line">   users2.add(<span class="keyword">new</span> User(<span class="string">"Leo"</span>));</span><br><span class="line"><span class="comment">// filter传入一个Predicate（谓词类型）（boolean返回值的函数），之后嵌套一个使用anyMatch作为判断条件的Stream完成逻辑</span></span><br><span class="line">   List&lt;User&gt; intersection = users1.stream().filter(u1 -&gt; users2.stream().anyMatch(u2 -&gt; u2.getName().equals(u1.getName()))).collect(Collectors.toList());</span><br><span class="line">   <span class="keyword">for</span> (User u : intersection) &#123;</span><br><span class="line">       System.out.println(u);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>根据特定的条件去重</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">   List&lt;User&gt; users = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">   users.add(<span class="keyword">new</span> User(<span class="string">"Jim"</span>));</span><br><span class="line">   users.add(<span class="keyword">new</span> User(<span class="string">"Jim"</span>));</span><br><span class="line">   users.add(<span class="keyword">new</span> User(<span class="string">"Tom"</span>));</span><br><span class="line">   users.add(<span class="keyword">new</span> User(<span class="string">"Leo"</span>));</span><br><span class="line">   <span class="comment">// 根据特定的条件进行去重</span></span><br><span class="line">List&lt;User&gt; distinctUsers = users.stream()</span><br><span class="line">               .filter(distinctByKey(User::getName))</span><br><span class="line">               .collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> (User u : distinctUsers) &#123;</span><br><span class="line">         System.out.println(u);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span>&lt;T&gt; Predicate&lt;T&gt; <span class="title">distinctByKey</span><span class="params">(Function&lt;? <span class="keyword">super</span> T, Object&gt; keyExtractor)</span> </span>&#123;</span><br><span class="line">       Map&lt;Object, Boolean&gt; seen = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</span><br><span class="line">       <span class="keyword">return</span> object -&gt; seen.putIfAbsent(keyExtractor.apply(object), Boolean.TRUE) == <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>排序</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; users = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">users.add(<span class="keyword">new</span> User(<span class="string">"Jim"</span>));</span><br><span class="line">users.add(<span class="keyword">new</span> User(<span class="string">"Simon"</span>));</span><br><span class="line">users.add(<span class="keyword">new</span> User(<span class="string">"Amy"</span>));</span><br><span class="line">users.add(<span class="keyword">new</span> User(<span class="string">"AMY"</span>));</span><br><span class="line">users.add(<span class="keyword">new</span> User(<span class="string">"TOM"</span>));</span><br><span class="line">users.add(<span class="keyword">new</span> User(<span class="string">"BOB"</span>));</span><br><span class="line">users.add(<span class="keyword">new</span> User(<span class="string">"Steve"</span>));</span><br><span class="line">users.add(<span class="keyword">new</span> User(<span class="string">"Leo"</span>));</span><br><span class="line">Comparator&lt;User&gt; comparator = (u1, u2) -&gt; u1.getName().compareTo(u2.getName());</span><br><span class="line">users.stream()</span><br><span class="line">    <span class="comment">// 倒序</span></span><br><span class="line">    .sorted(comparator.reversed())</span><br><span class="line">    <span class="comment">// 顺序</span></span><br><span class="line"><span class="comment">//  .sorted((u1, u2) -&gt; u1.getName().compareTo(u2.getName()))</span></span><br><span class="line">    .map(User::getName).forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ol>
+<li><a href="https://www.ibm.com/developerworks/cn/java/j-lo-java8streamapi/" target="_blank" rel="noopener">Java 8 中的 Streams API 详解</a></li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -240,224 +290,127 @@
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/" class="archive-article-date">
-  	<time datetime="2018-04-23T08:09:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/">Java反射初探 -- 1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2017" class="archive-year">2017</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/" class="archive-article-date">
-  	<time datetime="2017-11-10T13:30:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/">算法4（Algorithms4）- Part 5 图（Graph）-无向图（Undirected Graph）1</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Graph</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://stevehuge.gitee.io/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2017-11-04T14:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-04</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/blog/2020/06/30/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java反射初探 -- 1</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/">LaTeX简介及其在Mardown中的用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LaTeX</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-常用的方法"><span class="toc-number">1.</span> <span class="toc-text">1. 常用的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-filter-方法"><span class="toc-number">1.0.1.</span> <span class="toc-text">1. filter()方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-allMatch-amp-anyMatch-amp-nonMatch-方法"><span class="toc-number">1.0.2.</span> <span class="toc-text">2. allMatch() &amp; anyMatch() &amp; nonMatch() 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-map-方法"><span class="toc-number">1.0.3.</span> <span class="toc-text">3. map()方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-distinct-方法"><span class="toc-number">1.0.4.</span> <span class="toc-text">4. distinct()方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-forEach-方法"><span class="toc-number">1.0.5.</span> <span class="toc-text">5. forEach()方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Lambda表达式实战"><span class="toc-number">1.1.</span> <span class="toc-text">2. Lambda表达式实战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-number">1.2.</span> <span class="toc-text">参考文章</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2017-10-29T07:50:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-29</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/">算法4（Algorithms4） - Part 2 快速排序（Quick Sort）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Sorting</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分治法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/blog/archives/page/2/">2</a><a class="page-number" href="/blog/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/archives/page/5/">5</a><a class="extend next" rel="next" href="/blog/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
   
 
 
@@ -481,8 +434,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

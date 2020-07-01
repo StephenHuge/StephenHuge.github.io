@@ -6,15 +6,48 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://stevehuge.gitee.io/blog">
-  <title>Archives | Steve&#39;s Blog</title>
+  <title>算法4（Algorithms4）- Part 1  算法分析（Analysis Of Algorithms）1 | Steve&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Steve&#39;s Blog">
-<meta property="og:url" content="https://stevehuge.gitee.io/blog/archives/index.html">
+  <meta name="description" content="本文分为5节，分别是：  介绍（introduction）： 介绍算法分析的必要性和重要性 观察（observations）： 通过分析一个经典问题 3 - SUM问题，逐渐引出算法分析的方法论 数学模型（mathematical models）： 如何具体分析比较算法的优劣呢？我们需要对算法的运行时间进行分析并建立数学模型 增长级（order-of-growth classifications">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法4（Algorithms4）- Part 1  算法分析（Analysis Of Algorithms）1">
+<meta property="og:url" content="https://stevehuge.gitee.io/blog/2017/10/16/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%201%20%20%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%EF%BC%88Analysis%20Of%20Algorithms%EF%BC%891/index.html">
 <meta property="og:site_name" content="Steve&#39;s Blog">
+<meta property="og:description" content="本文分为5节，分别是：  介绍（introduction）： 介绍算法分析的必要性和重要性 观察（observations）： 通过分析一个经典问题 3 - SUM问题，逐渐引出算法分析的方法论 数学模型（mathematical models）： 如何具体分析比较算法的优劣呢？我们需要对算法的运行时间进行分析并建立数学模型 增长级（order-of-growth classifications">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/top.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/casts.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/DFT.JPG?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/N-body.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Donald%20Knuth.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/3-sum%20problem.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/3-sum%20brute%20force%20algorithm.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Stopwatch.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/3-sum%20brute%20force%20running%20time.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/3-sum%20brute%20force%20standred%20plot.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/log-log%20plot.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/observations%20results.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Doubling%20hypothesis1.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Doubling%20hypothesis2.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Cost%20of%20basic%20operations1.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Cost%20of%20basic%20operations2.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/1-sum%20time.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/2-sum%20time.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Alan%20Turing.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/simlification1%20-%20cost%20model.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/simlification2%20-%20tlide%20notation.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/2-sum%20simply.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/3-sum%20simply.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Estimating%20a%20discrete%20sum.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Mathematical%20models%20for%20running%20time.jpg?raw=true">
+<meta property="article:published_time" content="2017-10-16T13:38:24.000Z">
+<meta property="article:modified_time" content="2020-07-01T05:26:22.942Z">
 <meta property="article:author" content="Steve Hu">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="算法分析">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/top.jpg?raw=true">
   
     <link rel="alternative" href="/atom.xml" title="Steve&#39;s Blog" type="application/atom+xml">
   
@@ -154,73 +187,242 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-算法4（Algorithms4）- Part 1  算法分析（Analysis Of Algorithms）1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2020/06/30/hello-world/" class="archive-article-date">
-  	<time datetime="2020-06-30T13:43:16.739Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2020/06/30/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      算法4（Algorithms4）- Part 1  算法分析（Analysis Of Algorithms）1
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2018-07-21T13:20:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-21</time>
+        
+        <a href="/blog/2017/10/16/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%201%20%20%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%EF%BC%88Analysis%20Of%20Algorithms%EF%BC%891/" class="archive-article-date">
+  	<time datetime="2017-10-16T13:38:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-16</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/">Java中Lambda表达式的常见用法</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/top.jpg?raw=true" alt=""></p>
+<p>本文分为5节，分别是：</p>
+<ol>
+<li>介绍（introduction）： 介绍算法分析的必要性和重要性</li>
+<li>观察（observations）： 通过分析一个经典问题 3 - SUM问题，逐渐引出算法分析的方法论</li>
+<li>数学模型（mathematical models）： 如何具体分析比较算法的优劣呢？我们需要对算法的运行时间进行分析并建立数学模型</li>
+<li>增长级（order-of-growth classifications）： 对算法运行时间进行分类</li>
+<li>内存（memory）： 算法使用了多大的内存？</li>
+</ol>
+<a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
+<p>本文贯穿始终的是3 - SUM 算法，其中也提到了二分查找（binary search）算法。</p>
+<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h1><h2 id="1-1-人物介绍"><a href="#1-1-人物介绍" class="headerlink" title="1.1 人物介绍"></a>1.1 人物介绍</h2><p>在算法开发过程中，有这么几个角色</p>
+<ul>
+<li>程序员（Programmer） ： 需要开发出能解决问题的算法</li>
+<li>用户（Client） ： 想要高效的解决问题</li>
+<li>理论家（Theoretician） ： 想要搞清算法的原理</li>
+<li>*学生（Student） ： 可能要扮演上述任一个角色</li>
+</ul>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/casts.jpg?raw=true" alt=""></p>
+<h2 id="1-2-运行时间"><a href="#1-2-运行时间" class="headerlink" title="1.2 运行时间"></a>1.2 运行时间</h2><h2 id="1-3-为什么要分析算法？"><a href="#1-3-为什么要分析算法？" class="headerlink" title="1.3 为什么要分析算法？"></a>1.3 为什么要分析算法？</h2><ul>
+<li>可以对已知算法的性能进行预测</li>
+<li>可以比较多个算法的优劣</li>
+<li>可以对已知算法提供性能保证</li>
+<li>可以理解基本的算法相关理论</li>
+</ul>
+<p>本课会涉及前三点，后面的两点则是算法理论研究相关的方向。  </p>
+<p>基于实用性的原因：避免性能上的bug。<br>用户可能因为程序员不了解性能特性而获得很差性能的代码。</p>
+<h2 id="1-4-一些成功的算法"><a href="#1-4-一些成功的算法" class="headerlink" title="1.4 一些成功的算法"></a>1.4 一些成功的算法</h2><h3 id="1-离散傅里叶变换（Discrete-Fourier-transform）"><a href="#1-离散傅里叶变换（Discrete-Fourier-transform）" class="headerlink" title="1. 离散傅里叶变换（Discrete Fourier transform）"></a>1. 离散傅里叶变换（Discrete Fourier transform）</h3><ul>
+<li>将N个图样的波形分解成周期分量</li>
+<li>应用 ： DVD， JPEG， MRI（Magnetic Resonance Imaging， 核磁共振成像）， 天体物理学…</li>
+<li>暴力破解 ： \(N ^ 2\)步</li>
+<li>FFT 算法 ： \(N * \log N\) 步， 使新技术成为可能</li>
+</ul>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/DFT.JPG?raw=true" alt=""></p>
+<h3 id="2-N体模拟（N-body-simulation）"><a href="#2-N体模拟（N-body-simulation）" class="headerlink" title="2. N体模拟（N - body simulation）"></a>2. N体模拟（N - body simulation）</h3><ul>
+<li>模拟N个物体间的引力相互作用</li>
+<li>暴力破解 ： \(N ^ 2\)</li>
+<li>Barnes-Hut算法（Barnes-Hut algorithm） ： \(N * \log N\) 步， 使新研究成为可能</li>
+</ul>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/N-body.jpg?raw=true" alt=""></p>
+<h2 id="1-5-我们面临的挑战"><a href="#1-5-我们面临的挑战" class="headerlink" title="1.5 我们面临的挑战"></a>1.5 我们面临的挑战</h2><p>问题 ： 我的算法能够解决大量的输入数据吗？</p>
+<ul>
+<li>算法可能很慢</li>
+<li>算法使用内存可能超标</li>
+</ul>
+<p>如何对算法进行分析呢？</p>
+<p>高德纳（Donald Knuth）在20世纪70年代提出： 使用 <strong>科学的方法（scientific methods）</strong> 来分析算法性能。<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Donald%20Knuth.jpg?raw=true" alt=""></p>
+<h4 id="1-应用于算法分析的科学方法"><a href="#1-应用于算法分析的科学方法" class="headerlink" title="1. 应用于算法分析的科学方法"></a>1. 应用于算法分析的科学方法</h4><p>我们需要一个体系，满足以下两个条件： </p>
+<ul>
+<li>可以预测算法的性能</li>
+<li>能比较不同算法的优劣</li>
+</ul>
+<h4 id="2-科学的方法"><a href="#2-科学的方法" class="headerlink" title="2. 科学的方法"></a>2. 科学的方法</h4><ul>
+<li>观察（Observe） ： 观察自然界的特性</li>
+<li>假设（Hypothesize） ： 假设一个和观察结果一致的模型</li>
+<li>预测（Predict） ： 根据假设进行预测未发生的情况</li>
+<li>验证（Verify） ： 进行更多的观察，以此验证我们的预测</li>
+<li>确认（Validate） ： 不断重复上述过程，直到观察和假设能完全一致</li>
+</ul>
+<h4 id="3-需要遵守的原则"><a href="#3-需要遵守的原则" class="headerlink" title="3. 需要遵守的原则"></a>3. 需要遵守的原则</h4><ul>
+<li>实验必须可重复（reproducible）</li>
+<li>假设必须可被明确检验对或者不对（falsifiable）</li>
+</ul>
+<h1 id="2-观察"><a href="#2-观察" class="headerlink" title="2. 观察"></a>2. 观察</h1><p>我们来看一个例子：3 - SUM问题。</p>
+<h2 id="2-1-3-SUM问题"><a href="#2-1-3-SUM问题" class="headerlink" title="2.1 3 - SUM问题"></a>2.1 3 - SUM问题</h2><p>给出N个不同的整数，随机挑三个数构成一个组合，使这个组合中的三数之和为0， 这样的组合一共有多少个？<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/3-sum%20problem.jpg?raw=true" alt=""></p>
+<h2 id="2-2-暴力破解"><a href="#2-2-暴力破解" class="headerlink" title="2.2 暴力破解"></a>2.2 暴力破解</h2><p>最容易想到的解法就是使用暴力算法，三个循环，遍历获取。代码如下：<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/3-sum%20brute%20force%20algorithm.jpg?raw=true" alt=""><br>如何判定这个实现好不好呢？我们需要计算它的运行时间。</p>
+<h3 id="1-运行时间"><a href="#1-运行时间" class="headerlink" title="1. 运行时间"></a>1. 运行时间</h3><p>如何获得运行时间呢？</p>
+<ul>
+<li>使用秒表手动计时</li>
+<li>使用<code>algs.jar</code>中的<code>Stopwatch</code>类。</li>
+</ul>
+<p>使用方法如下：<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Stopwatch.jpg?raw=true" alt=""></p>
+<h3 id="2-数据分析"><a href="#2-数据分析" class="headerlink" title="2. 数据分析"></a>2. 数据分析</h3><p>按照数据量从小到大排列，运行得出的时间：<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/3-sum%20brute%20force%20running%20time.jpg?raw=true" alt=""></p>
+<p>使用标准坐标，将其坐标描点，用平滑曲线连接，如图所示。</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/3-sum%20brute%20force%20standred%20plot.jpg?raw=true" alt=""></p>
+<p>使用纯对数坐标（Log-log图）。</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/log-log%20plot.jpg?raw=true" alt=""></p>
+<p>通过对对数坐标的图进行观察，我们发现这条线近似直线。设其斜率为b，常数项为c。<br>得出方程：</p>
+<pre><code>lg(T (N)) = b lg N + c</code></pre><p>解得常数项为：</p>
+<pre><code>b = 2.999
+c = -33.2103</code></pre><p>得出结论：</p>
+<pre><code>T (N) = a * N ^ b，其中 a = 2 c</code></pre><p>假设 ： 运行时间计算公式为（单位为s）： </p>
+<pre><code>T(N) = 1.006 * 10 ^ 10 * N ^ 2.999 </code></pre><h3 id="3-预测和验证"><a href="#3-预测和验证" class="headerlink" title="3. 预测和验证"></a>3. 预测和验证</h3><p>根据上面假设的公式进行预测： </p>
+<ul>
+<li>N = 8000时， 时间为51s</li>
+<li>N = 16000时， 时间为408.1s</li>
+</ul>
+<p>验证：<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/observations%20results.jpg?raw=true" alt=""><br>证实了假设是对的！</p>
+<p>我们通过进一步观察发现，每当数据量翻倍时，其运行时间也呈规律性的变化。<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Doubling%20hypothesis1.jpg?raw=true" alt=""></p>
+<p>每次运行时间与上次运行时间的比率ratio，其对2取对数，即 lg ratio 趋近于3。<br>根据这点，更进一步假设 ：</p>
+<pre><code>T(N) = a * N ^ b, 其中 b = lg ratio</code></pre><p>现在假设 b = 3， 从而求出a的值。<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Doubling%20hypothesis2.jpg?raw=true" alt=""></p>
+<p>最终得出</p>
+<pre><code>T(N) = 0.998 × 10 ^ –10 × N ^ 3</code></pre><p>事实上，这个公式和根据线性回归（linear regression）计算得出的公式相当相近了。</p>
+<h3 id="4-在实践中影响算法表现的因素"><a href="#4-在实践中影响算法表现的因素" class="headerlink" title="4. 在实践中影响算法表现的因素"></a>4. 在实践中影响算法表现的因素</h3><p>不受外部系统影响的部分</p>
+<ul>
+<li>算法</li>
+<li>输入数据</li>
+</ul>
+<p>受外部系统影响的部分</p>
+<ul>
+<li>硬件（Hardware） ： CPU， 内存， 缓存，…</li>
+<li>软件（Software） ： 编译器， 解释器， 垃圾回收（GC），…</li>
+<li>系统（System） ： 操作系统（OS）， 网络， 其它应用，…</li>
+</ul>
+<p>通过这节我们对3-SUM算法的暴力实现算法进行了分析，得出了一些简单的结论。能够根据公式，输入一定数量的数据，得出运行时间。  </p>
+<p>如何对其它更广泛的算法进行计算呢？我们需要对算法内部的代码进行更细致的分析。</p>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+<h1 id="3-数学模型"><a href="#3-数学模型" class="headerlink" title="3. 数学模型"></a>3. 数学模型</h1><h2 id="3-1-运行时间的数学模型"><a href="#3-1-运行时间的数学模型" class="headerlink" title="3.1 运行时间的数学模型"></a>3.1 运行时间的数学模型</h2><p>给定一个算法，其总的运行时间 \(T\) = 算法中每个具体操作耗费的时间 \(T_i\) \(*\) 该操作出现的次数 \(n_i\) 之和。<br>使用公式表示为：  </p>
+<p>$$ T = \sum_{i=0}^n T_i n_i $$</p>
+<p>我们需要知道以下几点：</p>
+<ul>
+<li>需要对程序进行分析，以确认操作的次数</li>
+<li>耗费时间取决于硬件和编译器</li>
+<li>操作的次数取决于算法和输入的数据</li>
+</ul>
+<p>大体上说， 精确的数学模型是十分有价值的。</p>
+<h3 id="1-基本操作的时间"><a href="#1-基本操作的时间" class="headerlink" title="1. 基本操作的时间"></a>1. 基本操作的时间</h3><p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Cost%20of%20basic%20operations1.jpg?raw=true" alt=""></p>
+<p>以上是常见数学计算的耗时。</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Cost%20of%20basic%20operations2.jpg?raw=true" alt=""></p>
+<p>以上是计算机语言中常见操作的耗时，\(c_i\)表示常数时间， \(N\)表示输入的数据量。</p>
+<p>新手错误 ： 滥用字符串连接（string concatenation），因为这和输入数据量成正比，我们应该追求更高效的做法。</p>
+<p>接下来，我们看几个由3-SUM简化出的问题，逐步分析。</p>
+<h3 id="2-例子：-1-SUM问题"><a href="#2-例子：-1-SUM问题" class="headerlink" title="2. 例子： 1 - SUM问题"></a>2. 例子： 1 - SUM问题</h3><p>问题： 当输入的数据有N个时，需要操作多少步？<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/1-sum%20time.jpg?raw=true" alt=""></p>
+<p>图中给出了各种必要的操作及其次数。</p>
+<h3 id="3-例子：-2-SUM问题"><a href="#3-例子：-2-SUM问题" class="headerlink" title="3. 例子： 2 - SUM问题"></a>3. 例子： 2 - SUM问题</h3><p>问题： 当输入的数据有N个时，需要操作多少步？<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/2-sum%20time.jpg?raw=true" alt=""></p>
+<p>图中给出了各种必要的操作及其次数。<br>相比1 - SUM中的操作，2 - SUM中操作次数计算开始变得繁琐和难以计算。</p>
+<h2 id="3-2-简化计算"><a href="#3-2-简化计算" class="headerlink" title="3.2 简化计算"></a>3.2 简化计算</h2><h3 id="1-耗费模型的简化"><a href="#1-耗费模型的简化" class="headerlink" title="1. 耗费模型的简化"></a>1. 耗费模型的简化</h3><p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Alan%20Turing.jpg?raw=true" alt=""></p>
+<blockquote>
+<p>“ It is convenient to have a measure of the amount of work involved<br>in a computing process, even though it be a very crude one. We may<br>count up the number of times that various elementary operations are<br>applied in the whole process and then given them various weights.<br>We might, for instance, count the number of additions, subtractions,<br>multiplications, divisions, recording of numbers, and extractions<br>of figures from tables. In the case of computing with matrices most<br>of the work consists of multiplications and writing down numbers,<br>and we shall therefore only attempt to count the number of<br>multiplications and recordings. ” — Alan Turing</p>
+</blockquote>
+<p>这是艾伦 图灵（Alan Turing）说过的一段话，大意是：<br>“测量计算过程中涉及的工作量是很方便的，尽管可能结果很粗糙。我们可以计算在整个过程中各种基本操作应用的次数，然后赋予它们各种权重。<br>例如，我们可以计算加法、减法、乘法、除法、记录数字和从表中提取数据的次数。在矩阵中计算的情况下，操作主要是由乘法和记录数字组成，因此我们只尝试计算乘法和记录的次数。”</p>
+<p>其中最后一句话提到“只尝试计算乘法和记录的次数”，这为简化算法耗费时间的计算提供了思路。</p>
+<p>例如刚才2-SUM问题中，我们<strong>只对关键操作的时间进行记录</strong>，而忽略其它操作的时间。</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/simlification1%20-%20cost%20model.jpg?raw=true" alt=""></p>
+<p>我们只记录访问数组的时间，其次数\(N (N - 1)\)。</p>
+<h3 id="2-波浪线表示法"><a href="#2-波浪线表示法" class="headerlink" title="2. 波浪线表示法"></a>2. 波浪线表示法</h3><ul>
+<li>当输出个数为N时，估计函数的运行时间</li>
+<li>忽略低阶项<ul>
+<li>当N很大时，低阶项微不足道</li>
+<li>当N较小时，我们无需在意</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">式子</th>
+<th align="center">等价</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">⅙ \(N^3\) + 20 \(N\) + 16</td>
+<td align="center">~ ⅙ \(N^3\)</td>
+</tr>
+<tr>
+<td align="center">⅙ \(N^3\) + 100 \(N^{4/3}\) + 56</td>
+<td align="center">~ ⅙ \(N^3\)</td>
+</tr>
+<tr>
+<td align="center">⅙ \(N^3\) - ½ \(N^2\) + ⅓ \(N\)</td>
+<td align="center">~ ⅙ \(N^3\)</td>
+</tr>
+</tbody></table>
+<p>对于第三项来说，当\(N\) = 1000时， ½ \(N^2\) + ⅓ \(N\)大概是500000（十万量级）， 而⅙ \(N^3\)为166000000（亿量级），相比来说，忽略低阶项完全是说通的。</p>
+<p>以下是2-SUM各项操作波浪线表示法得出的等价：<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/simlification2%20-%20tlide%20notation.jpg?raw=true" alt=""></p>
+<h3 id="3-例子：-2-SUM问题-1"><a href="#3-例子：-2-SUM问题-1" class="headerlink" title="3. 例子： 2 - SUM问题"></a>3. 例子： 2 - SUM问题</h3><p>根据上面的方法进行简化，计算出时间。</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/2-sum%20simply.jpg?raw=true" alt=""></p>
+<p>得出结论：2-SUM问题的算法时间复杂度为 ~\(  N^2\)。</p>
+<h3 id="4-例子：-3-SUM问题"><a href="#4-例子：-3-SUM问题" class="headerlink" title="4. 例子： 3 - SUM问题"></a>4. 例子： 3 - SUM问题</h3><p>根据上面的方法进行简化，计算出时间。</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/3-sum%20simply.jpg?raw=true" alt=""></p>
+<p>得出结论：3-SUM问题的算法时间复杂度为 ~\( {1/2} N^3\)。</p>
+<h3 id="5-估计离散求和"><a href="#5-估计离散求和" class="headerlink" title="5. 估计离散求和"></a>5. 估计离散求和</h3><p>问题：如何对离散值求和？</p>
+<ul>
+<li>学习离散数学</li>
+<li>使用微积分</li>
+</ul>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Estimating%20a%20discrete%20sum.jpg?raw=true" alt=""></p>
+<p>理论中，精确的数学模型十分重要。<br>现实中，</p>
+<ul>
+<li>方程可能很复杂</li>
+<li>可能需要高等数学的知识</li>
+<li>具体的数学模型还是留给专家吧！</li>
+</ul>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms%20Analysis/Mathematical%20models%20for%20running%20time.jpg?raw=true" alt=""></p>
+<p>我们需要的是一个大概的模型，例如： \(T(N) \) ~ \(c N^3\)</p>
+<p>未完待续。。。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -230,234 +432,137 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Lambda表达式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sort</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/" class="archive-article-date">
-  	<time datetime="2018-04-23T08:09:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/">Java反射初探 -- 1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/" class="archive-article-date">
-  	<time datetime="2017-11-10T13:30:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/">算法4（Algorithms4）- Part 5 图（Graph）-无向图（Undirected Graph）1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Graph</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">算法分析</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://stevehuge.gitee.io/blog/2017/10/16/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%201%20%20%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%EF%BC%88Analysis%20Of%20Algorithms%EF%BC%891/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2017-11-04T14:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-04</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/blog/2017/10/16/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%201%20%20%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%EF%BC%88Analysis%20Of%20Algorithms%EF%BC%892/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          算法4（Algorithms4）- Part 1  算法分析（Analysis Of Algorithms）2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2017/10/13/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%201%20%20%E5%8A%A8%E6%80%81%E8%BF%9E%E9%80%9A%E6%80%A7%EF%BC%88Dynamic%20Connectivity%EF%BC%892/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">算法4（Algorithms4）- Part 1  动态连通性（Dynamic Connectivity）2</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/">LaTeX简介及其在Mardown中的用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LaTeX</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-介绍"><span class="toc-number">1.</span> <span class="toc-text">1. 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-人物介绍"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 人物介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-运行时间"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 运行时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-为什么要分析算法？"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 为什么要分析算法？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-一些成功的算法"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 一些成功的算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-离散傅里叶变换（Discrete-Fourier-transform）"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. 离散傅里叶变换（Discrete Fourier transform）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-N体模拟（N-body-simulation）"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. N体模拟（N - body simulation）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-我们面临的挑战"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 我们面临的挑战</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-应用于算法分析的科学方法"><span class="toc-number">1.5.0.1.</span> <span class="toc-text">1. 应用于算法分析的科学方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-科学的方法"><span class="toc-number">1.5.0.2.</span> <span class="toc-text">2. 科学的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-需要遵守的原则"><span class="toc-number">1.5.0.3.</span> <span class="toc-text">3. 需要遵守的原则</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-观察"><span class="toc-number">2.</span> <span class="toc-text">2. 观察</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-3-SUM问题"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 3 - SUM问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-暴力破解"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 暴力破解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-运行时间"><span class="toc-number">2.2.1.</span> <span class="toc-text">1. 运行时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-数据分析"><span class="toc-number">2.2.2.</span> <span class="toc-text">2. 数据分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-预测和验证"><span class="toc-number">2.2.3.</span> <span class="toc-text">3. 预测和验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-在实践中影响算法表现的因素"><span class="toc-number">2.2.4.</span> <span class="toc-text">4. 在实践中影响算法表现的因素</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-数学模型"><span class="toc-number">3.</span> <span class="toc-text">3. 数学模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-运行时间的数学模型"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 运行时间的数学模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-基本操作的时间"><span class="toc-number">3.1.1.</span> <span class="toc-text">1. 基本操作的时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-例子：-1-SUM问题"><span class="toc-number">3.1.2.</span> <span class="toc-text">2. 例子： 1 - SUM问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-例子：-2-SUM问题"><span class="toc-number">3.1.3.</span> <span class="toc-text">3. 例子： 2 - SUM问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-简化计算"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 简化计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-耗费模型的简化"><span class="toc-number">3.2.1.</span> <span class="toc-text">1. 耗费模型的简化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-波浪线表示法"><span class="toc-number">3.2.2.</span> <span class="toc-text">2. 波浪线表示法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-例子：-2-SUM问题-1"><span class="toc-number">3.2.3.</span> <span class="toc-text">3. 例子： 2 - SUM问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-例子：-3-SUM问题"><span class="toc-number">3.2.4.</span> <span class="toc-text">4. 例子： 3 - SUM问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-估计离散求和"><span class="toc-number">3.2.5.</span> <span class="toc-text">5. 估计离散求和</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2017-10-29T07:50:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-29</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/">算法4（Algorithms4） - Part 2 快速排序（Quick Sort）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Sorting</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分治法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/blog/archives/page/2/">2</a><a class="page-number" href="/blog/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/archives/page/5/">5</a><a class="extend next" rel="next" href="/blog/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
   
 
 
@@ -481,8 +586,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

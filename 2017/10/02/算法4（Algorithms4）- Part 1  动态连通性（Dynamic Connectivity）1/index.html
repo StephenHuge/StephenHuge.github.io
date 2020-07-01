@@ -6,15 +6,36 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://stevehuge.gitee.io/blog">
-  <title>Archives | Steve&#39;s Blog</title>
+  <title>算法4（Algorithms4）- Part 1  动态连通性（Dynamic Connectivity）1 | Steve&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Steve&#39;s Blog">
-<meta property="og:url" content="https://stevehuge.gitee.io/blog/archives/index.html">
+  <meta name="description" content="本系列文章记录学习的过程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法4（Algorithms4）- Part 1  动态连通性（Dynamic Connectivity）1">
+<meta property="og:url" content="https://stevehuge.gitee.io/blog/2017/10/02/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%201%20%20%E5%8A%A8%E6%80%81%E8%BF%9E%E9%80%9A%E6%80%A7%EF%BC%88Dynamic%20Connectivity%EF%BC%891/index.html">
 <meta property="og:site_name" content="Steve&#39;s Blog">
+<meta property="og:description" content="本系列文章记录学习的过程。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms4-top.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Union-Find.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/ConnectedComponents.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/UnionFindOperation.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/QuickFind.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/QuickFind-Java.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/QuickUnion.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/QuickUnion-Java.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/WeightedQuickUnion.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/quickunion-weightedTrees.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/weighted-depth.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/WeightedQuickUnionAnalysis.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/PathCompression.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/all%20algorithms.jpg?raw=true">
+<meta property="article:published_time" content="2017-10-02T08:42:40.000Z">
+<meta property="article:modified_time" content="2020-07-01T05:26:22.942Z">
 <meta property="article:author" content="Steve Hu">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms4-top.jpg?raw=true">
   
     <link rel="alternative" href="/atom.xml" title="Steve&#39;s Blog" type="application/atom+xml">
   
@@ -154,171 +175,297 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-算法4（Algorithms4）- Part 1  动态连通性（Dynamic Connectivity）1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2020/06/30/hello-world/" class="archive-article-date">
-  	<time datetime="2020-06-30T13:43:16.739Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2020/06/30/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      算法4（Algorithms4）- Part 1  动态连通性（Dynamic Connectivity）1
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2018-07-21T13:20:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-21</time>
+        
+        <a href="/blog/2017/10/02/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%201%20%20%E5%8A%A8%E6%80%81%E8%BF%9E%E9%80%9A%E6%80%A7%EF%BC%88Dynamic%20Connectivity%EF%BC%891/" class="archive-article-date">
+  	<time datetime="2017-10-02T08:42:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-02</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/">Java中Lambda表达式的常见用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Lambda表达式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sort</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/" class="archive-article-date">
-  	<time datetime="2018-04-23T08:09:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/">Java反射初探 -- 1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/" class="archive-article-date">
-  	<time datetime="2017-11-10T13:30:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/">算法4（Algorithms4）- Part 5 图（Graph）-无向图（Undirected Graph）1</a>
-    </h1>
-  
+        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Algorithms4-top.jpg?raw=true" alt="Algorithms4-TOP"></p>
+<p>本系列文章记录学习的过程。</p>
+<a id="more"></a>
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>由于课程授课和课件（Lecture Slides）均为英文，所以文中许多专有名词会标注英文，中文翻译参考《Algorithms Fourth Edition》中文版。课件以及其它资料下载链接会在文末给出。</p>
+<h1 id="1-动态连通性（Dynamic-Connectivity）"><a href="#1-动态连通性（Dynamic-Connectivity）" class="headerlink" title="1. 动态连通性（Dynamic Connectivity）"></a>1. 动态连通性（Dynamic Connectivity）</h1><h3 id="1-1-定义"><a href="#1-1-定义" class="headerlink" title="1.1 定义"></a>1.1 定义</h3><p>什么是动态连通性？  </p>
+<blockquote>
+<p>Given a set of N objects.<br>・Union command: connect two objects.<br>・Find/connected query: is there a path connecting the two objects?  </p>
+</blockquote>
+<p>给定几个数的集合  </p>
+<ul>
+<li>Union操作： 在两个数之间加一条连接。  </li>
+<li>Find/connected查询： 判断两个数之间是否有连接。  </li>
+</ul>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/Union-Find.jpg?raw=true" alt="Union-Find"></p>
+<h3 id="1-2-建立模型"><a href="#1-2-建立模型" class="headerlink" title="1.2 建立模型"></a>1.2 建立模型</h3><p>如何选择具体的数据结构模型呢？<br>动态连通性的应用十分广泛：</p>
+<ul>
+<li>照片的像素</li>
+<li>网络中的电脑</li>
+<li>社交网络中的两个人</li>
+<li>电路芯片中的晶体管</li>
+<li>数学集合中的元素<br>…  </li>
+</ul>
+<p>比较容易实现的选择：<strong>使用数组，让数组的每个下标代表每个数</strong>。</p>
+<p>我们继续假设： “<code>相连</code>（is connected to）” 是两个数之间的一种关系，且这种关系满足以下条件：  </p>
+<ul>
+<li>自反性（Reflexive）： p和p是相连的；  </li>
+<li>对称性（Symmetric）： 如果p和q是相连的，那么q和p也是相连的；  </li>
+<li>传递性（Transitive）： 如果p和q相连且q和r相连，那么p和r相连。  </li>
+</ul>
+<p>当两个数相连时，它们属于同一个<code>等价类</code>（Connected Components）。<br><code>等价类</code>，就是所有相连的数的集合，这个集合必须包含所有相连的数。  <center><br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/ConnectedComponents.jpg?raw=true" alt="ConnectedComponents"></p>
+</center>
+具体的操作，给定两个数：  
+- Find操作： 查看两个数是否属于同一个等价类。  
+- Union操作： 将两个数连接起来，这个操作其实就是将两个数所在的等价类联合成一个等价类。  
 
-        <div class="article-info info-on-right">
-          
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/UnionFindOperation.jpg?raw=true" alt="UnionFindOperation"></p>
+<p>在这里约定一下使用的术语：</p>
+<center>
+
+<table>
+<thead>
+<tr>
+<th align="center">英文</th>
+<th align="center">汉语术语</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Connected Components</td>
+<td align="center">等价类 / 分量</td>
+</tr>
+<tr>
+<td align="center">node</td>
+<td align="center">节点</td>
+</tr>
+</tbody></table>
+</center>
+### 1.3 Union-Find数据类型（Union-Find data type）
+由1.2 我们得出了简单的数据模型，现在需要设计具体的数据类型，我们的目标是：
+- 为Union-Find操作设计出一个高效的数据类型
+- 每个数据类型包含N个数，N可能会很大
+- 操作的次数M可能很大
+- Find操作和Union操作可能会交叉进行
+
+<p>以下是API：</p>
+<table>
+<thead>
+<tr>
+<th align="center">public class UF</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">UF(int N)</td>
+<td align="center">用整数N(0到N-1)初始化N个点</td>
+</tr>
+<tr>
+<td align="center">void union(int p, int q)</td>
+<td align="center">为点p和点q之间添加一条连接</td>
+</tr>
+<tr>
+<td align="center">boolean connected(int p, int q)</td>
+<td align="center">判断点p和点q是否属于同一个分量</td>
+</tr>
+<tr>
+<td align="center">int find(int p)</td>
+<td align="center">p所在分量的标识符（0到N-1）</td>
+</tr>
+<tr>
+<td align="center">int count()</td>
+<td align="center">分量的数量</td>
+</tr>
+</tbody></table>
+<h1 id="2-Quick-Find算法"><a href="#2-Quick-Find算法" class="headerlink" title="2. Quick Find算法"></a>2. Quick Find算法</h1><h3 id="2-1-数据结构"><a href="#2-1-数据结构" class="headerlink" title="2.1 数据结构"></a>2.1 数据结构</h3><ul>
+<li>整数型数组id[]，长度为N。</li>
+<li>p和q是相连的等价于数组中p下标和q下标的数相同。</li>
+</ul>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/QuickFind.jpg?raw=true" alt="QuickFind"></p>
+<h3 id="2-2-Java实现"><a href="#2-2-Java实现" class="headerlink" title="2.2 Java实现"></a>2.2 Java实现</h3><p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/QuickFind-Java.jpg?raw=true" alt="QFJava"></p>
+<h3 id="2-3-算法分析"><a href="#2-3-算法分析" class="headerlink" title="2.3 算法分析"></a>2.3 算法分析</h3><p>QuickFind算法太慢了。<br>下表是最坏情况下QuickFind算法对一组点操作使用的时间消耗。</p>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th align="center">初始化</th>
+<th align="center">union操作</th>
+<th align="center">find操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QuickFind</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="center">1</td>
+</tr>
+</tbody></table>
+<p>Union操作过于缓慢：如果要对N对点进行union操作，最多需要对数组访问N^2次。</p>
+<h1 id="3-Quick-Union算法"><a href="#3-Quick-Union算法" class="headerlink" title="3. Quick Union算法"></a>3. Quick Union算法</h1><h3 id="3-1-数据结构"><a href="#3-1-数据结构" class="headerlink" title="3.1 数据结构"></a>3.1 数据结构</h3><ul>
+<li>整数型数组id[]，长度为N。</li>
+<li>id[i]中存储i的父节点（ 也就是形成一个链接，直到其父节点就是它自己，说明到头了）</li>
+<li>i的根节点（root）是id[id[id[id[…id[i]…]]]]</li>
+</ul>
+<p>具体操作：</p>
+<ul>
+<li>Find操作：检查p和q是否拥有同一个根节点 。</li>
+<li>Union操作： 为了合并p和q各自所在的分量，将p的根节点改为q的根节点。<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/QuickUnion.jpg?raw=true" alt="QuickUnion"><h3 id="3-2-Java实现"><a href="#3-2-Java实现" class="headerlink" title="3.2 Java实现"></a>3.2 Java实现</h3><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/QuickUnion-Java.jpg?raw=true" alt="QuickUnionJava"><h3 id="3-3-算法分析"><a href="#3-3-算法分析" class="headerlink" title="3.3 算法分析"></a>3.3 算法分析</h3>对一对点进行操作需要访问数组的次数，图中是最坏情况。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th align="center">初始化</th>
+<th align="center">union操作</th>
+<th align="center">find操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QuickFind</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td>QuickUnion</td>
+<td align="center">N</td>
+<td align="center">N*</td>
+<td align="center">N</td>
+</tr>
+</tbody></table>
+<p>*：包括了寻找根节点的操作。</p>
+<p>QuickFind的缺点</p>
+<ul>
+<li>Union操作太慢了，最差为N</li>
+<li>树是平的，但是维护这个状态时间耗费太大了</li>
+</ul>
+<p>QuickUnion的缺点</p>
+<ul>
+<li>树可能会很高</li>
+<li>Find操作太慢了，最差为N</li>
+</ul>
+<h1 id="4-改进1-加权（weighting）"><a href="#4-改进1-加权（weighting）" class="headerlink" title="4. 改进1 - 加权（weighting）"></a>4. 改进1 - 加权（weighting）</h1><h3 id="4-1-数据结构"><a href="#4-1-数据结构" class="headerlink" title="4.1 数据结构"></a>4.1 数据结构</h3><p>加权QuickUnion（Weighted QuickUnion）  </p>
+<ul>
+<li>改进QuickUnion，避免太高的树</li>
+<li>对每个树的大小（包含点的数量）进行记录</li>
+<li>union操作时，比较两个点所在树的大小，小数的根节点连接到大树的根节点之上</li>
+</ul>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/WeightedQuickUnion.jpg?raw=true" alt=""></p>
+<p>数据结构其实和QuickUnion相同，但是需要再维护一个额外的数组sz[i]，用来记录以i节点为根节点的分量的大小（及分量中数的多少）</p>
+<h3 id="4-2-Java实现"><a href="#4-2-Java实现" class="headerlink" title="4.2 Java实现"></a>4.2 Java实现</h3><p>Find操作：和QuickUnion相同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return root(p) &#x3D;&#x3D; root(q);</span><br></pre></td></tr></table></figure>
+<p>Union操作：改进的QuickUnion</p>
+<ul>
+<li>将较小的树的根节点连接到大的树的根节点上</li>
+<li>不断更新sz[]数组</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int i &#x3D; root(p);</span><br><span class="line">int j &#x3D; root (q);</span><br><span class="line">        </span><br><span class="line">if(i &#x3D;&#x3D; j)  return;</span><br><span class="line">if(sz[i] &lt; sz[j])   &#123; id[i] &#x3D; j;    sz[j] +&#x3D; sz[i];&#125;</span><br><span class="line">else                &#123; id[j] &#x3D; i;    sz[i] +&#x3D; sz[j];&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-算法分析"><a href="#4-3-算法分析" class="headerlink" title="4.3 算法分析"></a>4.3 算法分析</h3><p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/quickunion-weightedTrees.jpg?raw=true" alt="quickunion-weightedTrees"><br>运行时间  </p>
+<ul>
+<li>Find操作： 时间和p以及q的深度成正比  </li>
+<li>Union操作： 给定根节点，时间为常数  </li>
+</ul>
+<p><strong>命题</strong>： 任意节点x，其深度最大为lg N 。<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/weighted-depth.jpg?raw=true" alt="">  </p>
+<p><strong>证明</strong>:<br>什么时候x的深度会增大呢？  </p>
+<p>当树T2比树T1大，即|T2| &gt;= |T1|时，包含x的树T1成为另一个树T2的子树时，x的深度会加1。由此推出：  </p>
+<ul>
+<li>T1和T2合起来的新树，其大小至少是之前T1的2倍。（也就是x所在的树大小增大1倍，x的深度加1）</li>
+<li>包含x的树最多可以翻倍lg N 次。<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/WeightedQuickUnionAnalysis.jpg?raw=true" alt="WeightedQuickUnionAnalysis"></li>
+</ul>
+<p>算法分析</p>
+<center>
+
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th align="center">初始化</th>
+<th align="center">union操作</th>
+<th align="center">find操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QuickFind</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td>QuickUnion</td>
+<td align="center">N</td>
+<td align="center">N*</td>
+<td align="center">N</td>
+</tr>
+<tr>
+<td>weighted QU</td>
+<td align="center">N</td>
+<td align="center">(lg N)*</td>
+<td align="center">lg N</td>
+</tr>
+</tbody></table>
+</center>
+*：包括了寻找根节点的操作。
+
+<p>还可以优化吗？答案是肯定的。</p>
+<h1 id="5-改进2-路径压缩（Path-Compression）"><a href="#5-改进2-路径压缩（Path-Compression）" class="headerlink" title="5. 改进2 - 路径压缩（Path Compression）"></a>5. 改进2 - 路径压缩（Path Compression）</h1><h3 id="5-1-数据结构"><a href="#5-1-数据结构" class="headerlink" title="5.1 数据结构"></a>5.1 数据结构</h3><p>在计算点p的根节点root之后，每个经过的节点，如果其根节点不为root的话，让其根节点变成root，如图是带路径压缩的QuickUnion算法（Quick Union with Path Compression），下图是具体的过程。  </p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/PathCompression.jpg?raw=true" alt=""></p>
+<h3 id="5-2-Java实现"><a href="#5-2-Java实现" class="headerlink" title="5.2 Java实现"></a>5.2 Java实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private int root(int i) &#123;</span><br><span class="line">    int temp;   &#x2F;&#x2F; 临时节点</span><br><span class="line">    </span><br><span class="line">    while(i !&#x3D; id[i]) &#123;</span><br><span class="line">        temp &#x3D; id[i];   &#x2F;&#x2F; 用临时节点记录i节点的父节点</span><br><span class="line">        id[i] &#x3D; find(i);&#x2F;&#x2F; 将i节点的父节点置为根节点</span><br><span class="line">        i &#x3D; temp;       &#x2F;&#x2F; 对i节点之前的父节点进行重复性判断</span><br><span class="line">    &#125;</span><br><span class="line">    return i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-算法分析"><a href="#5-3-算法分析" class="headerlink" title="5.3 算法分析"></a>5.3 算法分析</h3><p>使用带路径压缩的加权Quick Union算法，对于N个数，M次操作时，访问数组次数最多为c (N + M lg* N)。<br>（c为常数， lg* N是lg(lg(lg(…lg()…)))。）  </p>
+<p>对于N个数，M次操作时，有没有线性访问数组次数的算法呢？</p>
+<ul>
+<li>理论上， WQUPC（Weighted Quick Union &amp; Path Compression）不是线性的</li>
+<li>实际中，WQUPC基本是线性的</li>
+</ul>
+<p>现已证明，没有完全的线性算法存在。</p>
+<h1 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h1><p>使用带路径压缩的加权Quick Union算法，使得之前不可能被解决的问题现在可以被解决。</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part%201/all%20algorithms.jpg?raw=true" alt=""></p>
+<p>对于10^9次union操作和10^9次find操作：</p>
+<ul>
+<li>WQUPC让时间从30年变成了6s</li>
+<li>超级计算机并不能帮助太多，但是好的算法可以让问题得到充分解决</li>
+</ul>
+<h1 id="参考网址"><a href="#参考网址" class="headerlink" title="参考网址"></a>参考网址</h1><p>[1] <a href="https://www.coursera.org/learn/algorithms-part1/home/welcome" target="_blank" rel="noopener" title="课程首页">课程首页（Course Page）</a><br>[2] <a href="http://algs4.cs.princeton.edu/11model/" target="_blank" rel="noopener" title="课程首页">Algorithms 4th</a><br>[3] <a href="https://github.com/StephenHuge/Algorithms01/tree/master/ppt" target="_blank" rel="noopener">课件下载（Lecture Slides）</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -330,134 +477,131 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Graph</a>
-        		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://stevehuge.gitee.io/blog/2017/10/02/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%201%20%20%E5%8A%A8%E6%80%81%E8%BF%9E%E9%80%9A%E6%80%A7%EF%BC%88Dynamic%20Connectivity%EF%BC%891/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2017-11-04T14:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-04</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/blog/2017/10/13/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%201%20%20%E5%8A%A8%E6%80%81%E8%BF%9E%E9%80%9A%E6%80%A7%EF%BC%88Dynamic%20Connectivity%EF%BC%892/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          算法4（Algorithms4）- Part 1  动态连通性（Dynamic Connectivity）2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2017/09/24/%E5%AD%A6%E5%88%86%E7%BB%A9%E8%AE%A1%E7%AE%97%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">学分绩计算器</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/">LaTeX简介及其在Mardown中的用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LaTeX</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-动态连通性（Dynamic-Connectivity）"><span class="toc-number">2.</span> <span class="toc-text">1. 动态连通性（Dynamic Connectivity）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-定义"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.1 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-建立模型"><span class="toc-number">2.0.2.</span> <span class="toc-text">1.2 建立模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Quick-Find算法"><span class="toc-number">3.</span> <span class="toc-text">2. Quick Find算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-数据结构"><span class="toc-number">3.0.1.</span> <span class="toc-text">2.1 数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Java实现"><span class="toc-number">3.0.2.</span> <span class="toc-text">2.2 Java实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-算法分析"><span class="toc-number">3.0.3.</span> <span class="toc-text">2.3 算法分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Quick-Union算法"><span class="toc-number">4.</span> <span class="toc-text">3. Quick Union算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-数据结构"><span class="toc-number">4.0.1.</span> <span class="toc-text">3.1 数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Java实现"><span class="toc-number">4.0.2.</span> <span class="toc-text">3.2 Java实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-算法分析"><span class="toc-number">4.0.3.</span> <span class="toc-text">3.3 算法分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-改进1-加权（weighting）"><span class="toc-number">5.</span> <span class="toc-text">4. 改进1 - 加权（weighting）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-数据结构"><span class="toc-number">5.0.1.</span> <span class="toc-text">4.1 数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Java实现"><span class="toc-number">5.0.2.</span> <span class="toc-text">4.2 Java实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-算法分析"><span class="toc-number">5.0.3.</span> <span class="toc-text">4.3 算法分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-改进2-路径压缩（Path-Compression）"><span class="toc-number">6.</span> <span class="toc-text">5. 改进2 - 路径压缩（Path Compression）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-数据结构"><span class="toc-number">6.0.1.</span> <span class="toc-text">5.1 数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-Java实现"><span class="toc-number">6.0.2.</span> <span class="toc-text">5.2 Java实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-算法分析"><span class="toc-number">6.0.3.</span> <span class="toc-text">5.3 算法分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-总结"><span class="toc-number">7.</span> <span class="toc-text">6. 总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考网址"><span class="toc-number">8.</span> <span class="toc-text">参考网址</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2017-10-29T07:50:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-29</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/">算法4（Algorithms4） - Part 2 快速排序（Quick Sort）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Sorting</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分治法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/blog/archives/page/2/">2</a><a class="page-number" href="/blog/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/archives/page/5/">5</a><a class="extend next" rel="next" href="/blog/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
   
 
 
@@ -481,8 +625,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

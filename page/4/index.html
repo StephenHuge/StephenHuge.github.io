@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://stevehuge.gitee.io/blog">
-  <title>Archives | Steve&#39;s Blog</title>
+  <title>Steve&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Steve&#39;s Blog">
-<meta property="og:url" content="https://stevehuge.gitee.io/blog/archives/index.html">
+<meta property="og:url" content="https://stevehuge.gitee.io/blog/page/4/index.html">
 <meta property="og:site_name" content="Steve&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Steve Hu">
@@ -156,307 +156,488 @@
           <div id="js-content" class="content-ll">
             
   
-  
+    <article id="post-JDBC的学习过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2020/06/30/hello-world/" class="archive-article-date">
-  	<time datetime="2020-06-30T13:43:16.739Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2020/06/30/hello-world/">Hello World</a>
+      <a class="article-title" href="/blog/2017/08/06/JDBC%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B/">JDBC的学习过程</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2018-07-21T13:20:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-21</time>
+        
+        <a href="/blog/2017/08/06/JDBC%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B/" class="archive-article-date">
+  	<time datetime="2017-08-06T10:56:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/">Java中Lambda表达式的常见用法</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/JDBC/top.jpg?raw=true" alt="JDBC top">  </p>
+<h2 id="一些不相关的题外话"><a href="#一些不相关的题外话" class="headerlink" title="一些不相关的题外话  "></a><strong>一些不相关的题外话</strong>  </h2><p>将近两个月没有更新博客了。<br>六月之后，师兄师姐们忙着毕业，各种项目上的事都接踵而至。而我在这两个月里做的事，更多的是忙着交接项目和送别。每到毕业季便都是友人送别的场景，整个实验室的气氛也是有点郁郁寡欢。<br>但这样的日子并不能长久，因为毕业季一过，便就是求职季了。所以，每日奔走于实验室、寝室和食堂之间。虽说三点一线，颇为单调，但也在这平凡的日子里，慢慢感受到，真正学到一点知识的快乐。</p>
+        
+          <a class="article-more-a" href="/blog/2017/08/06/JDBC%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B/#more">more >></a>
+        
+      
 
-        <div class="article-info info-on-right">
-          
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JDBC</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Lambda表达式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sort</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/" class="archive-article-date">
-  	<time datetime="2018-04-23T08:09:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/">Java反射初探 -- 1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2017/08/06/JDBC%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JSON学习2-用JavaScript读取JSON" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2017/06/07/JSON%E5%AD%A6%E4%B9%A02-%E7%94%A8JavaScript%E8%AF%BB%E5%8F%96JSON/">JSON学习2-用JavaScript读取JSON</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2017/06/07/JSON%E5%AD%A6%E4%B9%A02-%E7%94%A8JavaScript%E8%AF%BB%E5%8F%96JSON/" class="archive-article-date">
+  	<time datetime="2017-06-07T11:26:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/JSON/json_top_2.jpg?raw=true" alt="JSON">  </p>
+<h1 id="使用JavaScript读取JSON"><a href="#使用JavaScript读取JSON" class="headerlink" title="使用JavaScript读取JSON"></a>使用JavaScript读取JSON</h1><p>使用JavaScript读取JSON中的内容。  </p>
+        
+          <a class="article-more-a" href="/blog/2017/06/07/JSON%E5%AD%A6%E4%B9%A02-%E7%94%A8JavaScript%E8%AF%BB%E5%8F%96JSON/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/" class="archive-article-date">
-  	<time datetime="2017-11-10T13:30:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/">算法4（Algorithms4）- Part 5 图（Graph）-无向图（Undirected Graph）1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Graph</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2017/06/07/JSON%E5%AD%A6%E4%B9%A02-%E7%94%A8JavaScript%E8%AF%BB%E5%8F%96JSON/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2017-11-04T14:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-04</time>
-</a>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JSON学习1-什么是JSON" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/">LaTeX简介及其在Mardown中的用法</a>
+      <a class="article-title" href="/blog/2017/06/06/JSON%E5%AD%A6%E4%B9%A01-%E4%BB%80%E4%B9%88%E6%98%AFJSON/">JSON学习1-什么是JSON</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/blog/2017/06/06/JSON%E5%AD%A6%E4%B9%A01-%E4%BB%80%E4%B9%88%E6%98%AFJSON/" class="archive-article-date">
+  	<time datetime="2017-06-06T12:44:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/JSON/json_top_1.jpg?raw=true" alt="JSON"></p>
+<h1 id="什么是JSON"><a href="#什么是JSON" class="headerlink" title="什么是JSON"></a>什么是JSON</h1><hr>
+<p>　　JSON（JavaScript Object Notation）指的是 JavaScript 对象表示法，是一种轻量级的数据交换格式。它的优点是易于人的阅读和编写，同时也易于及其解析和生成。它是JavaScript语法的一个子集。JSON采用完全独立于语言的文本格式，但是也使用了类似于C语言家族的习惯（包括C, C++, C#, Java, JavaScript, Perl, Python等）。 这些特性使JSON成为理想的数据交换语言。  </p>
+        
+          <a class="article-more-a" href="/blog/2017/06/06/JSON%E5%AD%A6%E4%B9%A01-%E4%BB%80%E4%B9%88%E6%98%AFJSON/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LaTeX</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2017/06/06/JSON%E5%AD%A6%E4%B9%A01-%E4%BB%80%E4%B9%88%E6%98%AFJSON/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2017-10-29T07:50:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-29</time>
-</a>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-聊赖一记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/">算法4（Algorithms4） - Part 2 快速排序（Quick Sort）</a>
+      <a class="article-title" href="/blog/2017/05/05/%E8%81%8A%E8%B5%96%E4%B8%80%E8%AE%B0/">聊赖一记</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/blog/2017/05/05/%E8%81%8A%E8%B5%96%E4%B8%80%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2017-05-05T13:22:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E9%9A%8F%E7%AC%94/%E6%A1%83%E8%8A%B1.jpg?raw=true" alt=""></p>
+        
+          <a class="article-more-a" href="/blog/2017/05/05/%E8%81%8A%E8%B5%96%E4%B8%80%E8%AE%B0/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Sorting</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分治法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2017/05/05/%E8%81%8A%E8%B5%96%E4%B8%80%E8%AE%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
+    <article id="post-我的git使用教程2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
-    </div></section>
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2017/05/04/%E6%88%91%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B2/">我的git使用教程2</a>
+    </h1>
   
 
+        
+        <a href="/blog/2017/05/04/%E6%88%91%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B2/" class="archive-article-date">
+  	<time datetime="2017-05-04T15:00:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-04</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E6%88%91%E7%9A%84Git%E6%95%99%E7%A8%8B/Git.jpg?raw=true" alt="Git"></p>
+<h1 id="为仓库创建一个分支（branch）"><a href="#为仓库创建一个分支（branch）" class="headerlink" title="为仓库创建一个分支（branch）"></a>为仓库创建一个分支（branch）</h1><p>现在我们有个提交过几次的git仓库，如果我们想在给我们的项目加点测试的东西，而又不想留一份原始不被影响的代码。传统的做法是复制项目，创建一个副本项目，在副本项目中进行测试，这样原来的项目不会受到影响。<br>这样看似不错，但是万一我们觉得测试代码不错，想要把它放进原始项目中，我们又不得不把测试代码复制到原始项目中（测试副本要不断进行新的开发），多来几次，万一其中有次出现了错误而没有发现，那修改就很麻烦了。<br>不过不用担心，git提供了另一个很有用的功能——分支(branch)。使用它能多层次、用户进行开发，十分便于管理且提升了效率。版本控制软件的好处就是你可以回到任何一个之前的开发版本中，而分支功能能很好在不影响稳定代码的情况下，允许我们进行更多操作，快来学习一下吧。分支的建立详细参见<a href="https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6" target="_blank" rel="noopener" title="Git分支 - 分支的新建与合并">Git分支 - 分支的新建与合并</a>。</p>
+        
+          <a class="article-more-a" href="/blog/2017/05/04/%E6%88%91%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B2/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">环境搭建</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2017/05/04/%E6%88%91%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-我的git使用教程1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2017/05/03/%E6%88%91%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B1/">我的git使用教程1</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2017/05/03/%E6%88%91%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B1/" class="archive-article-date">
+  	<time datetime="2017-05-03T15:00:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E6%88%91%E7%9A%84Git%E6%95%99%E7%A8%8B/Git.jpg?raw=true" alt="Git"></p>
+<h1 id="将一个项目放到GitHub上"><a href="#将一个项目放到GitHub上" class="headerlink" title="将一个项目放到GitHub上"></a>将一个项目放到GitHub上</h1><hr>
+<p>Git是一个分布式的代码托管仓库，是每个程序员必备的工具。  </p>
+        
+          <a class="article-more-a" href="/blog/2017/05/03/%E6%88%91%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B1/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">环境搭建</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2017/05/03/%E6%88%91%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/blog/archives/page/2/">2</a><a class="page-number" href="/blog/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/archives/page/5/">5</a><a class="extend next" rel="next" href="/blog/archives/page/2/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/blog/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/blog/">1</a><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/blog/page/5/">5</a><a class="extend next" rel="next" href="/blog/page/5/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -480,9 +661,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
+		isHome: true,
 		isPost: false,
-		isArchive: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

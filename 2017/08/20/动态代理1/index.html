@@ -6,15 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://stevehuge.gitee.io/blog">
-  <title>Archives | Steve&#39;s Blog</title>
+  <title>动态代理1 | Steve&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Steve&#39;s Blog">
-<meta property="og:url" content="https://stevehuge.gitee.io/blog/archives/index.html">
+  <meta name="description" content="0. 代理模式代理模式是一个很常见的设计模式，简单来说就是代理类Proxy替被代理类做一些东西。其中具体又有静态代理和动态代理两种。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态代理1">
+<meta property="og:url" content="https://stevehuge.gitee.io/blog/2017/08/20/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%861/index.html">
 <meta property="og:site_name" content="Steve&#39;s Blog">
+<meta property="og:description" content="0. 代理模式代理模式是一个很常见的设计模式，简单来说就是代理类Proxy替被代理类做一些东西。其中具体又有静态代理和动态代理两种。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/Reflection%20&%20Proxy/proxy_top.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/Reflection%20&%20Proxy/%E9%93%B6%E8%A1%8C_%E5%BE%AE%E4%BF%A1%E4%BB%A3%E7%90%86.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/Reflection%20&%20Proxy/%E5%BE%AE%E4%BF%A1_%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%B1%80%E9%99%90.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/Reflection%20&%20Proxy/%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E4%BB%A3%E7%A0%81.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/Reflection%20&%20Proxy/%E5%BE%AE%E4%BF%A1_%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%85%B3%E7%B3%BB.jpg?raw=true">
+<meta property="article:published_time" content="2017-08-20T12:40:27.000Z">
+<meta property="article:modified_time" content="2020-07-01T05:26:22.945Z">
 <meta property="article:author" content="Steve Hu">
+<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="AOP">
+<meta property="article:tag" content="Proxy">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/Reflection%20&%20Proxy/proxy_top.jpg?raw=true">
   
     <link rel="alternative" href="/atom.xml" title="Steve&#39;s Blog" type="application/atom+xml">
   
@@ -154,310 +168,363 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-动态代理1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2020/06/30/hello-world/" class="archive-article-date">
-  	<time datetime="2020-06-30T13:43:16.739Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2020/06/30/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      动态代理1
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2018-07-21T13:20:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-21</time>
+        
+        <a href="/blog/2017/08/20/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%861/" class="archive-article-date">
+  	<time datetime="2017-08-20T12:40:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-20</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/">Java中Lambda表达式的常见用法</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/Reflection%20&%20Proxy/proxy_top.jpg?raw=true" alt="代理模式"></p>
+<h1 id="0-代理模式"><a href="#0-代理模式" class="headerlink" title="0. 代理模式"></a>0. 代理模式</h1><p>代理模式是一个很常见的设计模式，简单来说就是代理类<code>Proxy</code>替被代理类做一些东西。其中具体又有静态代理和动态代理两种。</p>
+<a id="more"></a>
+<h2 id="1-静态代理"><a href="#1-静态代理" class="headerlink" title="1. 静态代理"></a>1. 静态代理</h2><p>现在移动支付在中国各个大中小城市都已经非常普及了，平时我们出去吃饭购物都可以使用支付宝或者微信支付轻松完成交易，而不再使用现金。我们现在就以这个作为例子来说明一下代理模式。<br>有两个角色：微信支付（<code>WeChatPay</code>）和银行（<code>Bank</code>），微信支付本质上就是银行的一个代理。每当你使用微信支付付款时，事实上是微信支付“代理”你和银行进行交互，最终完成了支付。两个类的代码如下：</p>
+<p>Bank.java</p>
+<pre><code>public class Bank {
+    ...
+    public void pay() { //付款功能
+        ...
+    }
+    public void gathering() {   //收款功能
+        ...
+    }
+    ...
+}</code></pre><p>WeChatPay.java</p>
+<pre><code>public class WeChatPay {
+    ...
+    public void pay() { //付款功能
+        ...
+    }
+    public void gathering() {   //收款功能
+        ...
+    }
+    ...
+}</code></pre><p>我们发现两个类的方法都是一样的，两个类的本质功能一致，都是对我们的财产进行管理，所以给它们抽象出一个共同的接口：<br>WealthManagement.java</p>
+<pre><code>public interface WealthManagement {
+    public void pay();
 
-        <div class="article-info info-on-right">
-          
+    public void gathering();
+}</code></pre><p>然后让两个类均实现这个接口。同时由于微信支付是代理了银行的功能，事实上工作的实体是银行,所以一般它需要绑定一个银行类，我们改变后的代码是：<br>WeChatPay.java</p>
+<pre><code>public class WeChatPay implements WealthManagement {
+    ...
+    private Bank bank = new Bank();
+
+    public void pay() { //付款功能
+        bank.pay();
+    }
+    public void gathering() {   //收款功能
+        bank.gathering();
+    }
+    ...
+}</code></pre><p>一个最简单的微信支付模型出来了，它其中有一个银行类的成员变量，每当需要进行付款或者收款操作时，它都会调用银行的收款和付款方法。<br>看起来还不错，但是仍然有需要改进之处：<br>(1) 我们不希望在微信支付中固定某个银行，而是希望用户能在使用微信时手动的添加；<br>(2) 微信支付调用了银行的功能，我们希望给用户一些提示，告知他们正在使用微信支付代理而非原版的银行功能。<br>加上之后这两个请求之后，完整的微信支付功能如下：<br>WeChatPay.java</p>
+<pre><code>public class WeChatPay implements WealthManagement {
+    //...
+    private Bank bank;
+
+    public WeChatPay(Bank bank) {
+        this.bank = bank;
+    }
+
+    public void pay() { //付款功能
+        System.out.println(&quot;您正在使用微信支付...&quot;);
+        bank.pay();
+        System.out.println(&quot;微信支付使用完毕...&quot;);
+    }
+    public void gathering() {   //收款功能
+        System.out.println(&quot;您正在使用微信支付...&quot;);
+        bank.gathering();
+        System.out.println(&quot;微信支付使用完毕...&quot;);
+    }
+    //...
+}</code></pre><p>我们使用构造方法传入一个银行类变量<code>bank</code>，进行指定具体的银行，并且在微信支付的每个方法中都加入了提醒功能。<br>完整的银行代码：<br>Bank.java</p>
+<pre><code>public class Bank implements WealthManagement {
+    //...
+    public void pay() { //付款功能
+        System.out.println(&quot;使用银行的付款功能&quot;);
+    }
+    public void gathering() {   //收款功能
+        System.out.println(&quot;使用银行的收款功能&quot;);
+    }
+    //...
+}</code></pre><p>现在貌似可以使用了，我们写一个测试类<code>Test</code>测试一下：<br>Test.java</p>
+<pre><code>public class Test {
+    public static void main(String[] args) {
+        Bank construction = new Bank();
+
+        WeChatPay wePay = new WeChatPay(construction);
+
+        wePay.pay();
+        System.out.println(&quot;----------&quot;);
+        wePay.gathering();
+    }
+}</code></pre><p>打印结果:</p>
+<pre><code>您正在使用微信支付...
+使用银行的付款功能
+微信支付使用完毕...
+----------
+您正在使用微信支付...
+使用银行的收款功能
+微信支付使用完毕...</code></pre><p>这其实就是一个简单的代理模式的例子。被代理类（<code>Bank</code>类）和代理类（<code>WeChatPay</code>类）实现同一个接口，然后代理类（<code>WeChatPay</code>类）持有一个被代理类（<code>Bank</code>类）的成员变量。这样做两个类实现了同样的方法，代理类（<code>WeChatPay</code>类）中的方法会调用自己持有的被代理类（<code>Bank</code>类）对象的方法，相当于是“包装”了一下被代理类的方法。代理类（<code>WeChatPay</code>）做的就是在被代理类（<code>Bank</code>）的基础上加一点工作，它是为被代理类服务的。    </p>
+<p>这个例子中就是：微信支付<code>WeChatPay</code>代理银行<code>Bank</code>让用户进行财产管理操作，在我们使用微信支付的付款<code>pay</code>方法时，事实上调用的是<code>Bank</code>的<code>pay</code>方法，只不过这个过程在微信<code>WeChatPay</code>的<code>pay</code>方法的“代理”下完成，微信支付的<code>pay</code>方法对银行的<code>pay</code>方法进行了一下“包装”，在其前后添加了两个提醒的功能。  </p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/Reflection%20&%20Proxy/%E9%93%B6%E8%A1%8C_%E5%BE%AE%E4%BF%A1%E4%BB%A3%E7%90%86.jpg?raw=true" alt="银行_微信代理"></p>
+<p>这就是一个静态代理的简单的例子。想说明的一点就是：代理模式就是通过一个代理类来替一个正常工作的类完成额外的一些操作，这些操作对于被代理类来说可以完全不用知道，由代理类完成即可。<br>例如简单的日志打印模块，我们需要在业务操作之前之后打印相关数据的日志，输入为一个业务操作相关的实例。<br>我们用代理模式完成，只需要在代理类（日志打印模块）中传入这个实例（业务操作），通过业务操作实例的一些get方法获取一些数据，然后用代理类（日志打印模块）的打印方法打印出这些数据，之后再去调用正常的业务方法即可。  </p>
+<h3 id="原理分析以及静态代理的问题"><a href="#原理分析以及静态代理的问题" class="headerlink" title="原理分析以及静态代理的问题"></a><strong>原理分析以及静态代理的问题</strong></h3><p>静态代理是AOP（Aspect Oriented Programming， 面向切面编程）最简单的实现，想在多个相同实例的方法之前之后都加上点权限管理或者类似的功能，那么使用代理类就可以轻松完成而不用修改代码。  </p>
+<p>我们针对上面的例子深入分析：<br>当在代码阶段规定好了代理关系（微信支付代理银行支付，我们需要支付操作时，直接使用微信支付即可）后，微信支付类<code>WeChatPay</code>类通过编译器编译成<code>class</code>文件，当系统运行时，此<code>class</code>已经存在了。这种静态的代理模式固然在访问无法访问的资源，增强现有的接口业务功能方面有很大的优点，但是大量使用这种静态代理，会使我们系统内的类的规模增大，并且不易维护；<br>并且由于<code>WeChatPay</code>和<code>Bank</code>的功能 本质上是相同的，<code>WeChatPay</code>只是起到了中介的作用，这种代理在系统中的存在，导致系统结构比较臃肿和松散。<br>让我们把这个例子补充的更完整一点：对应到现实生活中就是除了使用微信支付进行付款和收款操作之外，我们有时可能还需要进行退款（<code>refund</code>）操作，如果继续使用之前的方法，操作就是：<br>（1） 在<code>WealthManagement</code>接口中添加<code>refund</code>方法；<br>（2） 在<code>Bank</code>类中实现<code>refund</code>方法；<br>（3） 在<code>WeChatPay</code>类中实现<code>refund</code>方法。  </p>
+<p>实现<code>refund</code>方法的WeChatPay.java</p>
+<pre><code>public class WeChatPay implements WealthManagement {
+    //...
+
+    public void refund() { //退款功能
+        System.out.println(&quot;您正在使用微信支付...&quot;);
+        bank.refund();
+        System.out.println(&quot;微信支付使用完毕...&quot;);
+    }
+    //...
+}</code></pre><p>如果以后要再实现其它新的方法时，也要重复上述三个步骤。  </p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/Reflection%20&%20Proxy/%E5%BE%AE%E4%BF%A1_%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%B1%80%E9%99%90.jpg?raw=true" alt="微信_静态代理局限"></p>
+<p>我们发现，第（3）步中事实上只是继续在“包装”<code>Bank</code>的<code>refund</code>方法前后继续添加提醒功能。其内容和<code>pay</code>以及<code>gathering</code>方法几乎一样，这样做其实导致业务代码中夹杂了大量的重复的提醒代码，做了大量不必要的重复性工作，同时系统的冗余大量增加。</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/Reflection%20&%20Proxy/%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E4%BB%A3%E7%A0%81.jpg?raw=true" alt="静态代理代码"></p>
+<p>提醒代码事实上只有一份就足够了。如何实现呢？<br>我们希望可以一次性实现这个功能，之后我们不再需要对每个具体的被代理方法实现对应的代理方法。这叫做<strong>针对某一类功能实现</strong>：例如说提示功能，不需要每个业务方法都有一个对应的带提醒的“包装”方法，而是最好由一个类或者一个方法直接实现所有的提醒功能，类似可以实现的功能还有日志打印。<br>这时不得不提一个很厉害的工具——<strong>动态代理</strong>。</p>
+<p>动态代理正是为了解决代理类中代码爆炸的问题而出现的。具体实现为：在运行状态中，需要代理的地方，根据代理接口和被代理类，动态地创建一个代理类，用完之后，就会销毁，无需我们手动去创建代理类，这样就可以避免了代理类角色的<code>class</code>在系统中代码冗杂的问题了。  </p>
+<h2 id="2-动态代理"><a href="#2-动态代理" class="headerlink" title="2. 动态代理"></a>2. 动态代理</h2><p>上述的问题使用动态代理该怎么做呢？我们看代码：<br>动态代理类NewWeChatPay.java</p>
+<pre><code>public class NewWeChatPay implements InvocationHandler {
+
+    private Object obj;
+
+    public NewWeChatPay(Object obj) {
+        this.obj = obj;
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+
+        System.out.println(&quot;您正在使用微信支付...&quot;);
+
+        Object result = method.invoke(obj, args);
+
+        System.out.println(&quot;微信支付使用完毕...&quot;);
+
+        return result;
+    }
+}</code></pre><p>在这里<code>NewWeChatPay</code> 是一个新的微信支付类，它实现了<code>InvocationHandler</code>接口。这个接口是个调用处理器，每当我们生成的代理类执行方法时，都会调用这个接口实现类的方法。我们先不着急了解它的原理，因为在下一篇文章中会详细阐述。   </p>
+<p>测试类 DynamicTest.java</p>
+<pre><code>import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
+
+public class DynamicTest {
+    public static void main(String[] args) throws Throwable {
+
+        Bank construction = new Bank();  //这是一个银行实例
+
+        InvocationHandler handle = new NewWeChatPay(construction); //新建一个微信支付调用处理器
+
+        ClassLoader loader = handle.getClass().getClassLoader(); //获取加载handle的类加载器
+
+        Class[] interfaces = construction.getClass().getInterfaces();  //获取银行实现的接口
+
+
+        InvocationHandler h = handle;
+
+        Object proxy = Proxy.newProxyInstance(loader, interfaces, h);     //这一句生成了代理银行的微信支付类
+
+        WealthManagement myProxy = (WealthManagement) proxy;
+
+        myProxy.pay();    //微信支付代理类执行pay方法
+
+    }
+}</code></pre><p>打印结果：</p>
+<pre><code>您正在使用微信支付...
+使用银行的付款功能
+微信支付使用完毕...</code></pre><p>看着很长，但是大家不要怕，其实主要就一句：</p>
+<pre><code>Object proxy = Proxy.newProxyInstance(loader, interfaces, h);     //这一句生成了代理银行的微信支付类</code></pre><p>调用<code>Proxy</code>类的<code>newProxyInstance()</code>方法生成了一个代理类实例，这个实例就是我们需要的代理类。<br>我们发现，在使用动态代理之后，的确减少了代码量。之前<code>Bank</code>类的每个方法都需要代理类实现对应的方法，而现在，只需要<code>NewWeChatPay</code>类中的一个<code>invoke</code>方法就可以完成多个方法的代理。<br>在动态代理中生成的代理类是一个临时的类，我们的代理类需要实现<code>Bank</code>类所实现的接口，所以传入了<code>Bank</code>实现的接口，传入其类加载器是为了确认这些接口的Class类对象和动态代理类的Class对象都是被同一个类加载器加载的，最后的<code>InvocationHandler</code>接口的实例就是我们之前创建好的调用处理器。<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/Reflection%20&%20Proxy/%E5%BE%AE%E4%BF%A1_%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%85%B3%E7%B3%BB.jpg?raw=true" alt="动态代理关系"></p>
+<p>在接下来的一篇文章中，我们会详细探讨<code>Proxy</code>类的<code>newProxyInstance()</code>方法生成临时代理类的过程。</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p>[1] <a href="http://blog.csdn.net/luanlouis/article/details/24589193#t2" target="_blank" rel="noopener">Java动态代理机制详解（JDK 和CGLIB，Javassist，ASM）</a>  </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Lambda表达式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sort</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">AOP</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Proxy</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/" class="archive-article-date">
-  	<time datetime="2018-04-23T08:09:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/">Java反射初探 -- 1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2017" class="archive-year">2017</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/" class="archive-article-date">
-  	<time datetime="2017-11-10T13:30:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/">算法4（Algorithms4）- Part 5 图（Graph）-无向图（Undirected Graph）1</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Graph</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://stevehuge.gitee.io/blog/2017/08/20/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%861/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2017-11-04T14:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-04</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/blog/2017/08/21/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%862/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          动态代理2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2017/08/06/JDBC%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JDBC的学习过程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/">LaTeX简介及其在Mardown中的用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LaTeX</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-代理模式"><span class="toc-number">1.</span> <span class="toc-text">0. 代理模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-静态代理"><span class="toc-number">1.1.</span> <span class="toc-text">1. 静态代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原理分析以及静态代理的问题"><span class="toc-number">1.1.1.</span> <span class="toc-text">原理分析以及静态代理的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-动态代理"><span class="toc-number">1.2.</span> <span class="toc-text">2. 动态代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-number">1.3.</span> <span class="toc-text">参考文章</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2017-10-29T07:50:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-29</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/">算法4（Algorithms4） - Part 2 快速排序（Quick Sort）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Sorting</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分治法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/blog/archives/page/2/">2</a><a class="page-number" href="/blog/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/archives/page/5/">5</a><a class="extend next" rel="next" href="/blog/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
   
 
 
@@ -481,8 +548,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

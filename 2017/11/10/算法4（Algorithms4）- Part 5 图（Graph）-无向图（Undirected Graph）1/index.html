@@ -6,15 +6,38 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://stevehuge.gitee.io/blog">
-  <title>Archives | Steve&#39;s Blog</title>
+  <title>算法4（Algorithms4）- Part 5 图（Graph）-无向图（Undirected Graph）1 | Steve&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Steve&#39;s Blog">
-<meta property="og:url" content="https://stevehuge.gitee.io/blog/archives/index.html">
+  <meta name="description" content="1. 介绍图（Graph）的概念: 图是由一组顶点（vertices）和一组能够将两个顶点相连的边（edges）组成的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法4（Algorithms4）- Part 5 图（Graph）-无向图（Undirected Graph）1">
+<meta property="og:url" content="https://stevehuge.gitee.io/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/index.html">
 <meta property="og:site_name" content="Steve&#39;s Blog">
+<meta property="og:description" content="1. 介绍图（Graph）的概念: 图是由一组顶点（vertices）和一组能够将两个顶点相连的边（edges）组成的。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/TOP.JPG?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/1.JPG?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/2.JPG?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/3.JPG?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/4.JPG?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/5.JPG?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/6.JPG?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/8.JPG?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/7.JPG?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/9.JPG?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/10.JPG?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/11.JPG?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/12.JPG?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/13.JPG?raw=true">
+<meta property="article:published_time" content="2017-11-10T13:30:23.000Z">
+<meta property="article:modified_time" content="2020-07-01T05:26:22.944Z">
 <meta property="article:author" content="Steve Hu">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="算法4">
+<meta property="article:tag" content="Graph">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/TOP.JPG?raw=true">
   
     <link rel="alternative" href="/atom.xml" title="Steve&#39;s Blog" type="application/atom+xml">
   
@@ -154,171 +177,94 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-算法4（Algorithms4）- Part 5 图（Graph）-无向图（Undirected Graph）1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2020/06/30/hello-world/" class="archive-article-date">
-  	<time datetime="2020-06-30T13:43:16.739Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2020/06/30/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      算法4（Algorithms4）- Part 5 图（Graph）-无向图（Undirected Graph）1
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2018-07-21T13:20:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/">Java中Lambda表达式的常见用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Lambda表达式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sort</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/" class="archive-article-date">
-  	<time datetime="2018-04-23T08:09:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/">Java反射初探 -- 1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/" class="archive-article-date">
+        
+        <a href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/" class="archive-article-date">
   	<time datetime="2017-11-10T13:30:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-10</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/">算法4（Algorithms4）- Part 5 图（Graph）-无向图（Undirected Graph）1</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/TOP.JPG?raw=true" alt=""></p>
+<h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h1><p>图（Graph）的概念: 图是由一组顶点（vertices）和一组能够将两个顶点相连的边（edges）组成的。</p>
+<a id="more"></a>
+<h2 id="和图相关的术语"><a href="#和图相关的术语" class="headerlink" title="和图相关的术语"></a>和图相关的术语</h2><p>路径（Path）：由边连接的顶点序列<br>环（Cycle）： 第一个和最后一个顶点相同的路径</p>
+<p>如果在两个顶点之间有一条路径，就称它们是连接的。</p>
+<h1 id="2-图的API"><a href="#2-图的API" class="headerlink" title="2. 图的API"></a>2. 图的API</h1><p>怎么用代码表现图呢？<br>下图是一个图的两种画法，虽然是同一个图，但视觉上可能相差很大，所以除了肉眼，我们需要更精确的模型来描述它。<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/1.JPG?raw=true" alt=""></p>
+<p>我们需要做的是表示顶点和对应的边。<br>在应用中可以使用符号表（symbol table）表示顶点名称与数字之间的对应关系。<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/2.JPG?raw=true" alt=""></p>
+<p>在本课程中，使用<code>0</code> 到 <code>V - 1</code>之间数字表示顶点，如上图。</p>
+<p>在图中有时候会有一些特殊情况，例如下图是一个自环和平行边的示意图。但是本课程中一般都不涉及自环和平行边的判定或者其它操作，默认图中没有这两种情况，如果有会说明。</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/3.JPG?raw=true" alt=""></p>
+<p>这是图的API 和一些典型的方法，包括两个构造方法和一些常见操作，如：添加一条边，获取某个顶点的相邻点，得到顶点和边的数量等。<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/4.JPG?raw=true" alt=""></p>
+<p>一些常见的方法，包含获取某个顶点的度（也就是和它相连的点的个数），图中度最大的顶点，所有顶点的平均度数以及自环的个数。</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/5.JPG?raw=true" alt=""></p>
+<p>顶点的度（degree）:和每个顶点相连的顶点的个数称之为该顶点的度。</p>
+<p>具体的问题：用什么数据结构表示边呢？<br>可以使用集合将边作为一个数据类型存储起来，当然弊端就是想找某个具体的点所在的边就必须遍历整个集合，这是不能接受的。</p>
+<p>可以使用邻接矩阵，也就是有<code>V</code>个顶点，使用<code>V * V</code>大小的二维<code>boolean</code>矩阵<code>adj</code>，其中所有值默认为<code>false</code>。当某两个顶点v和w相连时，同时将<code>adj[v][w]</code>和<code>adj[w][v]</code>置为<code>true</code>。这样操作弊端是大量空间被浪费，因为一般图中边较为稀疏，而且数据多了一倍的冗余，遍历起来也非常慢，所以这种方法被舍弃了。</p>
+<p>更有效率的方法是邻接表（Adjacency-list）：<br>也是<code>V</code>个顶点，创建一个长度为<code>V</code>的链表类型的数组，其中每个链表存储和数组下标代表的顶点相邻的点，从而可以表示边。</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/6.JPG?raw=true" alt=""></p>
+<p>这能满足内存要求，也能满足速度要求。</p>
+<p>邻接表和用来表示边的其它数据结构的比较：<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/8.JPG?raw=true" alt=""></p>
+<p>以下是使用邻接表之后的Graph的API：<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/7.JPG?raw=true" alt=""></p>
+<h1 id="3-深度优先搜索（depth-first-search）"><a href="#3-深度优先搜索（depth-first-search）" class="headerlink" title="3. 深度优先搜索（depth - first - search）"></a>3. 深度优先搜索（depth - first - search）</h1><p>深度优先搜索是一个经典的递归算法（遍历所有顶点和边）。要搜索一幅图，只需要一个递归方法来遍历所有顶点。</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/9.JPG?raw=true" alt=""></p>
+<p>这种方法被称为深度优先搜索（<code>DFS</code>）。它使用一个<code>boolean</code>数组来记录和起点连通的所有顶点，递归方法会标记给定的顶点，并调用该顶点的相邻顶点列表中所有没有被标记过的顶点。如果图是连通的，每个邻接链表中的元素都会被检查到。</p>
+<p>具体步骤为，在访问其中一个顶点时：</p>
+<ul>
+<li>将它标记为已访问</li>
+<li>递归地访问它的所有没有被标记过的邻居顶点<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/10.JPG?raw=true" alt=""></li>
+</ul>
+<p>怎么用代码实现呢？<br>选择一： 把它写到<code>Graph</code>里面，作为一个方法<br>选择二： 单独作为一个类，把<code>Graph</code>作为构造方法的参数传入</p>
+<p>根据设计模式中的<strong>单一职责原则</strong>，选择二是更好的做法，我们对选择二进行实现。</p>
+<p>将<code>Graph</code>的API和对<code>Graph</code>进行操作的代码（除了基本操作）分开是比较好的选择。例如我们想要在<code>Graph</code>中找到一条特定的路径（先不管这条路径的要求），我们可以先确定一个大概我们要实现的API：</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/11.JPG?raw=true" alt=""></p>
+<p>之后是确定路径的具体寻找方式，这节是深度优先搜索，所以根据DFS实现算法：</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/12.JPG?raw=true" alt=""></p>
+<p>在<code>DFS</code>之后，可以在常数时间内找到与<code>s</code>相连的顶点并能找到一条它和<code>s</code>相连的路径。</p>
+<p>其中数组<code>marked</code>记录某个数是否和顶点<code>s</code>相连，例如<code>marked[1] == true</code>，则说明<code>s</code>和顶点<code>1</code>相连。 <code>edgeTo</code>数组则记录了其父顶点的位置，例如下图，<code>edgeTo[1] == 2</code>，则说明顶点<code>1</code>的父节点是<code>2</code>，在这个树中，根顶点是<code>s</code>，在<code>edgeTo</code>中下标为<code>0</code>，依次类推。</p>
+<p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part5/UndirectedGraph/13.JPG?raw=true" alt=""></p>
+<p>以上是深度优先搜索的内容。</p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -342,122 +288,127 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://stevehuge.gitee.io/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2017-11-04T14:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-04</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Java反射初探 -- 1
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">LaTeX简介及其在Mardown中的用法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/">LaTeX简介及其在Mardown中的用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LaTeX</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-介绍"><span class="toc-number">1.</span> <span class="toc-text">1. 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#和图相关的术语"><span class="toc-number">1.1.</span> <span class="toc-text">和图相关的术语</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-图的API"><span class="toc-number">2.</span> <span class="toc-text">2. 图的API</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-深度优先搜索（depth-first-search）"><span class="toc-number">3.</span> <span class="toc-text">3. 深度优先搜索（depth - first - search）</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2017-10-29T07:50:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-29</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/">算法4（Algorithms4） - Part 2 快速排序（Quick Sort）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Sorting</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分治法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/blog/archives/page/2/">2</a><a class="page-number" href="/blog/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/archives/page/5/">5</a><a class="extend next" rel="next" href="/blog/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
   
 
 
@@ -481,8 +432,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

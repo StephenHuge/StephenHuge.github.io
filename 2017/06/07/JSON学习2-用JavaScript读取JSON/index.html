@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://stevehuge.gitee.io/blog">
-  <title>Archives | Steve&#39;s Blog</title>
+  <title>JSON学习2-用JavaScript读取JSON | Steve&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Steve&#39;s Blog">
-<meta property="og:url" content="https://stevehuge.gitee.io/blog/archives/index.html">
+  <meta name="description" content="使用JavaScript读取JSON使用JavaScript读取JSON中的内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSON学习2-用JavaScript读取JSON">
+<meta property="og:url" content="https://stevehuge.gitee.io/blog/2017/06/07/JSON%E5%AD%A6%E4%B9%A02-%E7%94%A8JavaScript%E8%AF%BB%E5%8F%96JSON/index.html">
 <meta property="og:site_name" content="Steve&#39;s Blog">
+<meta property="og:description" content="使用JavaScript读取JSON使用JavaScript读取JSON中的内容。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/JSON/json_top_2.jpg?raw=true">
+<meta property="article:published_time" content="2017-06-07T11:26:57.000Z">
+<meta property="article:modified_time" content="2020-07-01T05:26:22.940Z">
 <meta property="article:author" content="Steve Hu">
+<meta property="article:tag" content="JSON">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/JSON/json_top_2.jpg?raw=true">
   
     <link rel="alternative" href="/atom.xml" title="Steve&#39;s Blog" type="application/atom+xml">
   
@@ -154,310 +161,237 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-JSON学习2-用JavaScript读取JSON" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2020/06/30/hello-world/" class="archive-article-date">
-  	<time datetime="2020-06-30T13:43:16.739Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2020/06/30/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      JSON学习2-用JavaScript读取JSON
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2018-07-21T13:20:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-21</time>
+        
+        <a href="/blog/2017/06/07/JSON%E5%AD%A6%E4%B9%A02-%E7%94%A8JavaScript%E8%AF%BB%E5%8F%96JSON/" class="archive-article-date">
+  	<time datetime="2017-06-07T11:26:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-07</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/">Java中Lambda表达式的常见用法</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/JSON/json_top_2.jpg?raw=true" alt="JSON">  </p>
+<h1 id="使用JavaScript读取JSON"><a href="#使用JavaScript读取JSON" class="headerlink" title="使用JavaScript读取JSON"></a>使用JavaScript读取JSON</h1><p>使用JavaScript读取JSON中的内容。  </p>
+<a id="more"></a>
+<h2 id="访问对象值"><a href="#访问对象值" class="headerlink" title="访问对象值"></a>访问对象值</h2><p>　　可以使用点号（.）来访问对象的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var myself, myAge;</span><br><span class="line">myself &#x3D; &#123; &quot;name&quot; : &quot;hjs&quot;, &quot;age&quot; : 20 &#125;;</span><br><span class="line">myAge &#x3D; myself.age;</span><br></pre></td></tr></table></figure>
+<p>　　完整的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">		&lt;title&gt;我的测试-使用点号（.）来访问 JSON 对象的值&lt;&#x2F;title&gt;</span><br><span class="line">	&lt;&#x2F;head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">	</span><br><span class="line">		&lt;p&gt;可以使用点号（.）来访问 JSON 对象的值：&lt;&#x2F;p&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;p id&#x3D;&quot;age&quot;&gt;&lt;&#x2F;p&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;script&gt;</span><br><span class="line">		</span><br><span class="line">			var myself, myAge;</span><br><span class="line">			myself &#x3D; &#123; &quot;name&quot; : &quot;hjs&quot;, &quot;age&quot; : 20 &#125;;</span><br><span class="line">			myAge &#x3D; myself.age;</span><br><span class="line">			document.getElementById(&quot;age&quot;).innerHTML &#x3D; myAge;</span><br><span class="line">		</span><br><span class="line">		&lt;&#x2F;script&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<p>　　也可以使用中括号（[]）来访问对象的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var myself, myAge;</span><br><span class="line">myself &#x3D; &#123; &quot;name&quot; : &quot;hjs&quot;, &quot;age&quot; : 20 &#125;;</span><br><span class="line">myAge &#x3D; myself[&quot;age&quot;];</span><br></pre></td></tr></table></figure>
+<h2 id="循环对象"><a href="#循环对象" class="headerlink" title="循环对象"></a>循环对象</h2><p>　　可以使用 for-in 来循环对象的属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var myself &#x3D; &#123; &quot;name&quot; : &quot;hjs&quot;, &quot;age&quot; : 20, &quot;phone&quot; : &quot;123-456&quot; &#125;;</span><br><span class="line">for (ele in myself) &#123;</span><br><span class="line">	document.getElementById(&quot;element&quot;).innerHTML +&#x3D; ele + &quot;&lt;br &#x2F;&gt;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　完整代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">		&lt;title&gt;我的测试-使用 for-in 来循环对象的属性&lt;&#x2F;title&gt;</span><br><span class="line">	&lt;&#x2F;head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">	</span><br><span class="line">		&lt;p&gt;使用 for-in 来循环对象的属性:&lt;&#x2F;p&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;p id&#x3D;&quot;element&quot;&gt;&lt;&#x2F;p&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;script&gt;</span><br><span class="line">			var myself &#x3D; &#123; &quot;name&quot; : &quot;hjs&quot;, &quot;age&quot; : 20, &quot;phone&quot; : &quot;123-456&quot; &#125;;</span><br><span class="line">			for (ele in myself) &#123;</span><br><span class="line">				document.getElementById(&quot;element&quot;).innerHTML +&#x3D; ele + &quot;&lt;br &#x2F;&gt;&quot;;</span><br><span class="line">			&#125;</span><br><span class="line">		&lt;&#x2F;script&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<p>　　在 for-in 循环对象的属性时，使用中括号（[]）来访问属性的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var myself &#x3D; &#123; &quot;name&quot; : &quot;hjs&quot;, &quot;age&quot; : 20, &quot;phone&quot; : &quot;123-456&quot; &#125;;</span><br><span class="line">for (ele in myself) &#123;</span><br><span class="line">	document.getElementById(&quot;element&quot;).innerHTML +&#x3D; myself[ele] + &quot;&lt;br &#x2F;&gt;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
+<h2 id="嵌套JSON对象"><a href="#嵌套JSON对象" class="headerlink" title="嵌套JSON对象"></a>嵌套JSON对象</h2><p>　　JSON 对象中可以包含另外一个 JSON 对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">myself &#x3D; &#123;</span><br><span class="line">		&quot;name&quot; :　&quot;hjs&quot;,</span><br><span class="line">		&quot;age&quot; : 20,</span><br><span class="line">		&quot;phone&quot; : &#123;</span><br><span class="line">			&quot;cellphone1&quot; : &quot;123-456&quot;</span><br><span class="line">			&quot;cellphone2&quot; : &quot;789-000&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>　　可以使用点号(.)或者中括号([])来访问嵌套的 JSON 对象:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">phone1 &#x3D; myself.phone.cellphone1;</span><br><span class="line">&#x2F;&#x2F;或者</span><br><span class="line">phone1 &#x3D; myself.phone[&quot;cellphone1&quot;];</span><br></pre></td></tr></table></figure>
+<h2 id="修改值"><a href="#修改值" class="headerlink" title="修改值"></a>修改值</h2><p>　　可以使用点号(.)或者中括号([])来修改 JSON 对象的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">myself.phone.cellphone1 &#x3D; &quot;110-110&quot;;</span><br><span class="line">&#x2F;&#x2F;或者</span><br><span class="line">myself.phone[&quot;cellphone1&quot;] &#x3D; &quot;110-110&quot;;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="删除对象属性"><a href="#删除对象属性" class="headerlink" title="删除对象属性"></a>删除对象属性</h2><p>　　可以使用 <code>delete</code> 关键字通过点号(.)或者中括号([])来删除 JSON 对象的属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">delete myself.phone.cellphone1;</span><br><span class="line">&#x2F;&#x2F;或者</span><br><span class="line">delete myself.phone[&quot;cellphone1&quot;];</span><br></pre></td></tr></table></figure>
+<h1 id="JSON数组"><a href="#JSON数组" class="headerlink" title="JSON数组"></a>JSON数组</h1><p>　　上篇说到了JSON中的数组，其实数组也可以作为JSON对象。<br>　　JSON 中数组值必须是合法的 JSON 数据类型（字符串, 数字, 对象, 数组, 布尔值或 null）。<br>　　JavaScript 中，数组值可以是以上的 JSON 数据类型，也可以是 JavaScript 的表达式，包括函数，日期，及 undefined。  </p>
+<h2 id="JSON-对象中的数组"><a href="#JSON-对象中的数组" class="headerlink" title="JSON 对象中的数组"></a>JSON 对象中的数组</h2><p>　　对象属性的值可以是一个数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;name&quot;:&quot;hjs&quot;,</span><br><span class="line">	&quot;age&quot; : 20,</span><br><span class="line">	&quot;phone&quot; : [&quot;123-456&quot;, &quot;789-000&quot;, &quot;110-110&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　我们可以使用索引值来访问数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myPhone0 &#x3D; myself.phone[0];	&#x2F;&#x2F;&quot;123-456&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="循环数组"><a href="#循环数组" class="headerlink" title="循环数组"></a>循环数组</h2><p>　　可以使用 for-in 来访问数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (i in myself.phone) &#123;</span><br><span class="line">    myPhone +&#x3D; myself.phone[i] + &quot;&lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　也可以使用 for 循环：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (i &#x3D; 0; i &lt; myself.phone.length; i++) &#123;</span><br><span class="line">    myPhone +&#x3D; myself.phone[i] + &quot;&lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　完整代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">		&lt;title&gt;我的测试-使用 for-in 来循环对象的属性&lt;&#x2F;title&gt;</span><br><span class="line">	&lt;&#x2F;head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line"></span><br><span class="line">		&lt;p&gt;使用 for-in 来循环对象的属性:&lt;&#x2F;p&gt;</span><br><span class="line"></span><br><span class="line">		&lt;p id&#x3D;&quot;element&quot;&gt;&lt;&#x2F;p&gt;</span><br><span class="line"></span><br><span class="line">		&lt;script&gt;</span><br><span class="line">			var myself &#x3D; &#123;	&quot;name&quot;:&quot;hjs&quot;, &quot;age&quot; : 20, </span><br><span class="line">				&quot;phone&quot; : [&quot;123-456&quot;, &quot;789-000&quot;, &quot;110-110&quot;] &#125;;</span><br><span class="line">			var myPhone &#x3D; &quot;&quot;;</span><br><span class="line">			for (i in myself.phone) &#123;</span><br><span class="line">			myPhone +&#x3D; myself.phone[i] + &quot;&lt;br&gt;&quot;;</span><br><span class="line">			&#125;</span><br><span class="line">			document.getElementById(&quot;element&quot;).innerHTML &#x3D; myPhone;</span><br><span class="line">		&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">	&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="嵌套-JSON-对象中的数组"><a href="#嵌套-JSON-对象中的数组" class="headerlink" title="嵌套 JSON 对象中的数组"></a>嵌套 JSON 对象中的数组</h2><p>　　JSON 对象中数组可以包含另外一个数组，或者另外一个 JSON 对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">myself &#x3D; &#123;</span><br><span class="line">    &quot;name&quot;:&quot;网站&quot;,</span><br><span class="line">    &quot;num&quot;:3,</span><br><span class="line">    &quot;phone&quot;: [</span><br><span class="line">        &#123; &quot;number&quot;:&quot;123-456&quot;, &quot;info&quot;:[ &quot;123&quot;, &quot;-&quot;, &quot;456&quot; ] &#125;,</span><br><span class="line">        &#123; &quot;number&quot;:&quot;789-000&quot;, &quot;info&quot;:[ &quot;789&quot;, &quot;-&quot;, &quot;000&quot; ] &#125;,</span><br><span class="line">        &#123; &quot;number&quot;:&quot;110&quot;, &quot;info&quot;:[ &quot;110&quot;, &quot;-&quot; ] &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　我们可以使用 for-in 来循环访问每个数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for (i in myself.phone) &#123;</span><br><span class="line">    myPhone +&#x3D; &quot;&lt;h1&gt;&quot; + myself.phone[i].name + &quot;&lt;&#x2F;h1&gt;&quot;;</span><br><span class="line">    for (j in myself.phone[i].info) &#123;</span><br><span class="line">        myPhone +&#x3D; myself.phone[i].info[j] + &quot;&lt;br&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　完整代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">		&lt;title&gt;我的测试-使用 for-in 来循环对象的属性&lt;&#x2F;title&gt;</span><br><span class="line">	&lt;&#x2F;head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line"></span><br><span class="line">		&lt;p&gt;使用 for-in 来循环对象的属性:&lt;&#x2F;p&gt;</span><br><span class="line"></span><br><span class="line">		&lt;p id&#x3D;&quot;element&quot;&gt;&lt;&#x2F;p&gt;</span><br><span class="line"></span><br><span class="line">		&lt;script&gt;</span><br><span class="line">			var myself &#x3D; &#123;</span><br><span class="line">				&quot;name&quot;:&quot;网站&quot;,</span><br><span class="line">				&quot;num&quot;:3,</span><br><span class="line">				&quot;phone&quot;: [</span><br><span class="line">					&#123; &quot;number&quot;:&quot;123-456&quot;, &quot;info&quot;:[ &quot;123&quot;, &quot;-&quot;, &quot;456&quot; ] &#125;,</span><br><span class="line">					&#123; &quot;number&quot;:&quot;789-000&quot;, &quot;info&quot;:[ &quot;789&quot;, &quot;-&quot;, &quot;000&quot; ] &#125;,</span><br><span class="line">					&#123; &quot;number&quot;:&quot;110&quot;, &quot;info&quot;:[ &quot;110&quot;, &quot;-&quot; ] &#125;</span><br><span class="line">					]</span><br><span class="line">			&#125;</span><br><span class="line">			var myPhone &#x3D; &quot;&quot;;</span><br><span class="line">			for (i in myself.phone) &#123;</span><br><span class="line">				myPhone +&#x3D; &quot;&lt;h1&gt;&quot; + myself.phone[i].number + &quot;&lt;&#x2F;h1&gt;&quot;;</span><br><span class="line">				for (j in myself.phone[i].info) &#123;</span><br><span class="line">					myPhone +&#x3D; myself.phone[i].info[j] + &quot;&lt;br&gt;&quot;;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; </span><br><span class="line">			document.getElementById(&quot;element&quot;).innerHTML &#x3D; myPhone;</span><br><span class="line">		&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">	&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="修改数组值"><a href="#修改数组值" class="headerlink" title="修改数组值"></a>修改数组值</h2><p>　　可以使用索引值来修改数组值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myself.phone[1] &#x3D; &quot;120-120&quot;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除数组元素"><a href="#删除数组元素" class="headerlink" title="删除数组元素"></a>删除数组元素</h2><p>　　我们可以使用 delete 关键字来删除数组元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete myself.phone[1];</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Lambda表达式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sort</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/" class="archive-article-date">
-  	<time datetime="2018-04-23T08:09:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/">Java反射初探 -- 1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2017" class="archive-year">2017</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/" class="archive-article-date">
-  	<time datetime="2017-11-10T13:30:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/">算法4（Algorithms4）- Part 5 图（Graph）-无向图（Undirected Graph）1</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Graph</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://stevehuge.gitee.io/blog/2017/06/07/JSON%E5%AD%A6%E4%B9%A02-%E7%94%A8JavaScript%E8%AF%BB%E5%8F%96JSON/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2017-11-04T14:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-04</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/blog/2017/08/06/JDBC%E7%9A%84%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          JDBC的学习过程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2017/06/06/JSON%E5%AD%A6%E4%B9%A01-%E4%BB%80%E4%B9%88%E6%98%AFJSON/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JSON学习1-什么是JSON</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/">LaTeX简介及其在Mardown中的用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LaTeX</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#使用JavaScript读取JSON"><span class="toc-number">1.</span> <span class="toc-text">使用JavaScript读取JSON</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#访问对象值"><span class="toc-number">1.1.</span> <span class="toc-text">访问对象值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#循环对象"><span class="toc-number">1.2.</span> <span class="toc-text">循环对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#嵌套JSON对象"><span class="toc-number">1.3.</span> <span class="toc-text">嵌套JSON对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改值"><span class="toc-number">1.4.</span> <span class="toc-text">修改值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除对象属性"><span class="toc-number">1.5.</span> <span class="toc-text">删除对象属性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JSON数组"><span class="toc-number">2.</span> <span class="toc-text">JSON数组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JSON-对象中的数组"><span class="toc-number">2.1.</span> <span class="toc-text">JSON 对象中的数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#循环数组"><span class="toc-number">2.2.</span> <span class="toc-text">循环数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#嵌套-JSON-对象中的数组"><span class="toc-number">2.3.</span> <span class="toc-text">嵌套 JSON 对象中的数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改数组值"><span class="toc-number">2.4.</span> <span class="toc-text">修改数组值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除数组元素"><span class="toc-number">2.5.</span> <span class="toc-text">删除数组元素</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2017-10-29T07:50:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-29</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/">算法4（Algorithms4） - Part 2 快速排序（Quick Sort）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Sorting</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分治法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/blog/archives/page/2/">2</a><a class="page-number" href="/blog/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/archives/page/5/">5</a><a class="extend next" rel="next" href="/blog/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
   
 
 
@@ -481,8 +415,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

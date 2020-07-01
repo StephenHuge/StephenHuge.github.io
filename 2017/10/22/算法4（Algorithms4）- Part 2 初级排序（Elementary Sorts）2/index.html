@@ -6,15 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://stevehuge.gitee.io/blog">
-  <title>Archives | Steve&#39;s Blog</title>
+  <title>算法4（Algorithms4） - Part 2 初级排序（Elementary Sorts）2 | Steve&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Steve&#39;s Blog">
-<meta property="og:url" content="https://stevehuge.gitee.io/blog/archives/index.html">
+  <meta name="description" content="3. 插入排序（Insertion Sort）3.1 步骤插入排序的步骤：  设定一个变量i，默认i下标之前的元素全部是已经排好序的，i从0开始 从i - 1开始，a[i]不断向前比较，如果下标i - 1的数比它大，则a[i]和它交换 之后不断向前比较，如果前面的元素比a[i]大，则a[i]和它交换。 i - 2, i - 3, ..., i - k。直到i - k &#x3D;&#x3D; 0或者下标为i - k的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法4（Algorithms4） - Part 2 初级排序（Elementary Sorts）2">
+<meta property="og:url" content="https://stevehuge.gitee.io/blog/2017/10/22/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%EF%BC%88Elementary%20Sorts%EF%BC%892/index.html">
 <meta property="og:site_name" content="Steve&#39;s Blog">
+<meta property="og:description" content="3. 插入排序（Insertion Sort）3.1 步骤插入排序的步骤：  设定一个变量i，默认i下标之前的元素全部是已经排好序的，i从0开始 从i - 1开始，a[i]不断向前比较，如果下标i - 1的数比它大，则a[i]和它交换 之后不断向前比较，如果前面的元素比a[i]大，则a[i]和它交换。 i - 2, i - 3, ..., i - k。直到i - k &#x3D;&#x3D; 0或者下标为i - k的">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/insertion%20sort%20analysis2.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/inversion.jpg?raw=true">
+<meta property="og:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/h-sorting1.jpg?raw=true">
+<meta property="article:published_time" content="2017-10-22T14:57:09.000Z">
+<meta property="article:modified_time" content="2020-07-01T05:26:22.943Z">
 <meta property="article:author" content="Steve Hu">
+<meta property="article:tag" content="Sorting">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/insertion%20sort%20analysis2.jpg?raw=true">
   
     <link rel="alternative" href="/atom.xml" title="Steve&#39;s Blog" type="application/atom+xml">
   
@@ -154,267 +165,130 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-算法4（Algorithms4）- Part 2 初级排序（Elementary Sorts）2" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2020/06/30/hello-world/" class="archive-article-date">
-  	<time datetime="2020-06-30T13:43:16.739Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2020/06/30/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      算法4（Algorithms4） - Part 2 初级排序（Elementary Sorts）2
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2018-07-21T13:20:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-21</time>
+        
+        <a href="/blog/2017/10/22/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%EF%BC%88Elementary%20Sorts%EF%BC%892/" class="archive-article-date">
+  	<time datetime="2017-10-22T14:57:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-22</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/07/21/Java%E4%B8%ADLambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95/">Java中Lambda表达式的常见用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Lambda表达式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">sort</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+        
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/" class="archive-article-date">
-  	<time datetime="2018-04-23T08:09:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/04/23/Java%E5%8F%8D%E5%B0%84%E5%88%9D%E6%8E%A2%20--%2001/">Java反射初探 -- 1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">反射</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
+        <h1 id="3-插入排序（Insertion-Sort）"><a href="#3-插入排序（Insertion-Sort）" class="headerlink" title="3. 插入排序（Insertion Sort）"></a>3. 插入排序（Insertion Sort）</h1><h2 id="3-1-步骤"><a href="#3-1-步骤" class="headerlink" title="3.1 步骤"></a>3.1 步骤</h2><p>插入排序的步骤：</p>
+<ul>
+<li>设定一个变量<code>i</code>，默认<code>i</code>下标之前的元素全部是已经排好序的，<code>i</code>从<code>0</code>开始</li>
+<li>从<code>i - 1</code>开始，<code>a[i]</code>不断向前比较，如果下标<code>i - 1</code>的数比它大，则<code>a[i]</code>和它交换</li>
+<li>之后不断向前比较，如果前面的元素比<code>a[i]</code>大，则<code>a[i]</code>和它交换。 <code>i - 2, i - 3, ..., i - k</code>。直到<code>i - k == 0</code>或者下标为<code>i - k</code>的元素比<code>a[i]</code>小，此时停止交换</li>
+<li><code>i</code>自增，直到遍历数组所有下标<a id="more"></a>
+
+</li>
+</ul>
+<p>可以看下图，下图满足的条件是：</p>
+<ul>
+<li>在箭头<code>↑</code> 左边的元素（包括箭头<code>↑</code> ）是有序而且递增</li>
+<li>所有在箭头<code>↑</code> 右边的元素都还没有被检验，处于无序状态</li>
+</ul>
+<p>![](<a href="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/insertion" target="_blank" rel="noopener">https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/insertion</a> 1.jpg?raw=true)</p>
+<h2 id="3-2-内部循环"><a href="#3-2-内部循环" class="headerlink" title="3.2 内部循环"></a>3.2 内部循环</h2><p>![](<a href="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/insertion" target="_blank" rel="noopener">https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/insertion</a> - sort inner loop.jpg?raw=true)<br>图中是内部循环，分两步</p>
+<ol>
+<li>将指针往右移动一步</li>
+<li>不断和指针前面的元素比较，如果比指针所指元素大就交换</li>
+</ol>
+<h2 id="3-3-Java实现"><a href="#3-3-Java实现" class="headerlink" title="3.3 Java实现"></a>3.3 Java实现</h2><p>![](<a href="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/insertion" target="_blank" rel="noopener">https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/insertion</a> sort - java impl.jpg?raw=true)</p>
+<h2 id="3-4-数学分析"><a href="#3-4-数学分析" class="headerlink" title="3.4 数学分析"></a>3.4 数学分析</h2><p>通过上面的分析和代码，我们发现 </p>
+<ul>
+<li>对一个随机分布而且没有重复的数组来说，插入排序比较次数为<del>\(\frac{N ^ 2}{4}\)， 交换次数为</del>\(\frac{N ^ 2}{4}\)<br>![](<a href="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/insertion" target="_blank" rel="noopener">https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/insertion</a> sort - analysis.jpg?raw=true)<br>简单证明：如果数组随机分布，那么每次平均要比较和交换的次数都应该是前面所有数个数的一半。<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/insertion%20sort%20analysis2.jpg?raw=true" alt=""><h2 id="3-5-最优情况和最劣情况"><a href="#3-5-最优情况和最劣情况" class="headerlink" title="3.5 最优情况和最劣情况"></a>3.5 最优情况和最劣情况</h2></li>
+</ul>
+<p>最优： 如果数组已经排好序了，插入排序比较次数为 <code>N - 1</code>， 交换次数为<code>0</code>（这是一个十分惊人的成绩）</p>
+<p>最劣： 如果数组逆序排列，而且没有重复的话，插入排序比较次数为 <del>\(\frac{N ^ 2}{2}\)， 交换次数为</del>\(\frac{N ^ 2}{2}\)</p>
+<h2 id="3-6-部分有序（partially-sorted）的数组"><a href="#3-6-部分有序（partially-sorted）的数组" class="headerlink" title="3.6 部分有序（partially - sorted）的数组"></a>3.6 部分有序（partially - sorted）的数组</h2><p>定义： 逆序对（inversion）, 即为序列中没有按顺序排列的数据对，如图所示其中有6个逆序对。<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/inversion.jpg?raw=true" alt=""></p>
+<p>定义： 一个数组，如果它内部的逆序对数为<code>c N</code> ，则它是部分有序的。</p>
+<p>命题： 对于部分有序的数组来说，插入排序运行时间是线性的。</p>
+<p>简单证明：事实上，交换次数就是逆序对的次数。（比较次数为交换次数 + (N - 1)）</p>
+<h1 id="4-小结"><a href="#4-小结" class="headerlink" title="4. 小结"></a>4. 小结</h1><p>选择排序和插入排序相比：</p>
+<ul>
+<li>如果按照比较次数来计算性能（数组访问次数），插入排序的性能平均为选择排序的2倍</li>
+<li>如果要排序的数组部分有序，插入排序能达到线性时间的性能</li>
+<li>如果要排序的数组倒序，插入排序的性能会很差，而选择排序不受影响</li>
+</ul>
+<h1 id="5-希尔排序（Shell-Sort）"><a href="#5-希尔排序（Shell-Sort）" class="headerlink" title="5. 希尔排序（Shell Sort）"></a>5. 希尔排序（Shell Sort）</h1><p>插入排序中，有时候我们知道当前元素要比较的次数可能不止一个，但是它仍然会和之前所有比它大的元素进行比较，性能上其实是有提升空间的，我们希望它可以每次“跳着比”，每次和前面隔几个元素的元素进行比较，但是如何保证正确性呢？有人也想到了这个问题，这就是有名的 <code>h - sorting</code> 。<br>每次当前元素和之前相隔<code>h</code>距离的元素进行比较，并进行“插入排序”，如图所示。<br><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/h-sorting1.jpg?raw=true" alt=""></p>
+<h2 id="5-1-希尔排序"><a href="#5-1-希尔排序" class="headerlink" title="5.1 希尔排序"></a>5.1 希尔排序</h2><p>希尔排序（<code>Shell - Sort</code>），由希尔（Shell）在1959年发现。它的基本思想是：对数组进行<code>h - sort</code>，并逐渐减小<code>h</code>的值，这样就能保证排序的正确性。</p>
+<p>![](<a href="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/shell" target="_blank" rel="noopener">https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/shell</a> sort1.jpg?raw=true)</p>
+<h2 id="5-2-h-sorting"><a href="#5-2-h-sorting" class="headerlink" title="5.2 h -sorting"></a>5.2 h -sorting</h2><p><code>h-sort</code>，就是插入排序的改进版，只不过跨度为<code>h</code>，如图为<code>3 - sort</code> 。<br>![](<a href="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/3" target="_blank" rel="noopener">https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/3</a> - sorting.jpg?raw=true)<br>为什么使用插入排序？</p>
+<ul>
+<li><strong>大跨度的话 =&gt; 子数组很小，每次排序的次数很少</strong></li>
+<li>*<em>小跨度的话 =&gt; 数组经过大跨度排序，已经基本有序 *</em></li>
+</ul>
+<p>下图是一个Shell Sort增量分别为7，3，1的例子<br>![](<a href="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/shell" target="_blank" rel="noopener">https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/shell</a> sort increments7 3 1.jpg?raw=true)</p>
+<p>命题： 一个<code>g- sort</code>之后的数组，在经历过<code>h -sort</code>之后，仍然是<code>g - sort</code>的。<br>![](<a href="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/h" target="_blank" rel="noopener">https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/h</a> sorting g sorting.jpg?raw=true)</p>
+<h2 id="5-3-跨度选择"><a href="#5-3-跨度选择" class="headerlink" title="5.3 跨度选择"></a>5.3 跨度选择</h2><p>选择有很多种</p>
+<ul>
+<li><p><code>2的幂</code>：1， 2， 4， 8，16，32…<br>不好，因为它会导致奇数项和偶数项得不到充分交换，实际操作中性能不高</p>
+</li>
+<li><p><code>3x + 1</code>: 1, 4, 13, 40, 121, 364…<br>可以使用。计算很简单，这也是高德纳（Donald Knuth）使用的方式</p>
+</li>
+<li><p><code>Sedgewick</code>: 1, 5, 19, 41, 109, 209, 505, 929, 2161, 3905, …<br>$(9 * 4i) – (9 * 2i) + 1$ 与$4i – (3 * 2i) + 1$的合并，性能很好，在实证研究中很难被超越</p>
+</li>
+</ul>
+<h2 id="5-4-Java实现"><a href="#5-4-Java实现" class="headerlink" title="5.4 Java实现"></a>5.4 Java实现</h2><p>![](<a href="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/shell" target="_blank" rel="noopener">https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/shell</a> sort java impl.jpg?raw=true)</p>
+<h2 id="5-4-分析"><a href="#5-4-分析" class="headerlink" title="5.4 分析"></a>5.4 分析</h2><p>命题： 最差情况中，跨度为<code>3x + 1</code> 的希尔排序的比较次数为 \(O (N ^ \frac{3}{2})\)。</p>
+<p>如图是经过大量实践得出的近似表格。可以看出希尔排序的性能近似于\(N ^ {1.289}\)或者\(2.5 N \log N\)。</p>
+<p>![](<a href="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/shell" target="_blank" rel="noopener">https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%954/Part2/shell</a> sort analysis.jpg?raw=true)</p>
+<p>最后要说明的一点是：到现在还没有精确的数组模型描述希尔排序！</p>
+<h2 id="5-5-小结"><a href="#5-5-小结" class="headerlink" title="5.5 小结"></a>5.5 小结</h2><p>希尔排序证明了，简单的想法也能实现困难的问题。</p>
+<p>希尔排序在实践中十分常用</p>
+<ul>
+<li>如果数组不大，则非常快（常用于子数组，使用在linux内核中）</li>
+<li>很简洁，代码逻辑也相对简单（常用于嵌入式系统中）</li>
+<li>硬件中排序的原型</li>
+</ul>
+<p>希尔排序中还有很多疑问：</p>
+<ul>
+<li>渐进式的增长率</li>
+<li>最好的跨度？</li>
+<li>平均性能？</li>
+</ul>
+<p>从希尔排序中我们可以看出，有许多好的算法还等待我们去发现。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/" class="archive-article-date">
-  	<time datetime="2017-11-10T13:30:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/10/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%205%20%E5%9B%BE%EF%BC%88Graph%EF%BC%89-%E6%97%A0%E5%90%91%E5%9B%BE%EF%BC%88Undirected%20Graph%EF%BC%891/">算法4（Algorithms4）- Part 5 图（Graph）-无向图（Undirected Graph）1</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Graph</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2017-11-04T14:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/">LaTeX简介及其在Mardown中的用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LaTeX</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2017-10-29T07:50:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2017/10/29/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%EF%BC%88QuickSort%EF%BC%89/">算法4（Algorithms4） - Part 2 快速排序（Quick Sort）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -430,34 +304,131 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法4</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分治法</a>
-        		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://stevehuge.gitee.io/blog/2017/10/22/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%EF%BC%88Elementary%20Sorts%EF%BC%892/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/blog/2017/10/25/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%EF%BC%88MergeSort%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          算法4（Algorithms4） - Part 2 归并排序（Merge Sort）
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/blog/2017/10/22/%E7%AE%97%E6%B3%954%EF%BC%88Algorithms4%EF%BC%89-%20Part%202%20%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%EF%BC%88Elementary%20Sorts%EF%BC%891/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">算法4（Algorithms4） - Part 2 初级排序（Elementary Sorts）1</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3-插入排序（Insertion-Sort）"><span class="toc-number">1.</span> <span class="toc-text">3. 插入排序（Insertion Sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-步骤"><span class="toc-number">1.1.</span> <span class="toc-text">3.1 步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-内部循环"><span class="toc-number">1.2.</span> <span class="toc-text">3.2 内部循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Java实现"><span class="toc-number">1.3.</span> <span class="toc-text">3.3 Java实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-数学分析"><span class="toc-number">1.4.</span> <span class="toc-text">3.4 数学分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-最优情况和最劣情况"><span class="toc-number">1.5.</span> <span class="toc-text">3.5 最优情况和最劣情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-部分有序（partially-sorted）的数组"><span class="toc-number">1.6.</span> <span class="toc-text">3.6 部分有序（partially - sorted）的数组</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-小结"><span class="toc-number">2.</span> <span class="toc-text">4. 小结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-希尔排序（Shell-Sort）"><span class="toc-number">3.</span> <span class="toc-text">5. 希尔排序（Shell Sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-希尔排序"><span class="toc-number">3.1.</span> <span class="toc-text">5.1 希尔排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-h-sorting"><span class="toc-number">3.2.</span> <span class="toc-text">5.2 h -sorting</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-跨度选择"><span class="toc-number">3.3.</span> <span class="toc-text">5.3 跨度选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-Java实现"><span class="toc-number">3.4.</span> <span class="toc-text">5.4 Java实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-分析"><span class="toc-number">3.5.</span> <span class="toc-text">5.4 分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-小结"><span class="toc-number">3.6.</span> <span class="toc-text">5.5 小结</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/blog/archives/page/2/">2</a><a class="page-number" href="/blog/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/blog/archives/page/5/">5</a><a class="extend next" rel="next" href="/blog/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -481,8 +452,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
