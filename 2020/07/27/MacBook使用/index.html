@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://stevehuge.gitee.io/blog">
   <title>MacBook使用 | Steve&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Brew1. 介绍Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。">
+  <meta name="description" content="[toc] 环境1. 环境变量1. 当前用户变量1~&#x2F;.bash_profile 2. 设置PATH在&#x2F;etc&#x2F;.paths.d&#x2F;，建立要使用的命令的文件，里面存储具体所在可执行文件的位置。例如 12$ touch &#x2F;ect&#x2F;paths.d&#x2F;mysql$ vi &#x2F;etc&#x2F;paths.d&#x2F;mysql 把mysql bin文件夹的路径存进去 1&#x2F;usr&#x2F;local&#x2F;mys">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MacBook使用">
 <meta property="og:url" content="https://stevehuge.gitee.io/blog/2020/07/27/MacBook%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="Steve&#39;s Blog">
-<meta property="og:description" content="Brew1. 介绍Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。">
+<meta property="og:description" content="[toc] 环境1. 环境变量1. 当前用户变量1~&#x2F;.bash_profile 2. 设置PATH在&#x2F;etc&#x2F;.paths.d&#x2F;，建立要使用的命令的文件，里面存储具体所在可执行文件的位置。例如 12$ touch &#x2F;ect&#x2F;paths.d&#x2F;mysql$ vi &#x2F;etc&#x2F;paths.d&#x2F;mysql 把mysql bin文件夹的路径存进去 1&#x2F;usr&#x2F;local&#x2F;mys">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-27T13:13:50.000Z">
-<meta property="article:modified_time" content="2020-08-02T12:51:15.925Z">
+<meta property="article:modified_time" content="2020-08-11T14:15:21.209Z">
 <meta property="article:author" content="Steve Hu">
 <meta property="article:tag" content="开发工具">
 <meta property="article:tag" content="MacBook">
@@ -180,13 +180,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Brew"><a href="#Brew" class="headerlink" title="Brew"></a>Brew</h1><h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h2><p>Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。<br><a id="more"></a></p>
+        <p>[toc]</p>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><h2 id="1-环境变量"><a href="#1-环境变量" class="headerlink" title="1. 环境变量"></a>1. 环境变量</h2><h3 id="1-当前用户变量"><a href="#1-当前用户变量" class="headerlink" title="1. 当前用户变量"></a>1. 当前用户变量</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.bash_profile</span><br></pre></td></tr></table></figure>
+<h3 id="2-设置PATH"><a href="#2-设置PATH" class="headerlink" title="2. 设置PATH"></a>2. 设置PATH</h3><p>在<code>/etc/.paths.d/</code>，建立要使用的命令的文件，里面存储具体所在可执行文件的位置。<br>例如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ touch /ect/paths.d/mysql</span><br><span class="line">$ vi /etc/paths.d/mysql</span><br></pre></td></tr></table></figure>
+<p>把mysql bin文件夹的路径存进去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;bin</span><br></pre></td></tr></table></figure>
+<p>保存之后，打开新的命令窗口，就可以使用了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$~ <span class="built_in">echo</span> <span class="variable">$PATH</span></span><br><span class="line">/usr/<span class="built_in">local</span>/mysql/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-JAVA-HOME"><a href="#2-JAVA-HOME" class="headerlink" title="2.  JAVA_HOME"></a>2.  JAVA_HOME</h2><h3 id="1-查看Java安装位置"><a href="#1-查看Java安装位置" class="headerlink" title="1. 查看Java安装位置"></a>1. 查看Java安装位置</h3><p>有两种方式</p>
+<ol>
+<li>查看系统变量<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$JAVA_HOME</span></span><br></pre></td></tr></table></figure></li>
+<li>使用Mac自带的命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/libexec/java_homes</span><br></pre></td></tr></table></figure>
+一般都在<code>/Library/Java/JavaVirtualMachines/</code>下。<h3 id="2-配置Java环境"><a href="#2-配置Java环境" class="headerlink" title="2. 配置Java环境"></a>2. 配置Java环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开当前用户配置文件</span></span><br><span class="line">vim ~/.bash_profile</span><br></pre></td></tr></table></figure>
+如果有多个JDK版本号，可以使用以下格式保存参数<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_11_HOME=/Library/Java/JavaVirtualMachines/jdk11-version/Contents/Home</span><br><span class="line"><span class="built_in">export</span> JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk8-version/Contents/Home</span><br><span class="line">PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line">CLASSPATH=<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JAVA_HOME</span>/lib/dt.jar</span><br><span class="line"></span><br><span class="line"><span class="comment">#默认JDK为JDK8</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=<span class="variable">$JAVA_8_HOME</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># alias命令动态切换JDK版本</span></span><br><span class="line"><span class="built_in">alias</span> jdk11=<span class="string">"export JAVA_HOME=<span class="variable">$JAVA_11_HOME</span>"</span></span><br><span class="line"><span class="built_in">alias</span> jdk8=<span class="string">"export JAVA_HOME=<span class="variable">$JAVA_9_HOME</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH</span><br><span class="line"><span class="built_in">export</span> CLASSPATH</span><br></pre></td></tr></table></figure>
+<code>ESC</code> + <code>:wq</code> 保存配置文件之后，使配置文件生效<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure>
+新开一个终端窗口就可以使用<code>java -version</code>查看JDK版本号了。</li>
+</ol>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="https://zhuanlan.zhihu.com/p/111250657" target="_blank" rel="noopener">Mac下多版本JDK的安装及管理</a></li>
+</ol>
+<h1 id="包管理-amp-软件"><a href="#包管理-amp-软件" class="headerlink" title="包管理 &amp; 软件"></a>包管理 &amp; 软件</h1><h2 id="1-Brew"><a href="#1-Brew" class="headerlink" title="1. Brew"></a>1. Brew</h2><h3 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h3><p>Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。<br><a id="more"></a></p>
 <p>注意事项</p>
 <ul>
 <li>Homebrew会将软件包安装到独立目录,一般为<code>/usr/local/Cellar</code>目录.</li>
 <li>然后将文件软连接至执行路径,一般为<code>/usr/local/bin</code>目录.</li>
 </ul>
-<h2 id="2-常用命令"><a href="#2-常用命令" class="headerlink" title="2. 常用命令"></a>2. 常用命令</h2><ul>
+<h3 id="2-常用命令"><a href="#2-常用命令" class="headerlink" title="2. 常用命令"></a>2. 常用命令</h3><ul>
 <li><code>brew install [包名]</code></li>
 <li><code>brew update</code></li>
 <li><code>brew update -verbose</code></li>
@@ -194,7 +214,7 @@
 <li><code>brew doctor</code>:诊断Homebrew的问题.</li>
 <li><code>brew update-reset</code></li>
 </ul>
-<h2 id="3-brew-install-xx卡死问题"><a href="#3-brew-install-xx卡死问题" class="headerlink" title="3. brew install xx卡死问题"></a>3. <code>brew install xx</code>卡死问题</h2><p>一般都会卡死在<code>Updating Homebrew..</code>界面，原因是brew会使用github作为源，国内访问速度很有限。<br>解决的方法：</p>
+<h3 id="3-brew-install-xx卡死问题"><a href="#3-brew-install-xx卡死问题" class="headerlink" title="3. brew install xx卡死问题"></a>3. <code>brew install xx</code>卡死问题</h3><p>一般都会卡死在<code>Updating Homebrew..</code>界面，原因是brew会使用github作为源，国内访问速度很有限。<br>解决的方法：</p>
 <ol>
 <li>按下<code>Control-c</code>，会停止更新，直接下载。这种方法可以临时使用，但是治标不治本。</li>
 <li>替换源</li>
@@ -204,7 +224,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>/Library/Taps/homebrew/homebrew-core"</span></span><br><span class="line">git remote <span class="built_in">set</span>-url origin https://mirrors.ustc.edu.cn/homebrew-core.git</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="string">"<span class="variable">$(brew --repo)</span>"</span>/Library/Taps/homebrew/homebrew-cask</span><br><span class="line">git remote <span class="built_in">set</span>-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git</span><br></pre></td></tr></table></figure>
 <p>参考<a href="http://mirrors.ustc.edu.cn/help/brew.git.html" target="_blank" rel="noopener">Homebrew源使用帮助</a>.<br>参考<a href="http://mirrors.ustc.edu.cn/help/homebrew-core.git.html" target="_blank" rel="noopener">Homebrew Core源使用帮助</a>.<br>参考<a href="http://mirrors.ustc.edu.cn/help/homebrew-cask.git.html" target="_blank" rel="noopener">Homebrew Cask源使用帮助</a>.</p>
-<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p>[1] <a href="https://www.cnblogs.com/tp0829/p/Homebrew.html" target="_blank" rel="noopener">[Linux实践] macOS平台Homebrew更新brew update卡死,完美解决</a></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p>[1] <a href="https://www.cnblogs.com/tp0829/p/Homebrew.html" target="_blank" rel="noopener">[Linux实践] macOS平台Homebrew更新brew update卡死,完美解决</a></p>
 
       
 
@@ -351,7 +371,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Brew"><span class="toc-number">1.</span> <span class="toc-text">Brew</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-介绍"><span class="toc-number">1.1.</span> <span class="toc-text">1. 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-常用命令"><span class="toc-number">1.2.</span> <span class="toc-text">2. 常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-brew-install-xx卡死问题"><span class="toc-number">1.3.</span> <span class="toc-text">3. brew install xx卡死问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文章"><span class="toc-number">2.</span> <span class="toc-text">参考文章</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#环境"><span class="toc-number">1.</span> <span class="toc-text">环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-环境变量"><span class="toc-number">1.1.</span> <span class="toc-text">1. 环境变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-当前用户变量"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 当前用户变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-设置PATH"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 设置PATH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-JAVA-HOME"><span class="toc-number">1.2.</span> <span class="toc-text">2.  JAVA_HOME</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-查看Java安装位置"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 查看Java安装位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-配置Java环境"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 配置Java环境</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">1.3.</span> <span class="toc-text">参考资料</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#包管理-amp-软件"><span class="toc-number">2.</span> <span class="toc-text">包管理 &amp; 软件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Brew"><span class="toc-number">2.1.</span> <span class="toc-text">1. Brew</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-介绍"><span class="toc-number">2.1.1.</span> <span class="toc-text">1. 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-常用命令"><span class="toc-number">2.1.2.</span> <span class="toc-text">2. 常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-brew-install-xx卡死问题"><span class="toc-number">2.1.3.</span> <span class="toc-text">3. brew install xx卡死问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-number">2.2.</span> <span class="toc-text">参考文章</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -508,6 +528,18 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">LaTeX</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Sorting</a>
               </li>
              
@@ -525,18 +557,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">LaTeX</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -580,11 +600,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编码</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">编码</a>
               </li>
             
             <div class="clearfix"></div>
@@ -741,23 +761,5 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-<!-- changed for supporting latex 2020-07-04 by hjs -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
 </body>
 </html>
