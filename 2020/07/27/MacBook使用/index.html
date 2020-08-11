@@ -16,7 +16,7 @@
 <meta property="og:description" content="[toc] 环境1. 环境变量1. 当前用户变量1~&#x2F;.bash_profile 2. 设置PATH在&#x2F;etc&#x2F;.paths.d&#x2F;，建立要使用的命令的文件，里面存储具体所在可执行文件的位置。例如 12$ touch &#x2F;ect&#x2F;paths.d&#x2F;mysql$ vi &#x2F;etc&#x2F;paths.d&#x2F;mysql 把mysql bin文件夹的路径存进去 1&#x2F;usr&#x2F;local&#x2F;mys">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-27T13:13:50.000Z">
-<meta property="article:modified_time" content="2020-08-11T14:15:21.209Z">
+<meta property="article:modified_time" content="2020-08-11T14:17:48.353Z">
 <meta property="article:author" content="Steve Hu">
 <meta property="article:tag" content="开发工具">
 <meta property="article:tag" content="MacBook">
@@ -188,6 +188,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;bin</span><br></pre></td></tr></table></figure>
 <p>保存之后，打开新的命令窗口，就可以使用了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$~ <span class="built_in">echo</span> <span class="variable">$PATH</span></span><br><span class="line">/usr/<span class="built_in">local</span>/mysql/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="2-JAVA-HOME"><a href="#2-JAVA-HOME" class="headerlink" title="2.  JAVA_HOME"></a>2.  JAVA_HOME</h2><h3 id="1-查看Java安装位置"><a href="#1-查看Java安装位置" class="headerlink" title="1. 查看Java安装位置"></a>1. 查看Java安装位置</h3><p>有两种方式</p>
 <ol>
 <li>查看系统变量<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$JAVA_HOME</span></span><br></pre></td></tr></table></figure></li>
@@ -200,7 +201,7 @@
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
 <li><a href="https://zhuanlan.zhihu.com/p/111250657" target="_blank" rel="noopener">Mac下多版本JDK的安装及管理</a></li>
 </ol>
-<h1 id="包管理-amp-软件"><a href="#包管理-amp-软件" class="headerlink" title="包管理 &amp; 软件"></a>包管理 &amp; 软件</h1><h2 id="1-Brew"><a href="#1-Brew" class="headerlink" title="1. Brew"></a>1. Brew</h2><h3 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h3><p>Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。<br><a id="more"></a></p>
+<h1 id="包管理-amp-软件"><a href="#包管理-amp-软件" class="headerlink" title="包管理 &amp; 软件"></a>包管理 &amp; 软件</h1><h2 id="1-Brew"><a href="#1-Brew" class="headerlink" title="1. Brew"></a>1. Brew</h2><h3 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h3><p>Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。</p>
 <p>注意事项</p>
 <ul>
 <li>Homebrew会将软件包安装到独立目录,一般为<code>/usr/local/Cellar</code>目录.</li>
@@ -761,5 +762,23 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+<!-- changed for supporting latex 2020-07-04 by hjs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>
