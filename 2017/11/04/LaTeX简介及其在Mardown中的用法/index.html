@@ -203,8 +203,8 @@
 <h1 id="3-LaTeX-在Markdown中的用法"><a href="#3-LaTeX-在Markdown中的用法" class="headerlink" title="3. $\LaTeX$在Markdown中的用法"></a>3. $\LaTeX$在Markdown中的用法</h1><p>先说$\LaTeX$的简单用法：</p>
 <ol>
 <li>在数学公式中，经常用到 <strong>上标和下标</strong>，在LaTeX语法中对应<code>^</code>和<code>-</code>。例如<code>x_i^2</code> : $x_i^2$, <code>\log_2 N</code> : $\log_2 N$。</li>
-<li><strong>分组</strong>，简单来说就是当遇到下标或者上标不是单字符时会用到，例如 $x_{a1}^2$, 用式子<code>x_a1^2</code>会得出错误的公式$x_a1^2$。由于这时<code>a</code>和<code>1</code>属于同一组，所以需要声明它们是一起的。$\LaTeX$中使用大括号<code>{}</code>将同一组的符号括到一起。刚才的式子正确表示是<code>x_{a1}^2</code>。</li>
-<li><strong>括号</strong>，如果式子中本来就有括号<code>()[]{}</code>，那么使用时<code>()[]</code>正常使用即可，而<code>{}</code>在括号之前需要加转义符<code>\</code>。例如$(2 + 3)[4 + 4]\{5 + 6\}$ : <code>(2 + 3)[4 + 4]\{5 + 6\}</code>。</li>
+<li><strong>分组</strong>，简单来说就是当遇到下标或者上标不是单字符时会用到，例如 $x<em>{a1}^2$, 用式子<code>x_a1^2</code>会得出错误的公式$x_a1^2$。由于这时<code>a</code>和<code>1</code>属于同一组，所以需要声明它们是一起的。$\LaTeX$中使用大括号<code>{}</code>将同一组的符号括到一起。刚才的式子正确表示是<code>x</em>{a1}^2&lt;/code&gt;。</li>
+<li><strong>括号</strong>，如果式子中本来就有括号<code>()[]{}</code>，那么使用时<code>()[]</code>正常使用即可，而<code>{}</code>在括号之前需要加转义符<code>\</code>。例如$(2 + 3)[4 + 4]{5 + 6}$ : <code>(2 + 3)[4 + 4]\{5 + 6\}</code>。</li>
 <li><strong>分数</strong>，分数通过<code>\frac{}{}</code>实现。例如 $\frac{3}{5}$ : <code>\frac{3}{5}</code>。稍微复杂的分数也能表示</li>
 </ol>
 <p><script type="math/tex">\frac{\log_2 N + N^3}{\ln N - 2N^2}</script> 式子是<code>\frac{\log_2 N + N^3}{\ln N - 2N^2}</code>。</p>
@@ -318,7 +318,7 @@
 <li>更换Hexo的markdown引擎。Hexo自带的引擎是 <code>hexo-renderer-marked</code>，可以换成功能更强大的Pandoc。   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save   &#x2F;&#x2F; 卸载旧的引擎</span><br><span class="line">npm install hexo-renderer-pandoc --save     &#x2F;&#x2F; 安装pandoc</span><br></pre></td></tr></table></figure></li>
 <li>手动修改Hexo渲染源码</li>
 </ul>
-<p>修改hexo的渲染源码: 打开<code>nodes_modules/marked/lib/marked.js</code>:<br>第一步: 去掉\\的额外转义。 先备份一下，然后修改第449行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">escape: &#x2F;^\\([\\&#96;*&#123;&#125;\[\]()# +\-.!_&gt;])&#x2F;,</span><br></pre></td></tr></table></figure><br>改为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">escape: &#x2F;^\\([&#96;*&#123;&#125;\[\]()# +\-.!_&gt;])&#x2F;,</span><br></pre></td></tr></table></figure><br>这样就会去掉\\的转义了。<br>第二步:将<code>em</code>标签对应的符号中，去掉<code>_</code>。第459行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">em: &#x2F;^\b_((?:[^_]|__)+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)&#x2F;,</span><br></pre></td></tr></table></figure><br>修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">em:&#x2F;^\*((?:\*\*|[\s\S])+?)\*(?!\*)&#x2F;,</span><br></pre></td></tr></table></figure><br>因为markdown中有<code>*</code>可以表示斜体，<code>_</code>就去掉了,这样问题就解决了。</p>
+<p>修改hexo的渲染源码: 打开<code>nodes_modules/marked/lib/marked.js</code>:<br>第一步: 去掉\的额外转义。 先备份一下，然后修改第449行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">escape: &#x2F;^\\([\\&#96;*&#123;&#125;\[\]()# +\-.!_&gt;])&#x2F;,</span><br></pre></td></tr></table></figure><br>改为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">escape: &#x2F;^\\([&#96;*&#123;&#125;\[\]()# +\-.!_&gt;])&#x2F;,</span><br></pre></td></tr></table></figure><br>这样就会去掉\的转义了。<br>第二步:将<code>em</code>标签对应的符号中，去掉<code>_</code>。第459行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">em: &#x2F;^\b_((?:[^_]|__)+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)&#x2F;,</span><br></pre></td></tr></table></figure><br>修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">em:&#x2F;^\*((?:\*\*|[\s\S])+?)\*(?!\*)&#x2F;,</span><br></pre></td></tr></table></figure><br>因为markdown中有<code>*</code>可以表示斜体，<code>_</code>就去掉了,这样问题就解决了。</p>
 <p>这部分参考天空的城的<a href="http://shomy.top/2016/10/22/hexo-markdown-mathjax/#" target="_blank" rel="noopener">Hexo下mathjax的转义问题</a>。</p>
 <h1 id="参考网站"><a href="#参考网站" class="headerlink" title="参考网站"></a>参考网站</h1><p>[1] <a href="https://www.mathjax.org/" target="_blank" rel="noopener">mathjax官网</a><br>[2] <a href="https://zh.wikipedia.org/wiki/TeX" target="_blank" rel="noopener">TeX维基百科</a><br>[3] <a href="https://zh.wikipedia.org/wiki/LaTeX" target="_blank" rel="noopener">LaTeX维基百科</a><br>[3] <a href="https://github.com/hexojs/hexo/issues/524" target="_blank" rel="noopener">Github上的issue</a><br>[4] <a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="noopener">MathJax basic tutorial and quick reference</a><br>[5] <a href="https://www.zhihu.com/question/31298277/answer/275151599" target="_blank" rel="noopener">知乎上的公式是怎么打出来的？</a><br>[6] <a href="https://segmentfault.com/q/1010000003987383" target="_blank" rel="noopener">hexo 如何解决markdown下划线要加反斜杠，以及如何使用其他markdown的渲染引擎？</a><br>[7] <a href="http://shomy.top/2016/10/22/hexo-markdown-mathjax/#" target="_blank" rel="noopener">Hexo下mathjax的转义问题</a><br>[8] <a href="http://2wildkids.com/2016/10/06/%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86Hexo%E5%92%8CMathJax%E7%9A%84%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">如何处理Hexo和MathJax的兼容问题</a><br>[9] <a href="https://www.jianshu.com/p/68e6f82d88b7" target="_blank" rel="noopener">使用LaTex添加公式到Hexo博客里</a></p>
 
@@ -517,7 +517,7 @@
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: false,
+		open_in_new: true,
 		toc_hide_index: true,
 		root: "/blog/",
 		innerArchive: true,
@@ -604,6 +604,18 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JDBC</a>
               </li>
              
@@ -613,10 +625,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -632,6 +640,14 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
@@ -641,6 +657,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">缓存</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -672,11 +700,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">编码</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编码</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
@@ -847,8 +875,8 @@ MathJax.Hub.Queue(function() {
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-// <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-// changed for supporting latex 2020-07-04 by hjs
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+<!-- changed for supporting latex 2020-07-04 by hjs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 </body>
