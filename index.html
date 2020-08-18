@@ -177,19 +177,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="1-基础"><a href="#1-基础" class="headerlink" title="1. 基础"></a>1. 基础</h1><p>常见的数据存储结构有：数组和链表，其中存储的数据都为有序。</p>
-<ol>
+<ul>
 <li>数组</li>
-</ol>
+</ul>
 <p>优势：可以直接通过二分查找来找数据，时间复杂度$O(N)$，<strong>访问快</strong></p>
 <p>劣势：大小固定，需要添加元素且保持有序时，可能需要移动很多原来的元素，时间复杂度高为$O(N)$， <strong>插入慢</strong></p>
-<ol>
+<ul>
 <li>链表</li>
-</ol>
-<p>优势：插入时相对方便，时间复杂度为$O(N)$，但是不需要移动数据， <strong>插入相对快</strong></p>
+</ul>
+<p>优势：插入时时间复杂度为$O(N)$，但是不需要移动数据， <strong>插入相对快</strong></p>
 <p>劣势：查询某个元素时平均时间复杂度为 $O(N )$，<strong>访问慢</strong></p>
-<ol>
+<ul>
 <li>散列表HashMap</li>
-</ol>
+</ul>
 <p>集合了数据和链表的优势</p>
 <p>查询时间复杂度：$O(1)$</p>
 <p>插入时间复杂度：$O(1)$</p>
@@ -276,8 +276,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[toc]</p>
-<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><h2 id="1-环境变量"><a href="#1-环境变量" class="headerlink" title="1. 环境变量"></a>1. 环境变量</h2><h3 id="1-当前用户变量"><a href="#1-当前用户变量" class="headerlink" title="1. 当前用户变量"></a>1. 当前用户变量</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.bash_profile</span><br></pre></td></tr></table></figure>
+        <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><h2 id="1-环境变量"><a href="#1-环境变量" class="headerlink" title="1. 环境变量"></a>1. 环境变量</h2><h3 id="1-当前用户变量"><a href="#1-当前用户变量" class="headerlink" title="1. 当前用户变量"></a>1. 当前用户变量</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/.bash_profile</span><br></pre></td></tr></table></figure>
 <h3 id="2-设置PATH"><a href="#2-设置PATH" class="headerlink" title="2. 设置PATH"></a>2. 设置PATH</h3><p>在<code>/etc/.paths.d/</code>，建立要使用的命令的文件，里面存储具体所在可执行文件的位置。<br>例如</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ touch /ect/paths.d/mysql</span><br><span class="line">$ vi /etc/paths.d/mysql</span><br></pre></td></tr></table></figure>
 <p>把mysql bin文件夹的路径存进去</p>
@@ -823,15 +822,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">LaTeX</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -847,11 +842,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MacBook</a>
+                <a href="javascript:void(0)" class="js-tag color1">LaTeX</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -864,14 +863,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">缓存</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">环境搭建</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -891,15 +882,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">环境搭建</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">编码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1056,23 +1055,5 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-<!-- changed for supporting latex 2020-07-04 by hjs -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
 </body>
 </html>
