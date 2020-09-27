@@ -156,6 +156,344 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Redis数据类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/07/27/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Redis数据类型</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2020/07/27/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
+  	<time datetime="2020-07-27T13:13:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-什么是Redis"><a href="#1-什么是Redis" class="headerlink" title="1. 什么是Redis"></a>1. 什么是Redis</h1><p>Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构，如 <a href="http://www.redis.cn/topics/data-types-intro.html#strings" target="_blank" rel="noopener">字符串（strings）</a>， <a href="http://www.redis.cn/topics/data-types-intro.html#hashes" target="_blank" rel="noopener">散列（hashes）</a>， <a href="http://www.redis.cn/topics/data-types-intro.html#lists" target="_blank" rel="noopener">列表（lists）</a>， <a href="http://www.redis.cn/topics/data-types-intro.html#sets" target="_blank" rel="noopener">集合（sets）</a>， <a href="http://www.redis.cn/topics/data-types-intro.html#sorted-sets" target="_blank" rel="noopener">有序集合（sorted sets）</a> 与范围查询， <a href="http://www.redis.cn/topics/data-types-intro.html#bitmaps" target="_blank" rel="noopener">bitmaps</a>， <a href="http://www.redis.cn/topics/data-types-intro.html#hyperloglogs" target="_blank" rel="noopener">hyperloglogs</a> 和 <a href="http://www.redis.cn/commands/geoadd.html" target="_blank" rel="noopener">地理空间（geospatial）</a> 索引半径查询。 Redis 内置了 <a href="http://www.redis.cn/topics/replication.html" target="_blank" rel="noopener">复制（replication）</a>，<a href="http://www.redis.cn/commands/eval.html" target="_blank" rel="noopener">LUA脚本（Lua scripting）</a>， <a href="http://www.redis.cn/topics/lru-cache.html" target="_blank" rel="noopener">LRU驱动事件（LRU eviction）</a>，<a href="http://www.redis.cn/topics/transactions.html" target="_blank" rel="noopener">事务（transactions）</a> 和不同级别的 <a href="http://www.redis.cn/topics/persistence.html" target="_blank" rel="noopener">磁盘持久化（persistence）</a>， 并通过 <a href="http://www.redis.cn/topics/sentinel.html" target="_blank" rel="noopener">Redis哨兵（Sentinel）</a>和自动 <a href="http://www.redis.cn/topics/cluster-tutorial.html" target="_blank" rel="noopener">分区（Cluster）</a>提供高可用性（high availability）。</p>
+        
+          <a class="article-more-a" href="/blog/2020/07/27/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">缓存</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2020/07/27/Redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-LaTeX简介及其在Mardown中的用法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/">LaTeX简介及其在Mardown中的用法</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2017-11-04T14:21:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/Tools/LaTeX/top.jpg?raw=true" alt=""></p>
+<h1 id="1-LaTeX-是什么？"><a href="#1-LaTeX-是什么？" class="headerlink" title="1. $\LaTeX$是什么？"></a>1. $\LaTeX$是什么？</h1><p>在介绍$\LaTeX$之前，我们得知道什么是$\TeX$。</p>
+<h2 id="TeX"><a href="#TeX" class="headerlink" title="$\TeX$"></a>$\TeX$</h2><p>$\TeX$（希腊语：/tɛx/，音译“泰赫”，文本模式下写作TeX），是一个由美国计算机教授高德纳（Donald Ervin Knuth）编写的功能强大的排版软件。它在学术界十分流行，特别是数学、物理学和计算机科学界。$\TeX$被普遍认为是一个优秀的排版工具，特别是在处理复杂的数学公式时。利用诸如是$\LaTeX$等终端软件，$\TeX$就能够排版出精美的文本以帮助人们辨认和查找。</p>
+<p>高德纳（Donald Knuth,1938/01/10 -）最早开始自行编写 $\TeX$ 的原因，是因为当时的排版技术十分粗糙，已经影响到他的巨著《计算机程序设计艺术》的印刷质量。他以典型的黑客思维模式，决定自行编写一个排版软件：$\TeX$。他原本以为他只需要半年时间，在1978年下半年就能完成，但最终他用了超过十年时间，直到1989年$\TeX$才最终停止修改。</p>
+        
+          <a class="article-more-a" href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">LaTeX</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">markdown</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2017/11/04/LaTeX%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E5%9C%A8Mardown%E4%B8%AD%E7%9A%84%E7%94%A8%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Java中的Comparable接口和Comparator接口" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2017/10/19/Java%E4%B8%AD%E7%9A%84Comparable%E6%8E%A5%E5%8F%A3%E5%92%8CComparator%E6%8E%A5%E5%8F%A3/">Java中的Comparable接口和Comparator接口</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2017/10/19/Java%E4%B8%AD%E7%9A%84Comparable%E6%8E%A5%E5%8F%A3%E5%92%8CComparator%E6%8E%A5%E5%8F%A3/" class="archive-article-date">
+  	<time datetime="2017-10-19T14:00:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/Java/JDK%E6%BA%90%E7%A0%81/Comparable&amp;Comparator/top.jpg?raw=true" alt=""></p>
+<p>最近Algorithms 4 课上提到了排序。趁着这个机会，梳理一下。<br>
+        
+          <a class="article-more-a" href="/blog/2017/10/19/Java%E4%B8%AD%E7%9A%84Comparable%E6%8E%A5%E5%8F%A3%E5%92%8CComparator%E6%8E%A5%E5%8F%A3/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Sorting</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Comparable</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Comparator</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2017/10/19/Java%E4%B8%AD%E7%9A%84Comparable%E6%8E%A5%E5%8F%A3%E5%92%8CComparator%E6%8E%A5%E5%8F%A3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-计算机编码简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2017/10/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BC%96%E7%A0%81%E7%AE%80%E4%BB%8B/">计算机编码简介</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2017/10/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BC%96%E7%A0%81%E7%AE%80%E4%BB%8B/" class="archive-article-date">
+  	<time datetime="2017-10-18T14:00:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E7%BC%96%E7%A0%81/%E7%BC%96%E7%A0%81_top.jpg?raw=true" alt=""></p>
+<h1 id="计算机编码"><a href="#计算机编码" class="headerlink" title="计算机编码"></a>计算机编码</h1><h2 id="1-原码、反码和补码"><a href="#1-原码、反码和补码" class="headerlink" title="1. 原码、反码和补码"></a>1. 原码、反码和补码</h2><p>首先我们知道，在计算机中，所有数都是以二进制存在，也就是<code>0</code>和<code>1</code>的组合。  </p>
+<p>但是通过研究二进制，人们发现了二进制并不能很好的和十进制对应起来。首先十进制中有正数和负数，而二进制中的负号<code>-</code>该如何表示呢？有人想到用二进制的最高位表示，此位为<code>0</code>则表示正数，<code>1</code>表示这个数为负数。</p>
+        
+          <a class="article-more-a" href="/blog/2017/10/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BC%96%E7%A0%81%E7%AE%80%E4%BB%8B/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编码</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2017/10/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BC%96%E7%A0%81%E7%AE%80%E4%BB%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-动态代理2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -305,329 +643,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/blog/2017/08/20/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%861/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JDBC总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2017/08/06/JDBC%E6%80%BB%E7%BB%93/">JDBC的总结</a>
-    </h1>
-  
-
-        
-        <a href="/blog/2017/08/06/JDBC%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2017-08-06T10:56:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/JDBC/top.jpg?raw=true" alt="JDBC top">  </p>
-        
-          <a class="article-more-a" href="/blog/2017/08/06/JDBC%E6%80%BB%E7%BB%93/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JDBC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2017/08/06/JDBC%E6%80%BB%E7%BB%93/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-聊赖一记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2017/05/05/%E8%81%8A%E8%B5%96%E4%B8%80%E8%AE%B0/">聊赖一记</a>
-    </h1>
-  
-
-        
-        <a href="/blog/2017/05/05/%E8%81%8A%E8%B5%96%E4%B8%80%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2017-05-05T13:22:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E9%9A%8F%E7%AC%94/%E6%A1%83%E8%8A%B1.jpg?raw=true" alt=""><br>
-        
-          <a class="article-more-a" href="/blog/2017/05/05/%E8%81%8A%E8%B5%96%E4%B8%80%E8%AE%B0/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2017/05/05/%E8%81%8A%E8%B5%96%E4%B8%80%E8%AE%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-我的git使用教程2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2017/05/04/%E6%88%91%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B2/">我的git使用教程2</a>
-    </h1>
-  
-
-        
-        <a href="/blog/2017/05/04/%E6%88%91%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B2/" class="archive-article-date">
-  	<time datetime="2017-05-04T15:00:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E6%88%91%E7%9A%84Git%E6%95%99%E7%A8%8B/Git.jpg?raw=true" alt="Git"></p>
-<h1 id="为仓库创建一个分支（branch）"><a href="#为仓库创建一个分支（branch）" class="headerlink" title="为仓库创建一个分支（branch）"></a>为仓库创建一个分支（branch）</h1><p>现在我们有个提交过几次的git仓库，如果我们想在给我们的项目加点测试的东西，而又不想留一份原始不被影响的代码。传统的做法是复制项目，创建一个副本项目，在副本项目中进行测试，这样原来的项目不会受到影响。<br>这样看似不错，但是万一我们觉得测试代码不错，想要把它放进原始项目中，我们又不得不把测试代码复制到原始项目中（测试副本要不断进行新的开发），多来几次，万一其中有次出现了错误而没有发现，那修改就很麻烦了。<br>不过不用担心，git提供了另一个很有用的功能——分支(branch)。使用它能多层次、用户进行开发，十分便于管理且提升了效率。版本控制软件的好处就是你可以回到任何一个之前的开发版本中，而分支功能能很好在不影响稳定代码的情况下，允许我们进行更多操作，快来学习一下吧。分支的建立详细参见<a href="https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6" target="_blank" rel="noopener" title="Git分支 - 分支的新建与合并">Git分支 - 分支的新建与合并</a>。<br>
-        
-          <a class="article-more-a" href="/blog/2017/05/04/%E6%88%91%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B2/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">环境搭建</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2017/05/04/%E6%88%91%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-我的git使用教程1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2017/05/03/%E6%88%91%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B1/">我的git使用教程1</a>
-    </h1>
-  
-
-        
-        <a href="/blog/2017/05/03/%E6%88%91%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B1/" class="archive-article-date">
-  	<time datetime="2017-05-03T15:00:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://github.com/StephenHuge/Markdown_Pic/blob/master/%E6%88%91%E7%9A%84Git%E6%95%99%E7%A8%8B/Git.jpg?raw=true" alt="Git"></p>
-<h1 id="将一个项目放到GitHub上"><a href="#将一个项目放到GitHub上" class="headerlink" title="将一个项目放到GitHub上"></a>将一个项目放到GitHub上</h1><hr>
-<p>Git是一个分布式的代码托管仓库，是每个程序员必备的工具。<br>
-        
-          <a class="article-more-a" href="/blog/2017/05/03/%E6%88%91%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">环境搭建</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2017/05/03/%E6%88%91%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B1/">展开全文 >></a>
         </p>
       
 
@@ -876,6 +891,30 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">并发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JUC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">异步</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Unsafe</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">原子类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CAS</a>
               </li>
             
             <div class="clearfix"></div>
