@@ -20,19 +20,18 @@
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220821032929849.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220827003233755.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220827003802863.png">
+<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825001344885.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220826232813652.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/%E6%88%AA%E5%B1%8F2022-08-28%2000.34.40.png">
-<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825001344885.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825020524737.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825003202026.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825003243469.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825003439081.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220821162734752.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220821162851682.png">
-<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220823005709843.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220823010324056.png">
 <meta property="article:published_time" content="2022-08-24T17:55:45.000Z">
-<meta property="article:modified_time" content="2022-08-27T16:41:07.770Z">
+<meta property="article:modified_time" content="2022-08-27T16:54:40.030Z">
 <meta property="article:author" content="Steve Hu">
 <meta property="article:tag" content="数据库">
 <meta property="article:tag" content="MySQL">
@@ -240,27 +239,27 @@
 <p>On Unix, most MySQL clients by default try to log in using the current Unix user name as the MySQL user name, but that is for convenience only. </p>
 </blockquote>
 <p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220827003233755.png" alt="image-20220827003233755"></p>
-<p>我们在报错的SQL语句前加一句打印当前用户的命令:</p>
+<p>我们在报错的bash语句前加一句打印当前用户的命令:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印当前用户</span></span><br><span class="line">id;</span><br></pre></td></tr></table></figure>
 <p>可以看到，在docker镜像启动之时，使用的用户是mysql而不是root！所以才会报上面提到的错误。</p>
 <p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220827003802863.png" alt="image-20220827003802863"></p>
 <h3 id="d-3-容器启动失败"><a href="#d-3-容器启动失败" class="headerlink" title="d.3 容器启动失败"></a><del>d.3 容器启动失败</del></h3><p>还是和被删掉的bash文件有关。</p>
 <p>MySQL镜像如果拉取下来后，如果Dockerfile最后一句直接执行<code>CMD [&quot;sh&quot;, &quot;setup.sh&quot;]</code>会报<code>ERROR 2002 (HY000): Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock&#39; (2)</code>的错误。</p>
+<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825001344885.png" alt="image-20220825001344885"></p>
 <p>查了许多地方，<a href="https://stackoverflow.com/a/44337987/8706905" target="_blank" rel="noopener">这个回答</a>中提到：数据库还未初始化。</p>
-<p>解决方式是最后一句由<code>CMD [&quot;sh&quot;, &quot;setup.sh&quot;]</code>改为执行<code>CMD [&quot;mysqld&quot;]</code>，同时通过<a href="https://stackoverflow.com/a/44324936/8706905" target="_blank" rel="noopener">这个回答</a> ，把需要执行的<code>.sh</code>, <code>.sql</code> h和<code>.sql.gz</code>文件copy到<code>/docker-entrypoint-initdb.d/</code>文件夹下，在docker容器启动后即可自动执行。这里可以参考<a href="https://hub.docker.com/_/mysql" target="_blank" rel="noopener">Docker官方MySQL镜像文档</a>中提到的</p>
+<p>解决方式是最后一句由<code>CMD [&quot;sh&quot;, &quot;setup.sh&quot;]</code>改为执行<code>CMD [&quot;mysqld&quot;]</code>，同时通过<a href="https://stackoverflow.com/a/44324936/8706905" target="_blank" rel="noopener">这个回答</a> ，把需要执行的<code>.sh</code>, <code>.sql</code> h和<code>.sql.gz</code>文件copy到<code>/docker-entrypoint-initdb.d/</code>文件夹下，在docker容器启动后即可自动执行。</p>
+<p>其实<a href="https://hub.docker.com/_/mysql" target="_blank" rel="noopener">Docker官方MySQL镜像文档</a>中已经给出了类似情况的处理方案：</p>
 <p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220826232813652.png" alt="image-20220826232813652"></p>
 <blockquote>
 <p>  容器在第一次启动时，会执行在<code>/docker-entrypoint-initdb.d/</code>文件夹下的<code>.sh</code>, <code>.sql</code> 和<code>.sql.gz</code>文件。</p>
 </blockquote>
-<p>其实在MySQL官网<a href="https://dev.mysql.com/doc/refman/8.0/en/mysqld.html" target="_blank" rel="noopener">mysqld的页面</a>有明确的解释，其实mysqld就是MySQL server，需要启动它对MySQL服务端进行初始化。</p>
+<p>另外在MySQL官网<a href="https://dev.mysql.com/doc/refman/8.0/en/mysqld.html" target="_blank" rel="noopener">mysqld的页面</a>有明确的解释，其实mysqld就是MySQL server，需要启动它对MySQL服务端进行初始化。</p>
 <blockquote>
 <p>  <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqld.html" target="_blank" rel="noopener"><strong>mysqld</strong></a>, also known as MySQL Server, is a single multithreaded program that does most of the work in a MySQL installation.</p>
 </blockquote>
-<p>另一个佐证是<a href="https://hub.docker.com/layers/mysql/library/mysql/latest/images/sha256-6964c211b5fadfc3b6a84986cbd3c78418b091c2fd44074f58d9c15d9b0f5f52?context=explore" target="_blank" rel="noopener">MySQL官方docker镜像的image layers描述</a>中，最后一句就是 <code>CMD [&quot;mysqld&quot;]</code>。</p>
+<p>另一个佐证是<a href="https://hub.docker.com/layers/mysql/library/mysql/latest/images/sha256-6964c211b5fadfc3b6a84986cbd3c78418b091c2fd44074f58d9c15d9b0f5f52?context=explore" target="_blank" rel="noopener">MySQL官方docker镜像的image layers描述</a>中，最后一句也是 <code>CMD [&quot;mysqld&quot;]</code>。</p>
 <p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/%E6%88%AA%E5%B1%8F2022-08-28%2000.34.40.png" alt="截屏2022-08-28 00.34.40"></p>
 <p>在使用这个解决方法后，之前报错找不到的<code>/var/run/mysqld/mysqld.sock</code>文件出现了。</p>
-<p>修改前：</p>
-<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825001344885.png" alt="image-20220825001344885"></p>
 <p>修改后：</p>
 <p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825020524737.png" alt="image-20220821030721690"></p>
 <h1 id="3-根据生成的镜像来创建容器实例"><a href="#3-根据生成的镜像来创建容器实例" class="headerlink" title="3. 根据生成的镜像来创建容器实例"></a>3. 根据生成的镜像来创建容器实例</h1><p>此处需要考虑2个点：</p>
@@ -268,13 +267,11 @@
 <li>镜像和宿主机的端口映射</li>
 <li>使用数据卷来对需要持久化的数据进行本地映射</li>
 </ul>
-<p>先提前在本地加入mysql的配置文件：<code>~/Dev/docker_volumn/mysql/conf</code>中加入<code>my.cnf</code>，其中有编码为utf8的配置，文件内容为：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">default_character_set=utf8</span><br><span class="line">[mysqld]</span><br><span class="line">collation_server=utf8_general_ci</span><br><span class="line">character_set_server=utf8</span><br><span class="line"><span class="comment"># 0.0.0.0表示任意ip地址均可访问</span></span><br><span class="line"><span class="built_in">bind</span>-address = 0.0.0.0</span><br></pre></td></tr></table></figure>
 <p>使用<code>docker run</code>命令指定<strong>端口映射</strong>、<strong>数据卷本地映射</strong>后生成容器实例：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 本地3307端口映射容器的3306，因为本地的3306被本地装的MySQL占用了</span></span><br><span class="line"><span class="comment"># 映射3个数据卷到本地，防止MySQL数据丢失</span></span><br><span class="line">docker run -d -p 3307:3306 -v ~/Dev/docker_volumn/mysql/<span class="built_in">log</span>:/var/<span class="built_in">log</span>/mysql -v ~/Dev/docker_volumn/mysql/data:/var/lib/mysql -v ~/Dev/docker_volumn/mysql/conf:/etc/mysql/conf.d --name jdbc-1 jdbcdemoimg:latest</span><br></pre></td></tr></table></figure>
 <p>先通过docker ps查看容器是否启动成功：</p>
 <p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825003202026.png" alt="image-20220825003202026"></p>
-<p>可以看到已经成功启动，容器ID为df8732875286。</p>
+<p>可以看到已经成功启动，容器name为jdbc-1。</p>
 <p>使用<code>docker port</code>命令查看容器和宿主机的端口映射，可以看到3306端口映射到了本地的3307端口。</p>
 <p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825003243469.png" alt="image-20220825003243469"></p>
 <p>最后通过<code>docker exec</code>命令进入容器 CLI界面：</p>
@@ -288,29 +285,37 @@
 <h3 id="a-MySQL-root密码问题"><a href="#a-MySQL-root密码问题" class="headerlink" title="a. MySQL root密码问题"></a>a. MySQL root密码问题</h3><p>docker给了3个环境变量来控制MySQL的密码问题，分别是<code>MYSQL_RANDOM_ROOT_PASSWORD</code>, <code>MYSQL_ROOT_PASSWORD</code>和<code>MYSQL_ALLOW_EMPTY_PASSWORD</code>，三个优先级有先后，挨个介绍下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 如果MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD没有配置则默认为true。如果为true，</span><br><span class="line"># mysql会自动生成一个密码，会打印在控制台，格式是： [GENERATED ROOT PASSWORD: .....]</span><br><span class="line">#ENV MYSQL_RANDOM_ROOT_PASSWORD&#x3D;true</span><br><span class="line"># 设置MySQL root的密码</span><br><span class="line">ENV MYSQL_ROOT_PASSWORD&#x3D;123456</span><br><span class="line"># 为true的话，root用户的密码就是空</span><br><span class="line">#ENV MYSQL_ALLOW_EMPTY_PASSWORD&#x3D;true</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p><code>MYSQL_RANDOM_ROOT_PASSWORD</code>。如果MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD没有配置则默认为true。如果为true，mysql会自动生成一个密码，会打印在控制台，格式是： <code>[GENERATED ROOT PASSWORD: .....]</code>。</p>
+<li><p><code>MYSQL_RANDOM_ROOT_PASSWORD</code>。如果<code>MYSQL_ROOT_PASSWORD</code>, <code>MYSQL_ALLOW_EMPTY_PASSWORD</code>没有配置则默认为true。如果为true，mysql会自动生成一个密码，会打印在控制台，格式是： <code>[GENERATED ROOT PASSWORD: .....]</code>。</p>
 </li>
 <li><p><code>MYSQL_ROOT_PASSWORD</code>。设置MySQL root的密码。这个没什么可说的，就是正常的密码设置，例如<code>ENV MYSQL_ROOT_PASSWORD=123456</code>。</p>
 </li>
 <li><p><code>MYSQL_ALLOW_EMPTY_PASSWORD</code>。为true的话，root用户的密码就是空。</p>
-<p>此处使用debug时可以进入docker容器，通过以下命令查看MySQL用户信息。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入MySQL内部后，选择mysql库</span></span><br><span class="line">mysql&gt; use mysql;</span><br><span class="line"><span class="comment"># 查看用户信息</span></span><br><span class="line">mysql&gt; select user, host, authentication_string from user;</span><br><span class="line">+------------------+-----------+------------------------------------------------------------------------+</span><br><span class="line">| user             | host      | authentication_string                                                  |</span><br><span class="line">+------------------+-----------+------------------------------------------------------------------------+</span><br><span class="line">| root             | %         | <span class="variable">$A</span><span class="variable">$005</span>$|[lde&#125;&#125;&#125;^RXsbBUMKjoSEwZkvPMuCFiecEQqa8UIN9o6b1dKRtcyTQv0C    |</span><br><span class="line">| mysql.infoschema | localhost | <span class="variable">$A</span><span class="variable">$005</span><span class="variable">$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED</span> |</span><br><span class="line">| mysql.session    | localhost | <span class="variable">$A</span><span class="variable">$005</span><span class="variable">$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED</span> |</span><br><span class="line">| mysql.sys        | localhost | <span class="variable">$A</span><span class="variable">$005</span><span class="variable">$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED</span> |</span><br><span class="line">| root             | localhost | <span class="variable">$A</span><span class="variable">$005</span><span class="variable">$MEKL81XEj</span>[C.&gt;rB2luQaqISkkixQjSffptkkhsWs2xm3y7D/qYgPMg970/     |</span><br><span class="line">+------------------+-----------+------------------------------------------------------------------------+</span><br><span class="line">5 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>PS: 最开始尝试导入SQL文件来设置MySQL密码：</p>
-<p><code>privilege.sh</code> — 给root用户添加密码的SQL脚本，也是setup.js调用的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">USE mysql;</span><br><span class="line">-- 给root配置密码，两行都不可以缺少，因为&#39;root&#39;@&#39;%&#39;和&#39;root&#39;@&#39;localhost&#39;是分开的</span><br><span class="line">-- 如果是此行，那么root只有远程连接有密码</span><br><span class="line">ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;123456&#39;;</span><br><span class="line">-- 如果是此行，那么root只有本地有密码</span><br><span class="line">ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;123456&#39;;</span><br><span class="line">-- 这一条命令一定要有：</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
-<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220823005709843.png" alt="image-20220823005709843"></p>
-<p>后面发现其实只需要设置<code>MYSQL_ROOT_PASSWORD</code>不为空即可，这段就删掉了，放在这里权做记录。</p>
 </li>
 </ul>
-<h3 id="b-远程登录失败问题"><a href="#b-远程登录失败问题" class="headerlink" title="b. 远程登录失败问题"></a>b. 远程登录失败问题</h3><p>使用的时候一直显示会连接失败：</p>
+<pre><code>此处使用debug时可以进入docker容器，通过以下命令查看MySQL用户信息。
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在docker容器内进行MySQL</span></span><br><span class="line">bash&gt; mysql -uroot -p123456;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入MySQL内部后，选择mysql库</span></span><br><span class="line">mysql&gt; use mysql;</span><br><span class="line"><span class="comment"># 查看用户信息</span></span><br><span class="line">mysql&gt; select user, host, authentication_string from user;</span><br><span class="line">+------------------+-----------+------------------------------------------------------------------------+</span><br><span class="line">| user             | host      | authentication_string                                                  |</span><br><span class="line">+------------------+-----------+------------------------------------------------------------------------+</span><br><span class="line">| root             | %         | <span class="variable">$A</span><span class="variable">$005</span>$|[lde&#125;&#125;&#125;^RXsbBUMKjoSEwZkvPMuCFiecEQqa8UIN9o6b1dKRtcyTQv0C    |</span><br><span class="line">| mysql.infoschema | localhost | <span class="variable">$A</span><span class="variable">$005</span><span class="variable">$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED</span> |</span><br><span class="line">| mysql.session    | localhost | <span class="variable">$A</span><span class="variable">$005</span><span class="variable">$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED</span> |</span><br><span class="line">| mysql.sys        | localhost | <span class="variable">$A</span><span class="variable">$005</span><span class="variable">$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED</span> |</span><br><span class="line">| root             | localhost | <span class="variable">$A</span><span class="variable">$005</span><span class="variable">$MEKL81XEj</span>[C.&gt;rB2luQaqISkkixQjSffptkkhsWs2xm3y7D/qYgPMg970/     |</span><br><span class="line">+------------------+-----------+------------------------------------------------------------------------+</span><br><span class="line">5 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+PS: 最开始尝试导入SQL文件来设置MySQL密码：
+
+`privilege.sh` -- 给root用户添加密码的SQL脚本，这里有些需要注意的点。
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">USE mysql;</span><br><span class="line">-- 给root配置密码，两行都不可以缺少，因为&#39;root&#39;@&#39;%&#39;和&#39;root&#39;@&#39;localhost&#39;是分开的</span><br><span class="line">-- 如果是此行，那么root只有远程连接有密码</span><br><span class="line">ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;123456&#39;;</span><br><span class="line">-- 如果是此行，那么root只有本地有密码</span><br><span class="line">ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;123456&#39;;</span><br><span class="line">-- 这一条命令一定要有：</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+
+![image-20220823005709843](https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220823005709843.png)
+
+后面发现其实只需要设置`MYSQL_ROOT_PASSWORD`不为空即可，这段就删掉了，放在这里权做记录。
+</code></pre><h3 id="b-远程登录失败问题"><a href="#b-远程登录失败问题" class="headerlink" title="b. 远程登录失败问题"></a>b. 远程登录失败问题</h3><p>使用的时候一直显示会连接失败：</p>
 <p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220823010324056.png" alt="image-20220823010324056"></p>
 <p>查了很多结果，有说和防火墙有关的，有的需要修改<code>my.cnf</code>文件中<code>bind-address=0.0.0.0</code>的。但是最后发现。。。是因为<strong>容器没有完全启动起来</strong>，所以连接失败了，等待其启动结束后，再连接就好了。搞了一个大乌龙 T_T。。。</p>
-<p>不过查问题的过程中也看到了很多知识，还是打算记录下来。</p>
+<p>不过查问题的过程中也看到了不少知识，还是打算记录下来。</p>
 <p>修改<code>my.cnf</code>文件中<code>bind-address=0.0.0.0</code>后，MySQL会监听所有网络端口的连接，具体参见<a href="https://stackoverflow.com/a/24326540/8706905" target="_blank" rel="noopener">这个回答</a>。</p>
 <blockquote>
 <p>  <strong>Note:</strong> if you use <code>bind-address = 0.0.0.0</code> your MySQL server will listen for connections on all network interfaces. That means your MySQL server could be reached from the Internet ; make sure to setup firewall rules accordingly.</p>
 </blockquote>
-<p>如果不做<code>bind-address</code>的配置，MySQL的<code>bind-address</code>默认是<code>*</code>，<code>*</code>表示所有IP都可以连接，这里可以参见<a href="https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_bind_address" target="_blank" rel="noopener">官方文档</a>。</p>
+<p>如果不做<code>bind-address</code>的配置，MySQL的<code>bind-address</code>默认是<code>*</code>，<code>*</code>也表示所有IP都可以连接，这里可以参见<a href="https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_bind_address" target="_blank" rel="noopener">官方文档</a>。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看docker ip </span></span><br><span class="line">docker inspect -f <span class="string">'&#123;&#123;range.NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;'</span> jdbc-1</span><br></pre></td></tr></table></figure>
 <h1 id="4-Java访问docker上MySQL的数据"><a href="#4-Java访问docker上MySQL的数据" class="headerlink" title="4. Java访问docker上MySQL的数据"></a>4. Java访问docker上MySQL的数据</h1><p> 此处除了端口改为3307，其它和访问本机MySQL实例流程完全一致，不再赘述。</p>
 <h1 id="5-结论"><a href="#5-结论" class="headerlink" title="5. 结论"></a>5. 结论</h1><p>尽量还是寻找比较正式的文档进行二次开发，遇到的坑比较少，例如<a href="https://hevodata.com/learn/docker-mysql/" target="_blank" rel="noopener">这个文档.</a>，虽然不是Dockerfile生成MySQL镜像的，但整体相当顺利。。</p>
