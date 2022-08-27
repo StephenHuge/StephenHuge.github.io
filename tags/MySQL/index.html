@@ -6,24 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://stevehuge.github.io">
-  <title>MyBatis系列之JDBC-1 | Steve&#39;s Blog</title>
+  <title>Tag: MySQL | Steve&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本系列文章旨在学习整理MyBatis的一些知识。本文是本系列的第一篇，用来介绍JDBC的内容，本文不是纯新手教程，如果有疑问，请查询官方文档。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="MyBatis系列之JDBC-1">
-<meta property="og:url" content="https://stevehuge.github.io/2022/08/15/MyBatis%E7%B3%BB%E5%88%97%E4%B9%8BJDBC-1/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Steve&#39;s Blog">
+<meta property="og:url" content="https://stevehuge.github.io/tags/MySQL/index.html">
 <meta property="og:site_name" content="Steve&#39;s Blog">
-<meta property="og:description" content="本系列文章旨在学习整理MyBatis的一些知识。本文是本系列的第一篇，用来介绍JDBC的内容，本文不是纯新手教程，如果有疑问，请查询官方文档。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/%E6%88%AA%E5%B1%8F2022-08-15%2023.04.54.png">
-<meta property="article:published_time" content="2022-08-15T13:05:46.000Z">
-<meta property="article:modified_time" content="2022-08-15T15:05:19.725Z">
 <meta property="article:author" content="Steve Hu">
-<meta property="article:tag" content="JDBC">
-<meta property="article:tag" content="数据库">
-<meta property="article:tag" content="MyBatis">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/%E6%88%AA%E5%B1%8F2022-08-15%2023.04.54.png">
   
     <link rel="alternative" href="/atom.xml" title="Steve&#39;s Blog" type="application/atom+xml">
   
@@ -163,186 +154,68 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-MyBatis系列之JDBC-1" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      MyBatis系列之JDBC-1
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2022" class="archive-year">2022</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2022/08/25/Docker%E8%AE%BF%E9%97%AEMySQL/" class="archive-article-date">
+  	<time datetime="2022-08-24T17:55:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-25</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2022/08/25/Docker%E8%AE%BF%E9%97%AEMySQL/">Docker访问MySQL</a>
     </h1>
   
 
-        
-        <a href="/2022/08/15/MyBatis%E7%B3%BB%E5%88%97%E4%B9%8BJDBC-1/" class="archive-article-date">
-  	<time datetime="2022-08-15T13:05:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/%E6%88%AA%E5%B1%8F2022-08-15%2023.04.54.png" alt="截屏2022-08-15 23.04.54"></p>
-<p>本系列文章旨在学习整理MyBatis的一些知识。本文是本系列的第一篇，用来介绍JDBC的内容，本文不是纯新手教程，如果有疑问，请查询官方文档。</p>
-<a id="more"></a>
-<h1 id="JDBC的基本使用"><a href="#JDBC的基本使用" class="headerlink" title="JDBC的基本使用"></a>JDBC的基本使用</h1><p>JDBC（Java database connectivity），是Java官方出的一个接口标准，第三方厂家可以通过实现此标准来让自己的产品可以通过JDBC通用接口来连接。</p>
-<p>常用的几个类：</p>
-<ul>
-<li>Connection：表示一个数据库连接</li>
-<li>Statement / PreparedStatement：表示一个数据库语句，区别是PreparedStatement可以防止SQL注入</li>
-<li>ResultSet：通过Statement查到的结果集</li>
-<li>ResultSetMetaData：通过ResultSet获得的结果集元数据</li>
-</ul>
-<p>通过这三个类就可以使用JDBC连接数据库了。以下是代码示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String username = <span class="string">"root"</span>;</span><br><span class="line">        String password = <span class="string">"1234"</span>;</span><br><span class="line">        String jdbcUrl = <span class="string">"jdbc:mysql:///lu_tale"</span>;</span><br><span class="line">        String driverClass = <span class="string">"com.mysql.jdbc.Driver"</span>;</span><br><span class="line">        String sql = <span class="string">"SELECT uid, username, password"</span></span><br><span class="line">                + <span class="string">" FROM t_users WHERE username = ?"</span>;</span><br><span class="line">        Connection connection = <span class="keyword">null</span>;</span><br><span class="line">        PreparedStatement ps = <span class="keyword">null</span>;</span><br><span class="line">        ResultSet rs = <span class="keyword">null</span>;</span><br><span class="line">        ResultSetMetaData rsmd = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class.forName(driverClass);</span><br><span class="line">            connection = DriverManager.getConnection(jdbcUrl, username, password);</span><br><span class="line">            ps = connection.prepareStatement(sql);</span><br><span class="line">            ps.setString(<span class="number">1</span>, <span class="string">"admin' and 1 = 1"</span>);</span><br><span class="line">            rs = ps.executeQuery();</span><br><span class="line">            rsmd = rs.getMetaData();</span><br><span class="line">            <span class="keyword">if</span> (rs.next()) &#123;</span><br><span class="line">                <span class="keyword">int</span> id = rs.getInt(<span class="number">1</span>);</span><br><span class="line">                String name = rs.getString(<span class="number">2</span>);</span><br><span class="line">                String bestSong = rs.getString(<span class="number">3</span>);</span><br><span class="line">                System.out.println(rsmd.getColumnLabel(<span class="number">1</span>) + <span class="string">": "</span> + id + <span class="string">", "</span> +</span><br><span class="line">                        rsmd.getColumnLabel(<span class="number">2</span>) + <span class="string">": "</span> + name + <span class="string">", "</span> +</span><br><span class="line">                        rsmd.getColumnLabel(<span class="number">3</span>) + <span class="string">": "</span> + bestSong);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (rs != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    rs.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (ps != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    ps.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    connection.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="PreparedStatement为什么能防SQL注入？"><a href="#PreparedStatement为什么能防SQL注入？" class="headerlink" title="PreparedStatement为什么能防SQL注入？"></a>PreparedStatement为什么能防SQL注入？</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setString</span><span class="params">(<span class="keyword">int</span> parameterIndex, String x)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span>(<span class="keyword">this</span>.checkClosed().getConnectionMutex()) &#123;</span><br><span class="line">            <span class="comment">// ...省略</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.isLoadDataQuery || <span class="keyword">this</span>.isEscapeNeededForString(x, stringLength)) &#123;</span><br><span class="line">                needsQuoted = <span class="keyword">false</span>;</span><br><span class="line">                buf = <span class="keyword">new</span> StringBuilder((<span class="keyword">int</span>)((<span class="keyword">double</span>)x.length() * <span class="number">1.1</span>));</span><br><span class="line">                buf.append(<span class="string">'\''</span>);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; stringLength; ++i) &#123;</span><br><span class="line">                    <span class="keyword">char</span> c = x.charAt(i);</span><br><span class="line">                    <span class="keyword">switch</span> (c) &#123;</span><br><span class="line">                        <span class="keyword">case</span> <span class="string">'\u0000'</span>:</span><br><span class="line">                            buf.append(<span class="string">'\\'</span>);</span><br><span class="line">                            buf.append(<span class="string">'0'</span>);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        <span class="keyword">case</span> <span class="string">'\n'</span>:</span><br><span class="line">                            buf.append(<span class="string">'\\'</span>);</span><br><span class="line">                            buf.append(<span class="string">'n'</span>);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        <span class="keyword">case</span> <span class="string">'\r'</span>:</span><br><span class="line">                            buf.append(<span class="string">'\\'</span>);</span><br><span class="line">                            buf.append(<span class="string">'r'</span>);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        <span class="keyword">case</span> <span class="string">'\u001a'</span>:</span><br><span class="line">                            buf.append(<span class="string">'\\'</span>);</span><br><span class="line">                            buf.append(<span class="string">'Z'</span>);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        <span class="keyword">case</span> <span class="string">'"'</span>:</span><br><span class="line">                            <span class="keyword">if</span> (<span class="keyword">this</span>.usingAnsiMode) &#123;</span><br><span class="line">                                buf.append(<span class="string">'\\'</span>);</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            buf.append(<span class="string">'"'</span>);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        <span class="keyword">case</span> <span class="string">'\''</span>:</span><br><span class="line">                            buf.append(<span class="string">'\\'</span>);</span><br><span class="line">                            buf.append(<span class="string">'\''</span>);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        <span class="keyword">case</span> <span class="string">'\\'</span>:</span><br><span class="line">                            buf.append(<span class="string">'\\'</span>);</span><br><span class="line">                            buf.append(<span class="string">'\\'</span>);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        <span class="keyword">case</span> <span class="string">'¥'</span>:</span><br><span class="line">                        <span class="keyword">case</span> <span class="string">'₩'</span>:</span><br><span class="line">                            <span class="keyword">if</span> (<span class="keyword">this</span>.charsetEncoder != <span class="keyword">null</span>) &#123;</span><br><span class="line">                                CharBuffer cbuf = CharBuffer.allocate(<span class="number">1</span>);</span><br><span class="line">                                ByteBuffer bbuf = ByteBuffer.allocate(<span class="number">1</span>);</span><br><span class="line">                                cbuf.put(c);</span><br><span class="line">                                cbuf.position(<span class="number">0</span>);</span><br><span class="line">                                <span class="keyword">this</span>.charsetEncoder.encode(cbuf, bbuf, <span class="keyword">true</span>);</span><br><span class="line">                                <span class="keyword">if</span> (bbuf.get(<span class="number">0</span>) == <span class="number">92</span>) &#123;</span><br><span class="line">                                    buf.append(<span class="string">'\\'</span>);</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            buf.append(c);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        <span class="keyword">default</span>:</span><br><span class="line">                            buf.append(c);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                buf.append(<span class="string">'\''</span>);</span><br><span class="line">                parameterAsString = buf.toString();</span><br><span class="line">            &#125;</span><br><span class="line"><span class="comment">// ...省略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这是MySQL实现的<code>PreparedStatement</code>的<code>setString()</code>方法实现，代码略去了一些无关的代码，只看这行</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">this</span>.isLoadDataQuery || <span class="keyword">this</span>.isEscapeNeededForString(x, stringLength))</span><br></pre></td></tr></table></figure>
-<p>这行中调用了<code>isEscapeNeededForString()</code>方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isEscapeNeededForString</span><span class="params">(String x, <span class="keyword">int</span> stringLength)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">boolean</span> needsHexEscape = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; stringLength; ++i) &#123;</span><br><span class="line">           <span class="keyword">char</span> c = x.charAt(i);</span><br><span class="line">           <span class="keyword">switch</span> (c) &#123;</span><br><span class="line">               <span class="keyword">case</span> <span class="string">'\u0000'</span>:</span><br><span class="line">                   needsHexEscape = <span class="keyword">true</span>;</span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">               <span class="keyword">case</span> <span class="string">'\n'</span>:</span><br><span class="line">                   needsHexEscape = <span class="keyword">true</span>;</span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">               <span class="keyword">case</span> <span class="string">'\r'</span>:</span><br><span class="line">                   needsHexEscape = <span class="keyword">true</span>;</span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">               <span class="keyword">case</span> <span class="string">'\u001a'</span>:</span><br><span class="line">                   needsHexEscape = <span class="keyword">true</span>;</span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">               <span class="keyword">case</span> <span class="string">'"'</span>:</span><br><span class="line">                   needsHexEscape = <span class="keyword">true</span>;</span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">               <span class="keyword">case</span> <span class="string">'\''</span>:</span><br><span class="line">                   needsHexEscape = <span class="keyword">true</span>;</span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">               <span class="keyword">case</span> <span class="string">'\\'</span>:</span><br><span class="line">                   needsHexEscape = <span class="keyword">true</span>;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           <span class="keyword">if</span> (needsHexEscape) &#123;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> needsHexEscape;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>也就是，如果传入的参数中含有```号，PreparedStatement会为其添加转义符，以防止SQL注入。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 转义前传入的原始参数</span></span><br><span class="line"><span class="string">'admin'</span> and <span class="number">1</span> = <span class="number">1</span><span class="string">'</span></span><br><span class="line"><span class="string">// 转义后的参数</span></span><br><span class="line"><span class="string">'</span>admin\<span class="string">' and 1 = 1'</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JDBC</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MyBatis</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://stevehuge.github.io/2022/08/15/MyBatis%E7%B3%BB%E5%88%97%E4%B9%8BJDBC-1/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
   
   
-    <a href="/2022/08/06/%E5%85%B3%E4%BA%8E%E5%86%99%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">关于写技术博客的碎碎念</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JDBC的基本使用"><span class="toc-number">1.</span> <span class="toc-text">JDBC的基本使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PreparedStatement为什么能防SQL注入？"><span class="toc-number">2.</span> <span class="toc-text">PreparedStatement为什么能防SQL注入？</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -365,9 +238,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
@@ -594,6 +467,26 @@ MathJax.Hub.Queue(function() {
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">个人思考</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -749,5 +642,23 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+<!-- changed for supporting latex 2020-07-04 by hjs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>
