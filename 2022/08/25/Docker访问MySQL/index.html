@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  
-  <title>Docker访问MySQL | Steve&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"stevehuge.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
   <meta name="description" content="最近工作涉及到一些Docker的学习，因此将Docker相关知识简单总结一下。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker访问MySQL">
@@ -14,6 +29,12 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825015945304.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220821161102688.png">
+<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825003202026.png">
+<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825003243469.png">
+<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825003439081.png">
+<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220821162734752.png">
+<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220821162851682.png">
+<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220823010324056.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220821032929849.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220827003233755.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220827003802863.png">
@@ -21,220 +42,194 @@
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220826232813652.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/%E6%88%AA%E5%B1%8F2022-08-28%2000.34.40.png">
 <meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825020524737.png">
-<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825003202026.png">
-<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825003243469.png">
-<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825003439081.png">
-<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220821162734752.png">
-<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220821162851682.png">
-<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220823010324056.png">
+<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220823005709843.png">
 <meta property="article:published_time" content="2022-08-24T17:55:45.000Z">
-<meta property="article:modified_time" content="2022-08-27T16:54:40.030Z">
+<meta property="article:modified_time" content="2022-08-28T14:51:53.767Z">
 <meta property="article:author" content="Steve Hu">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="数据库">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825015945304.png">
+
+<link rel="canonical" href="https://stevehuge.github.io/2022/08/25/Docker%E8%AE%BF%E9%97%AEMySQL/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Docker访问MySQL | Steve's Blog</title>
   
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-  
-<meta name="generator" content="Hexo 4.2.1"></head>
-<body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-	<header id="header" class="inner">
-		<a href="/" class="profilepic">
-			<img lazy-src="/img/avatar.jpg" class="js-avatar">
-		</a>
 
-		<hgroup>
-		  <h1 class="header-author"><a href="/">Steve Hu</a></h1>
-		</hgroup>
 
-		
-		<p class="header-subtitle">Talk is cheap, show me the code.</p>
-		
 
-		
-			<div class="switch-btn">
-				<div class="icon">
-					<div class="icon-ctn">
-						<div class="icon-wrap icon-house" data-idx="0">
-							<div class="birdhouse"></div>
-							<div class="birdhouse_holes"></div>
-						</div>
-						<div class="icon-wrap icon-ribbon hide" data-idx="1">
-							<div class="ribbon"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
-						
-					</div>
-					
-				</div>
-				<div class="tips-box hide">
-					<div class="tips-arrow"></div>
-					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>标签</li>
-						
-						
-						<li>关于我</li>
-						
-					</ul>
-				</div>
-			</div>
-		
 
-		<div class="switch-area">
-			<div class="switch-wrap">
-				<section class="switch-part switch-part1">
-					<nav class="header-menu">
-						<ul>
-						
-							<li><a href="/">主页</a></li>
-				        
-							<li><a href="/categories">分类</a></li>
-				        
-							<li><a href="/archives">归档</a></li>
-				        
-							<li><a href="/about">关于</a></li>
-				        
-						</ul>
-					</nav>
-					<nav class="header-nav">
-						<div class="social">
-							
-								<a class="github" target="_blank" href="http://github.com/StephenHuge" title="github">github</a>
-					        
-								<a class="weibo" target="_blank" href="/" title="weibo">weibo</a>
-					        
-								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
-					        
-						</div>
-					</nav>
-				</section>
-				
-				
-				<section class="switch-part switch-part2">
-					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/AOP/" style="font-size: 12.5px;">AOP</a> <a href="/tags/CAS/" style="font-size: 12.5px;">CAS</a> <a href="/tags/Comparable/" style="font-size: 10px;">Comparable</a> <a href="/tags/Comparator/" style="font-size: 10px;">Comparator</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JDBC/" style="font-size: 12.5px;">JDBC</a> <a href="/tags/JUC/" style="font-size: 17.5px;">JUC</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/LaTeX/" style="font-size: 10px;">LaTeX</a> <a href="/tags/MacBook/" style="font-size: 10px;">MacBook</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Proxy/" style="font-size: 12.5px;">Proxy</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Sorting/" style="font-size: 10px;">Sorting</a> <a href="/tags/Spring/" style="font-size: 12.5px;">Spring</a> <a href="/tags/Unsafe/" style="font-size: 15px;">Unsafe</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/%E4%B8%AA%E4%BA%BA%E6%80%9D%E8%80%83/" style="font-size: 10px;">个人思考</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 10px;">分布式</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8E%9F%E5%AD%90%E7%B1%BB/" style="font-size: 10px;">原子类</a> <a href="/tags/%E5%8F%91%E5%B1%95%E8%B7%AF%E5%BE%84/" style="font-size: 10px;">发展路径</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">工具</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 17.5px;">并发</a> <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" style="font-size: 10px;">开发工具</a> <a href="/tags/%E5%BC%82%E6%AD%A5/" style="font-size: 10px;">异步</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 15px;">数据库</a> <a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 10px;">数组</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" style="font-size: 15px;">环境搭建</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 10px;">缓存</a> <a href="/tags/%E7%BC%96%E7%A0%81/" style="font-size: 10px;">编码</a> <a href="/tags/%E8%AE%B2%E5%BA%A7/" style="font-size: 10px;">讲座</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">链表</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 15px;">随笔</a>
-					</div>
-				</section>
-				
-				
-				
 
-				
-				
-				<section class="switch-part switch-part3">
-				
-					<div id="js-aboutme">Good good study, day day up.</div>
-				</section>
-				
-				
-			</div>
-		</div>
-	</header>				
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Steve's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Talk is cheap, show me the code.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-  	<div class="overlay">
-  		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide">Steve Hu</h1>
-  	</div>
-	<div class="intrude-less">
-		<header id="header" class="inner">
-			<div class="profilepic">
-				<img lazy-src="/img/avatar.jpg" class="js-avatar">
-			</div>
-			<hgroup>
-			  <h1 class="header-author">Steve Hu</h1>
-			</hgroup>
-			
-			<p class="header-subtitle">Talk is cheap, show me the code.</p>
-			
-			<nav class="header-menu">
-				<ul>
-				
-					<li><a href="/">主页</a></li>
-		        
-					<li><a href="/categories">分类</a></li>
-		        
-					<li><a href="/archives">归档</a></li>
-		        
-					<li><a href="/about">关于</a></li>
-		        
-		        <div class="clearfix"></div>
-				</ul>
-			</nav>
-			<nav class="header-nav">
-				<div class="social">
-					
-						<a class="github" target="_blank" href="http://github.com/StephenHuge" title="github">github</a>
-			        
-						<a class="weibo" target="_blank" href="/" title="weibo">weibo</a>
-			        
-						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
-			        
-				</div>
-			</nav>
-		</header>				
-	</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
 </nav>
-      <div class="body-wrap"><article id="post-Docker访问MySQL" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2022/08/25/Docker%E8%AE%BF%E9%97%AEMySQL/" class="article-date">
-  	<time datetime="2022-08-24T17:55:45.000Z" itemprop="datePublished">2022-08-25</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Docker访问MySQL
-    </h1>
-  
 
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://stevehuge.github.io/2022/08/25/Docker%E8%AE%BF%E9%97%AEMySQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Steve Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Steve's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Docker访问MySQL
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-25 01:55:45" itemprop="dateCreated datePublished" datetime="2022-08-25T01:55:45+08:00">2022-08-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-28 22:51:53" itemprop="dateModified" datetime="2022-08-28T22:51:53+08:00">2022-08-28</time>
+              </span>
+
+          
+
+        </div>
       </header>
-      
-      <div class="article-info article-info-post">
-        
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
-	</div>
 
-        
-
-        <div class="clearfix"></div>
-      </div>
-      
     
-    <div class="article-entry" itemprop="articleBody">	
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-	  
-		
-		
         <p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825015945304.png" alt="image-20220825015945304"></p>
 <p>最近工作涉及到一些Docker的学习，因此将Docker相关知识简单总结一下。</p>
 <a id="more"></a>
@@ -249,57 +244,19 @@
 <h1 id="2-生成包含MySQL的镜像"><a href="#2-生成包含MySQL的镜像" class="headerlink" title="2. 生成包含MySQL的镜像"></a>2. 生成包含MySQL的镜像</h1><p>这步比想象中的要复杂一些，踩了一些坑，也因为对docker的不熟悉，走了一些弯路，在此做下记录。</p>
 <p>Dockerfile中用到的几个文件，结构和文件内容如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- scripts/</span><br><span class="line">  - Dockerfile <span class="comment"># 使用的Dockerfile</span></span><br><span class="line">  - sql/  <span class="comment"># 存放SQL脚本的文件夹</span></span><br><span class="line">    - init.sql <span class="comment"># 建表语句</span></span><br><span class="line">本</span><br></pre></td></tr></table></figure>
-<h2 id="a-Dockerfile"><a href="#a-Dockerfile" class="headerlink" title="a. Dockerfile"></a>a. Dockerfile</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"># 从mysql基础镜像进入</span><br><span class="line">FROM mysql</span><br><span class="line"></span><br><span class="line"># 设置terminal进入docker后的默认目录</span><br><span class="line">WORKDIR &#x2F;usr&#x2F;bin</span><br><span class="line"></span><br><span class="line"># Oracle linux 8 没有安装yum，但是可以使用microdnf进行安装</span><br><span class="line">RUN microdnf install -y vim</span><br><span class="line"></span><br><span class="line"># 把开始脚本放到这个文件夹里，docker容器启动后就会执行，具体参见 https:&#x2F;&#x2F;github.com&#x2F;docker-library&#x2F;docs&#x2F;tree&#x2F;master&#x2F;mysql#initializing-a-fresh-instance</span><br><span class="line">COPY sql&#x2F;init.sql &#x2F;docker-entrypoint-initdb.d&#x2F;</span><br><span class="line"># 将配置文件放到指定目录</span><br><span class="line">COPY config&#x2F;my.cnf &#x2F;etc&#x2F;mysql&#x2F;my.cnf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 声明日志数据卷</span><br><span class="line">VOLUME &#x2F;var&#x2F;log&#x2F;mysql</span><br><span class="line"># 声明数据数据卷</span><br><span class="line">VOLUME &#x2F;var&#x2F;lib&#x2F;mysql</span><br><span class="line"># 本地映射配置数据卷</span><br><span class="line">VOLUME &#x2F;etc&#x2F;mysql&#x2F;conf.d</span><br><span class="line"></span><br><span class="line"># 暴露端口为3306</span><br><span class="line">EXPOSE 3306</span><br><span class="line"></span><br><span class="line"># [MYSQL_RANDOM_ROOT_PASSWORD, MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD] MySQL配置3选1</span><br><span class="line"></span><br><span class="line"># 如果MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD没有配置则默认为true。如果为true，</span><br><span class="line"># mysql会自动生成一个密码，会打印在控制台，格式是： [GENERATED ROOT PASSWORD: .....]</span><br><span class="line">#ENV MYSQL_RANDOM_ROOT_PASSWORD&#x3D;true</span><br><span class="line"># 设置MySQL root的密码</span><br><span class="line">ENV MYSQL_ROOT_PASSWORD&#x3D;123456</span><br><span class="line"># 为true的话，root用户的密码就是空</span><br><span class="line">#ENV MYSQL_ALLOW_EMPTY_PASSWORD&#x3D;true</span><br><span class="line"></span><br><span class="line">#设置容器启动时执行的命令，这里有个坑，直接用这条会导致mysql无法正常连接，具体参见后条</span><br><span class="line">#CMD [&quot;sh&quot;, &quot;&#x2F;mysql&#x2F;setup_test.sh&quot;]</span><br><span class="line">CMD [&quot;mysqld&quot;]</span><br></pre></td></tr></table></figure>
+<h2 id="2-1-Dockerfile"><a href="#2-1-Dockerfile" class="headerlink" title="2.1 Dockerfile"></a>2.1 Dockerfile</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"># 从mysql基础镜像进入</span><br><span class="line">FROM mysql</span><br><span class="line"></span><br><span class="line"># 设置terminal进入docker后的默认目录</span><br><span class="line">WORKDIR &#x2F;usr&#x2F;bin</span><br><span class="line"></span><br><span class="line"># Oracle linux 8 没有安装yum，但是可以使用microdnf进行安装</span><br><span class="line">RUN microdnf install -y vim</span><br><span class="line"></span><br><span class="line"># 把开始脚本放到这个文件夹里，docker容器启动后就会执行，具体参见 https:&#x2F;&#x2F;github.com&#x2F;docker-library&#x2F;docs&#x2F;tree&#x2F;master&#x2F;mysql#initializing-a-fresh-instance</span><br><span class="line">COPY sql&#x2F;init.sql &#x2F;docker-entrypoint-initdb.d&#x2F;</span><br><span class="line"></span><br><span class="line"># 声明日志数据卷</span><br><span class="line">VOLUME &#x2F;var&#x2F;log&#x2F;mysql</span><br><span class="line"># 声明数据数据卷</span><br><span class="line">VOLUME &#x2F;var&#x2F;lib&#x2F;mysql</span><br><span class="line"># 本地映射配置数据卷</span><br><span class="line">VOLUME &#x2F;etc&#x2F;mysql&#x2F;conf.d</span><br><span class="line"></span><br><span class="line"># 暴露端口为3306</span><br><span class="line">EXPOSE 3306</span><br><span class="line"></span><br><span class="line"># [MYSQL_RANDOM_ROOT_PASSWORD, MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD] MySQL配置3选1</span><br><span class="line"></span><br><span class="line"># 如果MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD没有配置则默认为true。如果为true，</span><br><span class="line"># mysql会自动生成一个密码，会打印在控制台，格式是： [GENERATED ROOT PASSWORD: .....]</span><br><span class="line">#ENV MYSQL_RANDOM_ROOT_PASSWORD&#x3D;true</span><br><span class="line"># 设置MySQL root的密码</span><br><span class="line">ENV MYSQL_ROOT_PASSWORD&#x3D;123456</span><br><span class="line"># 为true的话，root用户的密码就是空</span><br><span class="line">#ENV MYSQL_ALLOW_EMPTY_PASSWORD&#x3D;true</span><br><span class="line"></span><br><span class="line">#设置容器启动时执行的命令，这里有个坑，直接用这条会导致mysql无法正常连接，具体参见5.1分析</span><br><span class="line">#CMD [&quot;sh&quot;, &quot;&#x2F;mysql&#x2F;setup_test.sh&quot;]</span><br><span class="line">CMD [&quot;mysqld&quot;]</span><br></pre></td></tr></table></figure>
 <p>此处先不对各个关键字的功能做详细记录，后续在docker学习中总结。</p>
 <p>此处需要注意的几个点：</p>
 <ul>
 <li>Dockerfile无法实现端口映射，只能通过EXPOSE关键字暴露端口，端口映射需要使用<code>docker run -p 3307:3306</code>类似的命令或者<code>docker-compose.yml</code>来实现。</li>
 <li>Dockerfile无法指定本地数据卷和容器内目录映射，只能通过<code>VOLUME</code>指定匿名数据卷，指定后docker会在安装目录下的特定目录里生成一个目录来映射容器数据卷。如果需要指定数据卷映射，需要使用<code>docker run -v /User/LocalMachine/data:/var/MySQL/data</code>或者<code>docker-compose.yml</code>来实现。</li>
 </ul>
-<h2 id="b-Dockerfile用到的脚本"><a href="#b-Dockerfile用到的脚本" class="headerlink" title="b. Dockerfile用到的脚本"></a>b. Dockerfile用到的脚本</h2><p><code>init.sql</code> — 建表语句，放到容器<code>/docker-entrypoint-initdb.d/</code>文件夹下，MySQL会自动执行。</p>
+<h2 id="2-2-Dockerfile用到的脚本"><a href="#2-2-Dockerfile用到的脚本" class="headerlink" title="2.2 Dockerfile用到的脚本"></a>2.2 Dockerfile用到的脚本</h2><p><code>init.sql</code> — 建表语句，放到容器<code>/docker-entrypoint-initdb.d/</code>文件夹下，MySQL会自动执行。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">-- 创建database</span><br><span class="line">CREATE DATABASE myjdbcdemo DEFAULT CHARACTER SET utf8;</span><br><span class="line"></span><br><span class="line">USE myjdbcdemo;</span><br><span class="line"></span><br><span class="line">-- 建表</span><br><span class="line">DROP TABLE IF EXISTS &#96;user&#96;;</span><br><span class="line">DROP TABLE IF EXISTS &#96;singer&#96;;</span><br><span class="line">DROP TABLE IF EXISTS &#96;batch&#96;;</span><br><span class="line"></span><br><span class="line">CREATE TABLE user</span><br><span class="line">(</span><br><span class="line">    id       BIGINT,</span><br><span class="line">    name     VARCHAR(30),</span><br><span class="line">    password VARCHAR(30)</span><br><span class="line">);</span><br><span class="line">CREATE TABLE singer</span><br><span class="line">(</span><br><span class="line">    id       BIGINT,</span><br><span class="line">    name     VARCHAR(30),</span><br><span class="line">    bestsong VARCHAR(30),</span><br><span class="line">    image    MEDIUMBLOB</span><br><span class="line">);</span><br><span class="line">CREATE TABLE batch</span><br><span class="line">(</span><br><span class="line">    id       BIGINT,</span><br><span class="line">    name     VARCHAR(30),</span><br><span class="line">    password VARCHAR(30)</span><br><span class="line">);</span><br><span class="line">-- 插入测试数据</span><br><span class="line">INSERT INTO singer (id, name, bestsong, image)</span><br><span class="line">VALUES (1, &#39;JayChou&#39;, &#39;七里香&#39;, NULL);</span><br><span class="line">INSERT INTO singer (id, name, bestsong, image)</span><br><span class="line">VALUES (2, &#39;林俊杰&#39;, &#39;可惜没如果&#39;, NULL);</span><br><span class="line">INSERT INTO singer (id, name, bestsong, image)</span><br><span class="line">VALUES (2, &#39;Jolin Cai&#39;, &#39;布拉格广场&#39;, NULL);</span><br></pre></td></tr></table></figure>
-<h2 id="c-生成镜像"><a href="#c-生成镜像" class="headerlink" title="c. 生成镜像"></a>c. 生成镜像</h2><p>完成Dockerfile的debug后，我们在本地使用<code>docker build</code>语句生成一个镜像：</p>
+<h2 id="2-3-生成镜像"><a href="#2-3-生成镜像" class="headerlink" title="2.3 生成镜像"></a>2.3 生成镜像</h2><p>完成Dockerfile的debug后，我们在本地使用<code>docker build</code>语句生成一个镜像：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -t 是为镜像设定tag和名称，可以设置多个</span></span><br><span class="line"><span class="comment"># .是Dockerfile路径，docker build命令会自动寻找目录下的Dockfile文件</span></span><br><span class="line">docker build -t jdbcdemoimg:0.1 -t jdbcdemoimg:latest .</span><br></pre></td></tr></table></figure>
 <p>创建成功后通过<code>docker images</code>命令查看现有镜像：</p>
 <p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220821161102688.png" alt="image-20220821161102688"></p>
-<h2 id="d-生成镜像过程中遇到的问题"><a href="#d-生成镜像过程中遇到的问题" class="headerlink" title="d. 生成镜像过程中遇到的问题"></a>d. 生成镜像过程中遇到的问题</h2><h3 id="d-1-MySQL使用shell脚本插入数据问题"><a href="#d-1-MySQL使用shell脚本插入数据问题" class="headerlink" title="d.1 MySQL使用shell脚本插入数据问题"></a><del>d.1 MySQL使用shell脚本插入数据问题</del></h3><p>这个问题在去除掉bash文件后解决掉了，放在此处权做记录。</p>
-<p>原始的<code>setup.sh</code> — 启动脚本，执行一些建表、给root用户新增密码等操作。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 若指令传回值不等于0，则立即退出shell</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'=================== setup.sh ======================='</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'&gt; MySQL is started.'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 先导入数据再设置密码可能导致docker CLI进入不需要输入密码，所以先导入数据</span></span><br><span class="line"><span class="comment">#重新设置mysql密码</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'&gt; Start to set password for root ....'</span></span><br><span class="line">mysql -uroot &lt; /mysql/privileges.sql</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'&gt; Set password ends.'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#导入数据</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'&gt; Start to import data to MySQL....'</span></span><br><span class="line"><span class="comment"># 这里虽然没密码，但是还是得指定user</span></span><br><span class="line">mysql -uroot -p123456 &lt; /mysql/init.sql</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'&gt; Import ends.'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'&gt; Data is imported, password is set, all works are done.'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'=================== setup.sh ======================='</span></span><br><span class="line"></span><br><span class="line">tail -f /dev/null</span><br></pre></td></tr></table></figure>
-<p>如果没有设置MySQL的root密码，在容器的bash命令行里直接可以输入<code>mysql</code>进入MySQL主页面，但是使用shell脚本倒入数据，例如</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># setup.js文件中的语句</span></span><br><span class="line">mysql &lt; /mysql/init.sql</span><br></pre></td></tr></table></figure>
-<p>遇到了问题，如下图。</p>
-<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220821032929849.png" alt="image-20220821032929849"></p>
-<p>可以看到，报错中user为<code>&#39;mysql&#39;@&#39;localhost&#39;</code>，但我们使用的明显不是这个user，而是<code>&#39;root&#39;@&#39;localhost&#39;</code>。尝试指定了一下user，问题解决：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># setup.js文件中的语句</span></span><br><span class="line"><span class="comment"># 新加一个-uroot指定用户为root就不报错了</span></span><br><span class="line">mysql -uroot &lt; /mysql/init.sql</span><br></pre></td></tr></table></figure>
-<p>这里为什么用户是mysql呢？？<a href="https://stackoverflow.com/a/11216911/8706905" target="_blank" rel="noopener">https://stackoverflow.com/a/11216911/8706905</a> 这个可以作为参考，但明显不是答案。</p>
-<p>后面在<a href="https://dev.mysql.com/doc/refman/5.7/en/user-names.html" target="_blank" rel="noopener">官方文档</a>里找到，如果不通过<code>-u</code>或者<code>--user</code>选项来覆盖MySQL用户名，类Unix系统（如MacOS或者Linux）中会使用<strong>当前OS的用户名</strong>来作为MySQL的用户名，这在用户名没指定的情况下只是为了方便。</p>
-<blockquote>
-<p>On Unix, most MySQL clients by default try to log in using the current Unix user name as the MySQL user name, but that is for convenience only. </p>
-</blockquote>
-<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220827003233755.png" alt="image-20220827003233755"></p>
-<p>我们在报错的bash语句前加一句打印当前用户的命令:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印当前用户</span></span><br><span class="line">id;</span><br></pre></td></tr></table></figure>
-<p>可以看到，在docker镜像启动之时，使用的用户是mysql而不是root！所以才会报上面提到的错误。</p>
-<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220827003802863.png" alt="image-20220827003802863"></p>
-<h3 id="d-3-容器启动失败"><a href="#d-3-容器启动失败" class="headerlink" title="d.3 容器启动失败"></a><del>d.3 容器启动失败</del></h3><p>还是和被删掉的bash文件有关。</p>
-<p>MySQL镜像如果拉取下来后，如果Dockerfile最后一句直接执行<code>CMD [&quot;sh&quot;, &quot;setup.sh&quot;]</code>会报<code>ERROR 2002 (HY000): Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock&#39; (2)</code>的错误。</p>
-<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825001344885.png" alt="image-20220825001344885"></p>
-<p>查了许多地方，<a href="https://stackoverflow.com/a/44337987/8706905" target="_blank" rel="noopener">这个回答</a>中提到：数据库还未初始化。</p>
-<p>解决方式是最后一句由<code>CMD [&quot;sh&quot;, &quot;setup.sh&quot;]</code>改为执行<code>CMD [&quot;mysqld&quot;]</code>，同时通过<a href="https://stackoverflow.com/a/44324936/8706905" target="_blank" rel="noopener">这个回答</a> ，把需要执行的<code>.sh</code>, <code>.sql</code> h和<code>.sql.gz</code>文件copy到<code>/docker-entrypoint-initdb.d/</code>文件夹下，在docker容器启动后即可自动执行。</p>
-<p>其实<a href="https://hub.docker.com/_/mysql" target="_blank" rel="noopener">Docker官方MySQL镜像文档</a>中已经给出了类似情况的处理方案：</p>
-<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220826232813652.png" alt="image-20220826232813652"></p>
-<blockquote>
-<p>  容器在第一次启动时，会执行在<code>/docker-entrypoint-initdb.d/</code>文件夹下的<code>.sh</code>, <code>.sql</code> 和<code>.sql.gz</code>文件。</p>
-</blockquote>
-<p>另外在MySQL官网<a href="https://dev.mysql.com/doc/refman/8.0/en/mysqld.html" target="_blank" rel="noopener">mysqld的页面</a>有明确的解释，其实mysqld就是MySQL server，需要启动它对MySQL服务端进行初始化。</p>
-<blockquote>
-<p>  <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqld.html" target="_blank" rel="noopener"><strong>mysqld</strong></a>, also known as MySQL Server, is a single multithreaded program that does most of the work in a MySQL installation.</p>
-</blockquote>
-<p>另一个佐证是<a href="https://hub.docker.com/layers/mysql/library/mysql/latest/images/sha256-6964c211b5fadfc3b6a84986cbd3c78418b091c2fd44074f58d9c15d9b0f5f52?context=explore" target="_blank" rel="noopener">MySQL官方docker镜像的image layers描述</a>中，最后一句也是 <code>CMD [&quot;mysqld&quot;]</code>。</p>
-<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/%E6%88%AA%E5%B1%8F2022-08-28%2000.34.40.png" alt="截屏2022-08-28 00.34.40"></p>
-<p>在使用这个解决方法后，之前报错找不到的<code>/var/run/mysqld/mysqld.sock</code>文件出现了。</p>
-<p>修改后：</p>
-<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825020524737.png" alt="image-20220821030721690"></p>
 <h1 id="3-根据生成的镜像来创建容器实例"><a href="#3-根据生成的镜像来创建容器实例" class="headerlink" title="3. 根据生成的镜像来创建容器实例"></a>3. 根据生成的镜像来创建容器实例</h1><p>此处需要考虑2个点：</p>
 <ul>
 <li>镜像和宿主机的端口映射</li>
@@ -320,7 +277,7 @@
 <p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220821162734752.png" alt="image-20220821162734752"></p>
 <p>输入命令<code>use myjdbcdemo;</code>使用此库，可以使用select语句查看表中数据。</p>
 <p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220821162851682.png" alt="image-20220821162851682"></p>
-<h3 id="a-MySQL-root密码问题"><a href="#a-MySQL-root密码问题" class="headerlink" title="a. MySQL root密码问题"></a>a. MySQL root密码问题</h3><p>docker给了3个环境变量来控制MySQL的密码问题，分别是<code>MYSQL_RANDOM_ROOT_PASSWORD</code>, <code>MYSQL_ROOT_PASSWORD</code>和<code>MYSQL_ALLOW_EMPTY_PASSWORD</code>，三个优先级有先后，挨个介绍下：</p>
+<h2 id="3-1-MySQL-root密码问题"><a href="#3-1-MySQL-root密码问题" class="headerlink" title="3.1 MySQL root密码问题"></a>3.1 MySQL root密码问题</h2><p>docker给了3个环境变量来控制MySQL的密码问题，分别是<code>MYSQL_RANDOM_ROOT_PASSWORD</code>, <code>MYSQL_ROOT_PASSWORD</code>和<code>MYSQL_ALLOW_EMPTY_PASSWORD</code>，三个优先级有先后，挨个介绍下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 如果MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD没有配置则默认为true。如果为true，</span><br><span class="line"># mysql会自动生成一个密码，会打印在控制台，格式是： [GENERATED ROOT PASSWORD: .....]</span><br><span class="line">#ENV MYSQL_RANDOM_ROOT_PASSWORD&#x3D;true</span><br><span class="line"># 设置MySQL root的密码</span><br><span class="line">ENV MYSQL_ROOT_PASSWORD&#x3D;123456</span><br><span class="line"># 为true的话，root用户的密码就是空</span><br><span class="line">#ENV MYSQL_ALLOW_EMPTY_PASSWORD&#x3D;true</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p><code>MYSQL_RANDOM_ROOT_PASSWORD</code>。如果<code>MYSQL_ROOT_PASSWORD</code>, <code>MYSQL_ALLOW_EMPTY_PASSWORD</code>没有配置则默认为true。如果为true，mysql会自动生成一个密码，会打印在控制台，格式是： <code>[GENERATED ROOT PASSWORD: .....]</code>。</p>
@@ -328,24 +285,12 @@
 <li><p><code>MYSQL_ROOT_PASSWORD</code>。设置MySQL root的密码。这个没什么可说的，就是正常的密码设置，例如<code>ENV MYSQL_ROOT_PASSWORD=123456</code>。</p>
 </li>
 <li><p><code>MYSQL_ALLOW_EMPTY_PASSWORD</code>。为true的话，root用户的密码就是空。</p>
+<p>此处使用debug时可以进入docker容器，通过以下命令查看MySQL用户信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在docker容器内进行MySQL</span></span><br><span class="line">bash&gt; mysql -uroot -p123456;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入MySQL内部后，选择mysql库</span></span><br><span class="line">mysql&gt; use mysql;</span><br><span class="line"><span class="comment"># 查看用户信息</span></span><br><span class="line">mysql&gt; select user, host, authentication_string from user;</span><br><span class="line">+------------------+-----------+------------------------------------------------------------------------+</span><br><span class="line">| user             | host      | authentication_string                                                  |</span><br><span class="line">+------------------+-----------+------------------------------------------------------------------------+</span><br><span class="line">| root             | %         | <span class="variable">$A</span><span class="variable">$005</span>$|[lde&#125;&#125;&#125;^RXsbBUMKjoSEwZkvPMuCFiecEQqa8UIN9o6b1dKRtcyTQv0C    |</span><br><span class="line">| mysql.infoschema | localhost | <span class="variable">$A</span><span class="variable">$005</span><span class="variable">$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED</span> |</span><br><span class="line">| mysql.session    | localhost | <span class="variable">$A</span><span class="variable">$005</span><span class="variable">$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED</span> |</span><br><span class="line">| mysql.sys        | localhost | <span class="variable">$A</span><span class="variable">$005</span><span class="variable">$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED</span> |</span><br><span class="line">| root             | localhost | <span class="variable">$A</span><span class="variable">$005</span><span class="variable">$MEKL81XEj</span>[C.&gt;rB2luQaqISkkixQjSffptkkhsWs2xm3y7D/qYgPMg970/     |</span><br><span class="line">+------------------+-----------+------------------------------------------------------------------------+</span><br><span class="line">5 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<pre><code>此处使用debug时可以进入docker容器，通过以下命令查看MySQL用户信息。
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在docker容器内进行MySQL</span></span><br><span class="line">bash&gt; mysql -uroot -p123456;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入MySQL内部后，选择mysql库</span></span><br><span class="line">mysql&gt; use mysql;</span><br><span class="line"><span class="comment"># 查看用户信息</span></span><br><span class="line">mysql&gt; select user, host, authentication_string from user;</span><br><span class="line">+------------------+-----------+------------------------------------------------------------------------+</span><br><span class="line">| user             | host      | authentication_string                                                  |</span><br><span class="line">+------------------+-----------+------------------------------------------------------------------------+</span><br><span class="line">| root             | %         | <span class="variable">$A</span><span class="variable">$005</span>$|[lde&#125;&#125;&#125;^RXsbBUMKjoSEwZkvPMuCFiecEQqa8UIN9o6b1dKRtcyTQv0C    |</span><br><span class="line">| mysql.infoschema | localhost | <span class="variable">$A</span><span class="variable">$005</span><span class="variable">$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED</span> |</span><br><span class="line">| mysql.session    | localhost | <span class="variable">$A</span><span class="variable">$005</span><span class="variable">$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED</span> |</span><br><span class="line">| mysql.sys        | localhost | <span class="variable">$A</span><span class="variable">$005</span><span class="variable">$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED</span> |</span><br><span class="line">| root             | localhost | <span class="variable">$A</span><span class="variable">$005</span><span class="variable">$MEKL81XEj</span>[C.&gt;rB2luQaqISkkixQjSffptkkhsWs2xm3y7D/qYgPMg970/     |</span><br><span class="line">+------------------+-----------+------------------------------------------------------------------------+</span><br><span class="line">5 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-
-PS: 最开始尝试导入SQL文件来设置MySQL密码：
-
-`privilege.sh` -- 给root用户添加密码的SQL脚本，这里有些需要注意的点。
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">USE mysql;</span><br><span class="line">-- 给root配置密码，两行都不可以缺少，因为&#39;root&#39;@&#39;%&#39;和&#39;root&#39;@&#39;localhost&#39;是分开的</span><br><span class="line">-- 如果是此行，那么root只有远程连接有密码</span><br><span class="line">ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;123456&#39;;</span><br><span class="line">-- 如果是此行，那么root只有本地有密码</span><br><span class="line">ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;123456&#39;;</span><br><span class="line">-- 这一条命令一定要有：</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
-
-![image-20220823005709843](https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220823005709843.png)
-
-后面发现其实只需要设置`MYSQL_ROOT_PASSWORD`不为空即可，这段就删掉了，放在这里权做记录。
-</code></pre><h3 id="b-远程登录失败问题"><a href="#b-远程登录失败问题" class="headerlink" title="b. 远程登录失败问题"></a>b. 远程登录失败问题</h3><p>使用的时候一直显示会连接失败：</p>
+<h2 id="3-2-远程登录失败问题"><a href="#3-2-远程登录失败问题" class="headerlink" title="3.2 远程登录失败问题"></a>3.2 远程登录失败问题</h2><p>使用的时候一直显示会连接失败：</p>
 <p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220823010324056.png" alt="image-20220823010324056"></p>
 <p>查了很多结果，有说和防火墙有关的，有的需要修改<code>my.cnf</code>文件中<code>bind-address=0.0.0.0</code>的。但是最后发现。。。是因为<strong>容器没有完全启动起来</strong>，所以连接失败了，等待其启动结束后，再连接就好了。搞了一个大乌龙 T_T。。。</p>
 <p>不过查问题的过程中也看到了不少知识，还是打算记录下来。</p>
@@ -356,99 +301,252 @@ PS: 最开始尝试导入SQL文件来设置MySQL密码：
 <p>如果不做<code>bind-address</code>的配置，MySQL的<code>bind-address</code>默认是<code>*</code>，<code>*</code>也表示所有IP都可以连接，这里可以参见<a href="https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_bind_address" target="_blank" rel="noopener">官方文档</a>。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看docker ip </span></span><br><span class="line">docker inspect -f <span class="string">'&#123;&#123;range.NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;'</span> jdbc-1</span><br></pre></td></tr></table></figure>
 <h1 id="4-Java访问docker上MySQL的数据"><a href="#4-Java访问docker上MySQL的数据" class="headerlink" title="4. Java访问docker上MySQL的数据"></a>4. Java访问docker上MySQL的数据</h1><p> 此处除了端口改为3307，其它和访问本机MySQL实例流程完全一致，不再赘述。</p>
-<h1 id="5-结论"><a href="#5-结论" class="headerlink" title="5. 结论"></a>5. 结论</h1><p>尽量还是寻找比较正式的文档进行二次开发，遇到的坑比较少，例如<a href="https://hevodata.com/learn/docker-mysql/" target="_blank" rel="noopener">这个文档.</a>，虽然不是Dockerfile生成MySQL镜像的，但整体相当顺利。。</p>
+<h1 id="5-开发过程中遇到的问题"><a href="#5-开发过程中遇到的问题" class="headerlink" title="5. 开发过程中遇到的问题"></a>5. 开发过程中遇到的问题</h1><p>由于Dockerfile是在网上找的，debug过程中遇到了一系列问题。</p>
+<p>当时思路是：</p>
+<ul>
+<li>自己写脚本来启动和初始化MySQL（尽管后面发现这是不必要的）</li>
+<li>初始密码由脚本来设置，而非MySQL 镜像提供的<code>MYSQL_ROOT_PASSWORD</code>字段设置（这是谬误2，如果有官方提供的入口，不使用而打算自己处理，那么就要做好面对各种异常的准备。）</li>
+</ul>
+<h2 id="5-1-使用shell脚本插入数据问题"><a href="#5-1-使用shell脚本插入数据问题" class="headerlink" title="5.1 使用shell脚本插入数据问题"></a>5.1 使用shell脚本插入数据问题</h2><p>先来列举一下文件内容，<code>[D]</code>表示最新代码中已经被删掉。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- scripts/</span><br><span class="line">  - Dockerfile <span class="comment"># 使用的Dockerfile</span></span><br><span class="line">  - [D] setup.js <span class="comment"># 使用此脚本进行初始化</span></span><br><span class="line">  - sql/  <span class="comment"># 存放SQL脚本的文件夹</span></span><br><span class="line">    - init.sql <span class="comment"># 建表语句</span></span><br><span class="line">    - [D] privilege.sh <span class="comment"># 原来的新增密码脚本</span></span><br><span class="line">本</span><br></pre></td></tr></table></figure>
+<p>当时Dockerfile是打算使用<code>setup.js</code>进行MySQL初始化的：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 把setup.js放到docker-entrypoint-initdb.d文件夹下，这样容器第一次启动时，setup.js就会执行。</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> setup.js /docker-entrypoint-initdb.d/</span></span><br></pre></td></tr></table></figure>
+<p>原始的<code>setup.sh</code> — 启动脚本，执行一些建表、给root用户新增密码等操作。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 若指令传回值不等于0，则立即退出shell</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql密码</span></span><br><span class="line"><span class="comment"># mysql &lt; /mysql/init.sql</span></span><br><span class="line"><span class="comment"># 此处必须指定user为root，为什么？看下面分析</span></span><br><span class="line">mysql -uroot &lt; /mysql/privileges.sql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导入数据</span></span><br><span class="line">mysql -uroot -p123456 &lt; /mysql/init.sql</span><br><span class="line"></span><br><span class="line">tail -f /dev/null</span><br></pre></td></tr></table></figure>
+<p>如果没有设置MySQL的root密码，在<strong>容器的bash命令行里</strong>是直接可以输入<code>mysql &lt; some_sql.sql</code>来执行sql文件的。</p>
+<p>但是在shell脚本中使用此命令插入sql文件时，遇到了问题。命令如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># setup.js文件中的语句</span></span><br><span class="line">mysql &lt; /mysql/init.sql</span><br></pre></td></tr></table></figure>
+<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220821032929849.png" alt="image-20220821032929849"></p>
+<p>可以看到，报错中user为<code>&#39;mysql&#39;@&#39;localhost&#39;</code>，但我们使用的明显不是这个user，而是<code>&#39;root&#39;@&#39;localhost&#39;</code>。尝试指定了一下user，问题解决：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># setup.js文件中的语句</span></span><br><span class="line"><span class="comment"># 新加一个-uroot指定用户为root就不报错了</span></span><br><span class="line">mysql -uroot &lt; /mysql/init.sql</span><br></pre></td></tr></table></figure>
+<p>这里为什么用户是mysql呢？？<a href="https://stackoverflow.com/a/11216911/8706905" target="_blank" rel="noopener">https://stackoverflow.com/a/11216911/8706905</a> 这个可以作为参考，但明显不是答案。</p>
+<p>后面在<a href="https://dev.mysql.com/doc/refman/5.7/en/user-names.html" target="_blank" rel="noopener">官方文档</a>里找到，如果不通过<code>-u</code>或者<code>--user</code>选项来覆盖MySQL用户名，类Unix系统（如MacOS或者Linux）中会使用<strong>当前OS的用户名</strong>来作为MySQL的用户名，这在用户名没指定的情况下只是为了方便。</p>
+<blockquote>
+<p>On Unix, most MySQL clients by default try to log in using the current Unix user name as the MySQL user name, but that is for convenience only. </p>
+</blockquote>
+<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220827003233755.png" alt="image-20220827003233755"></p>
+<p>我们在报错的bash语句前加一句打印当前用户的命令:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印当前用户</span></span><br><span class="line">id;</span><br></pre></td></tr></table></figure>
+<p>可以看到，在docker镜像启动之时，使用的用户是mysql，推测是MySQL初始化时创建了专门的OS用户来操作初始化，所以才会报上面提到的错误。</p>
+<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220827003802863.png" alt="image-20220827003802863"></p>
+<h2 id="5-2-容器启动失败"><a href="#5-2-容器启动失败" class="headerlink" title="5.2 容器启动失败"></a>5.2 容器启动失败</h2><p>还是和被删掉的<code>setup.sh</code>文件有关。</p>
+<p>MySQL镜像如果拉取下来后，如果Dockerfile最后一句为</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">"sh"</span>, <span class="string">"setup.sh"</span>]</span></span><br><span class="line"><span class="comment"># 应该执行这一句对MySQL进行初始化</span></span><br><span class="line"><span class="comment"># CMD ["mysqld"]</span></span><br></pre></td></tr></table></figure>
+<p>会报<code>ERROR 2002 (HY000): Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock&#39; (2)</code>的错误。</p>
+<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825001344885.png" alt="image-20220825001344885"></p>
+<p>查了许多地方，<a href="https://stackoverflow.com/a/44337987/8706905" target="_blank" rel="noopener">这个回答</a>中提到：数据库还未初始化。</p>
+<p>解决方式是最后一句由<code>CMD [&quot;sh&quot;, &quot;setup.sh&quot;]</code>改为执行<code>CMD [&quot;mysqld&quot;]</code>。<del>同时通过<a href="https://hub.docker.com/_/mysql" target="_blank" rel="noopener">Docker官方MySQL镜像文档</a>，把<code>setup.js</code>文件copy到<code>/docker-entrypoint-initdb.d/</code>文件夹下</del>(文件已经删除，所以也没有这一说，但是学到如何使用这个文件夹 ^_^)。文档中是这么说的：</p>
+<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220826232813652.png" alt="image-20220826232813652"></p>
+<blockquote>
+<p>  容器在第一次启动时，会执行在<code>/docker-entrypoint-initdb.d/</code>文件夹下的<code>.sh</code>, <code>.sql</code> 和<code>.sql.gz</code>文件。</p>
+</blockquote>
+<p>另外在MySQL官网<a href="https://dev.mysql.com/doc/refman/8.0/en/mysqld.html" target="_blank" rel="noopener">mysqld的页面</a>有明确的解释，其实mysqld就是MySQL server，需要启动它对MySQL服务端进行初始化。</p>
+<blockquote>
+<p>  <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqld.html" target="_blank" rel="noopener"><strong>mysqld</strong></a>, also known as MySQL Server, is a single multithreaded program that does most of the work in a MySQL installation.</p>
+</blockquote>
+<p>另一个佐证是<a href="https://hub.docker.com/layers/mysql/library/mysql/latest/images/sha256-6964c211b5fadfc3b6a84986cbd3c78418b091c2fd44074f58d9c15d9b0f5f52?context=explore" target="_blank" rel="noopener">MySQL官方docker镜像的image layers描述</a>中，最后一句也是 <code>CMD [&quot;mysqld&quot;]</code>。</p>
+<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/%E6%88%AA%E5%B1%8F2022-08-28%2000.34.40.png" alt="截屏2022-08-28 00.34.40"></p>
+<p>在使用这个解决方法后，之前报错找不到的<code>/var/run/mysqld/mysqld.sock</code>文件出现了。</p>
+<p>修改后：</p>
+<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220825020524737.png" alt="image-20220821030721690"></p>
+<h2 id="5-3-使用SQL脚本修改MySQL的密码"><a href="#5-3-使用SQL脚本修改MySQL的密码" class="headerlink" title="5.3 使用SQL脚本修改MySQL的密码"></a>5.3 使用SQL脚本修改MySQL的密码</h2><p><code>privilege.sh</code> — 给root用户添加密码的SQL脚本，这里有些需要注意的点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">USE mysql;</span><br><span class="line">-- 给root配置密码，两行都不可以缺少，因为&#39;root&#39;@&#39;%&#39;和&#39;root&#39;@&#39;localhost&#39;是分开的</span><br><span class="line">-- 如果是此行，那么root只有远程连接有密码</span><br><span class="line">ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;123456&#39;;</span><br><span class="line">-- 如果是此行，那么root只有本地有密码</span><br><span class="line">ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;123456&#39;;</span><br><span class="line">-- 这一条命令一定要有：</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220823005709843.png" alt="image-20220823005709843"></p>
+<p>后面发现其实只需要设置<code>MYSQL_ROOT_PASSWORD</code>不为空即可，这段就删掉了，放在这里权做记录。</p>
+<h1 id="6-结论"><a href="#6-结论" class="headerlink" title="6. 结论"></a>6. 结论</h1><p>尽量还是寻找比较正式的文档进行二次开发，遇到的坑比较少，例如<a href="https://hevodata.com/learn/docker-mysql/" target="_blank" rel="noopener">这个文档.</a>，虽然不是Dockerfile生成MySQL镜像的，但整体相当顺利。。</p>
 <p>官方成本可以降低学习成本，不过如果时间空闲较多的话，倒也可以深入探究一下，在查问题的过程中，的确收获了不少新的知识。</p>
 <p>源码地址：<a href="https://github.com/StephenHuge/blog-code/tree/master/MyJdbcDemo/scripts" target="_blank" rel="noopener">https://github.com/StephenHuge/blog-code/tree/master/MyJdbcDemo/scripts</a> </p>
 
-      
     </div>
+
     
-  </div>
-  
     
-<nav id="article-nav">
-  
-  
-    <a href="/2022/08/23/React%E6%9E%81%E7%AE%80%E5%85%A5%E9%97%A8-1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">React极简入门-1</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
+    
 
-  
-</article>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 数据库</a>
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+          </div>
+
+        
 
 
-<div class="share">
-	<div class="social-share"></div>
-
-	<!--  css & js -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-</div>
-
-
-
-
-
-
-
-
-
-</div>
-      <footer id="footer">
-  <div class="outer">
-    <div id="footer-info">
-    	<div class="footer-left">
-    		&copy; 2022 Steve Hu
-    	</div>
-      	<div class="footer-right">
-      		<p>
-            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
-            </p>
-      	</div>
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/23/React%E6%9E%81%E7%AE%80%E5%85%A5%E9%97%A8-1/" rel="prev" title="React极简入门-1">
+      <i class="fa fa-chevron-left"></i> React极简入门-1
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-  </div>
-</footer>
-    </div>
+      </footer>
     
+  </article>
   
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
   
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
 
 
 
+          </div>
+          
 
-<script src="/js/mobile.js"></script>
-
-
-<script src="/js/main.js"></script>
-
-
-
-
-
-  </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
     });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
+  }
 </script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-<!-- changed for supporting latex 2020-07-04 by hjs -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-目标"><span class="nav-text">1. 目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-生成包含MySQL的镜像"><span class="nav-text">2. 生成包含MySQL的镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Dockerfile"><span class="nav-text">2.1 Dockerfile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Dockerfile用到的脚本"><span class="nav-text">2.2 Dockerfile用到的脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-生成镜像"><span class="nav-text">2.3 生成镜像</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-根据生成的镜像来创建容器实例"><span class="nav-text">3. 根据生成的镜像来创建容器实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-MySQL-root密码问题"><span class="nav-text">3.1 MySQL root密码问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-远程登录失败问题"><span class="nav-text">3.2 远程登录失败问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Java访问docker上MySQL的数据"><span class="nav-text">4. Java访问docker上MySQL的数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-开发过程中遇到的问题"><span class="nav-text">5. 开发过程中遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-使用shell脚本插入数据问题"><span class="nav-text">5.1 使用shell脚本插入数据问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-容器启动失败"><span class="nav-text">5.2 容器启动失败</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-使用SQL脚本修改MySQL的密码"><span class="nav-text">5.3 使用SQL脚本修改MySQL的密码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-结论"><span class="nav-text">6. 结论</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Steve Hu"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Steve Hu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Steve Hu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
 
 </body>
 </html>
