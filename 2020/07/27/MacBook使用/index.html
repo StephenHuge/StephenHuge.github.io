@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"stevehuge.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"stevehuge.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="环境1. 环境变量1. 当前用户变量1cat ~&#x2F;.bash_profile 2. 设置PATH在&#x2F;etc&#x2F;.paths.d&#x2F;，建立要使用的命令的文件，里面存储具体所在可执行文件的位置。例如 12$ touch &#x2F;ect&#x2F;paths.d&#x2F;mysql$ vi &#x2F;etc&#x2F;paths.d&#x2F;mysql 把mysql bin文件夹的路径存进去 1&#x2F;usr&#x2F;local&#x2F;mysql">
@@ -28,10 +28,11 @@
 <meta property="og:description" content="环境1. 环境变量1. 当前用户变量1cat ~&#x2F;.bash_profile 2. 设置PATH在&#x2F;etc&#x2F;.paths.d&#x2F;，建立要使用的命令的文件，里面存储具体所在可执行文件的位置。例如 12$ touch &#x2F;ect&#x2F;paths.d&#x2F;mysql$ vi &#x2F;etc&#x2F;paths.d&#x2F;mysql 把mysql bin文件夹的路径存进去 1&#x2F;usr&#x2F;local&#x2F;mysql">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-27T13:13:50.000Z">
-<meta property="article:modified_time" content="2022-08-27T16:41:07.770Z">
+<meta property="article:modified_time" content="2022-10-13T13:30:24.676Z">
 <meta property="article:author" content="Steve Hu">
 <meta property="article:tag" content="开发工具">
 <meta property="article:tag" content="MacBook">
+<meta property="article:tag" content="环境搭建">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://stevehuge.github.io/2020/07/27/MacBook%E4%BD%BF%E7%94%A8/">
@@ -198,7 +199,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-28 00:41:07" itemprop="dateModified" datetime="2022-08-28T00:41:07+08:00">2022-08-28</time>
+                <time title="修改时间：2022-10-13 21:30:24" itemprop="dateModified" datetime="2022-10-13T21:30:24+08:00">2022-10-13</time>
               </span>
 
           
@@ -222,11 +223,10 @@
 <a id="more"></a>
 <h2 id="2-JAVA-HOME"><a href="#2-JAVA-HOME" class="headerlink" title="2.  JAVA_HOME"></a>2.  JAVA_HOME</h2><h3 id="1-查看Java安装位置"><a href="#1-查看Java安装位置" class="headerlink" title="1. 查看Java安装位置"></a>1. 查看Java安装位置</h3><p>有两种方式</p>
 <ol>
-<li>查看系统变量<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$JAVA_HOME</span></span><br></pre></td></tr></table></figure></li>
-<li>使用Mac自带的命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/libexec/java_homes</span><br></pre></td></tr></table></figure>
-一般都在<code>/Library/Java/JavaVirtualMachines/</code>下。<h3 id="2-配置Java环境"><a href="#2-配置Java环境" class="headerlink" title="2. 配置Java环境"></a>2. 配置Java环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开当前用户配置文件</span></span><br><span class="line">vim ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<li>查看系统变量<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$JAVA_HOME</span></span><br></pre></td></tr></table></figure>
+一般都在<code>/Library/Java/JavaVirtualMachines/</code>下。<h3 id="2-配置Java环境"><a href="#2-配置Java环境" class="headerlink" title="2. 配置Java环境"></a>2. 配置Java环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前使用bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$SHELL</span></span><br><span class="line"><span class="comment"># 如果使用bash，打开当前用户配置文件</span></span><br><span class="line">vim ~/.bash_profile</span><br><span class="line"><span class="comment"># 如果使用zsh，打开当前用户配置文件</span></span><br><span class="line">vim ~/.zprofile</span><br></pre></td></tr></table></figure>
 如果有多个JDK版本号，可以使用以下格式保存参数<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_11_HOME=/Library/Java/JavaVirtualMachines/jdk11-version/Contents/Home</span><br><span class="line"><span class="built_in">export</span> JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk8-version/Contents/Home</span><br><span class="line">PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line">CLASSPATH=<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JAVA_HOME</span>/lib/dt.jar</span><br><span class="line"></span><br><span class="line"><span class="comment">#默认JDK为JDK8</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=<span class="variable">$JAVA_8_HOME</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># alias命令动态切换JDK版本</span></span><br><span class="line"><span class="built_in">alias</span> jdk11=<span class="string">"export JAVA_HOME=<span class="variable">$JAVA_11_HOME</span>"</span></span><br><span class="line"><span class="built_in">alias</span> jdk8=<span class="string">"export JAVA_HOME=<span class="variable">$JAVA_9_HOME</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH</span><br><span class="line"><span class="built_in">export</span> CLASSPATH</span><br></pre></td></tr></table></figure>
-<code>ESC</code> + <code>:wq</code> 保存配置文件之后，使配置文件生效<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<code>ESC</code> + <code>:wq</code> 保存配置文件之后，使配置文件生效<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bash</span></span><br><span class="line"><span class="built_in">source</span> ~/.bash_profile</span><br><span class="line"><span class="comment"># zsh </span></span><br><span class="line"><span class="built_in">source</span> ~/.zprofile</span><br></pre></td></tr></table></figure>
 新开一个终端窗口就可以使用<code>java -version</code>查看JDK版本号了。</li>
 </ol>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
@@ -268,6 +268,7 @@
           <div class="post-tags">
               <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="tag"># 开发工具</a>
               <a href="/tags/MacBook/" rel="tag"># MacBook</a>
+              <a href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="tag"># 环境搭建</a>
           </div>
 
         
@@ -357,14 +358,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-count">45</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

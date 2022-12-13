@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"stevehuge.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="0. 什么是Cookie和Session“Cookie”这一概念由网景（Netscape）公司的程序员在为客户开发电子商务应用程序时创造1，由于客户不希望总是在服务器中保存事务状态，于是网景提出了Cookies的解决方案。    网景的cookie头字段为Set-Cookie，RFC 2965添加了一个Set-Cookie2头字段，即“RFC 2965 cookie”[13][14]，但Set-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何实现分布式Session-上？">
+<meta property="og:url" content="https://stevehuge.github.io/2022/09/08/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8FSession-%E4%B8%8A/index.html">
+<meta property="og:site_name" content="Steve&#39;s Blog">
+<meta property="og:description" content="0. 什么是Cookie和Session“Cookie”这一概念由网景（Netscape）公司的程序员在为客户开发电子商务应用程序时创造1，由于客户不希望总是在服务器中保存事务状态，于是网景提出了Cookies的解决方案。    网景的cookie头字段为Set-Cookie，RFC 2965添加了一个Set-Cookie2头字段，即“RFC 2965 cookie”[13][14]，但Set-">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220912000517236.png">
+<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220912001106071.png">
+<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220916004611701.png">
+<meta property="og:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220916004236166.png">
+<meta property="article:published_time" content="2022-09-08T12:47:57.000Z">
+<meta property="article:modified_time" content="2022-10-05T10:18:20.496Z">
+<meta property="article:author" content="Steve Hu">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="分布式">
+<meta property="article:tag" content="Session">
+<meta property="article:tag" content="Web">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220912000517236.png">
+
+<link rel="canonical" href="https://stevehuge.github.io/2022/09/08/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8FSession-%E4%B8%8A/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>如何实现分布式Session-上？ | Steve's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Steve's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Talk is cheap, show me the code.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://stevehuge.github.io/2022/09/08/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8FSession-%E4%B8%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Steve Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Steve's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何实现分布式Session-上？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-08 20:47:57" itemprop="dateCreated datePublished" datetime="2022-09-08T20:47:57+08:00">2022-09-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-05 18:18:20" itemprop="dateModified" datetime="2022-10-05T18:18:20+08:00">2022-10-05</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220912000517236.png" alt="image-20220912000517236"></p>
+<h1 id="0-什么是Cookie和Session"><a href="#0-什么是Cookie和Session" class="headerlink" title="0. 什么是Cookie和Session"></a>0. 什么是Cookie和Session</h1><p>“Cookie”这一概念由网景（Netscape）公司的程序员在为客户开发电子商务应用程序时创造<sup><a href="#fn_1" id="reffn_1">1</a></sup>，由于客户不希望总是在服务器中保存事务状态，于是网景提出了Cookies的解决方案。</p>
+<blockquote>
+<p>  网景的cookie<a href="https://zh.wikipedia.org/wiki/HTTP头字段" target="_blank" rel="noopener">头字段</a>为<code>Set-Cookie</code>，RFC 2965添加了一个<code>Set-Cookie2</code>头字段，即“<a href="https://tools.ietf.org/html/rfc2965" target="_blank" rel="noopener">RFC 2965</a> cookie”<a href="https://zh.wikipedia.org/wiki/Cookie#cite_note-AGgFj-13" target="_blank" rel="noopener">[13]</a><a href="https://zh.wikipedia.org/wiki/Cookie#cite_note-V1mES-14" target="_blank" rel="noopener">[14]</a>，但<code>Set-Cookie2</code>很少使用，终于2011年4月的RFC 6265中弃用<a href="https://zh.wikipedia.org/wiki/Cookie#cite_note-StateMgmt-15" target="_blank" rel="noopener">[15]</a>，已经没有现代浏览器可以识别<code>Set-Cookie2</code>头字段<a href="https://zh.wikipedia.org/wiki/Cookie#cite_note-TASE4-16" target="_blank" rel="noopener">[16]</a>。</p>
+</blockquote>
+<p>Session代表服务器和客户端之间的一个会话，Session可以记录特定用户的各种数据和配置信息等。</p>
+<p>参考这两篇文章<a href="https://blog.csdn.net/lijing198997/article/details/22174151" target="_blank" rel="noopener">1</a>和<a href="https://en.wikipedia.org/wiki/HTTP_cookie#Cookie_wall" target="_blank" rel="noopener">2</a>。</p>
+<a id="more"></a>
+<h2 id="0-0-为什么要有Cookie和Session？"><a href="#0-0-为什么要有Cookie和Session？" class="headerlink" title="0.0 为什么要有Cookie和Session？"></a>0.0 为什么要有Cookie和Session？</h2><p>所有技术的提出都是为了解决遇到的问题，Cookie和Session也不例外。我们常用的HTTP协议有个缺点，就是无状态（stateless）。</p>
+<p>于1997年1月提出的<a href="https://www.rfc-editor.org/rfc/rfc2068" target="_blank" rel="noopener">RFC2068</a>中提到HTTP/1.1协议是无状态的。</p>
+<blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">The Hypertext Transfer Protocol (HTTP) is an application-level</span><br><span class="line">protocol for distributed, collaborative, hypermedia information</span><br><span class="line">systems. It is a generic, stateless, object-oriented protocol which</span><br><span class="line">can be used for many tasks, such as name servers and distributed</span><br><span class="line">object management systems, through extension of its request methods.</span><br><span class="line">A feature of HTTP is the typing and negotiation of data</span><br><span class="line">representation, allowing systems to be built independently of the</span><br><span class="line">data being transferred.</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>简单来说就是使用HTTP协议进行通信的客户端和服务端，<strong>服务端无法判断两次请求是来自同一客户端还是不同客户端</strong>，这样的话不同客户的不同网站配置及数据无法正确展示，于是有了Cookie和Session，客户端通过传递Cookie给服务端告诉服务端自己的用户标识信息。</p>
+<p>（不过这不是一个好的实现方式，因为可能会有数据安全问题。例如第三方拿到了你的Cookie，用来访问此网站，可能会有数据泄密的风险。所以Cookie这里做了一些安全措施，具体后面会提到。同时，一般不要用Cookie传递敏感个人信息，如密码、隐私如手机号、姓名等，而是通过HTTPS等安全通信协议来传递敏感信息。）</p>
+<h2 id="0-1-Cookie和Session存放在哪里？"><a href="#0-1-Cookie和Session存放在哪里？" class="headerlink" title="0.1 Cookie和Session存放在哪里？"></a>0.1 Cookie和Session存放在哪里？</h2><p>Cookie保存在客户侧的浏览器中。</p>
+<p>查看Google主页请求，可以看到Google服务器返回了3个<code>Set-Cookie</code>字段，包含<code>1P_JAR</code>、<code>AEC</code>、<code>NID</code>等字段，这些字段都应该是Google服务器为当前浏览器生成的客户标识信息。</p>
+<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220912001106071.png" alt="image-20220912001106071"></p>
+<p>Session存放在Tomcat中，实现类为StandardSession。</p>
+<h2 id="0-2-Quick-Cookie-amp-Session"><a href="#0-2-Quick-Cookie-amp-Session" class="headerlink" title="0.2 Quick Cookie &amp; Session"></a>0.2 Quick Cookie &amp; Session</h2><p>Cookie中有个几个固定字段，挨个介绍一下：</p>
+<ul>
+<li><p>Cookie声明周期</p>
+<ul>
+<li><code>Expires</code>：定义Cookie过期时间，类似的字段还有<code>Max-Age</code></li>
+<li><code>Max-Age</code>：定义Cookie最大有效时间</li>
+</ul>
+</li>
+<li><p>Cookie作用域</p>
+<ul>
+<li><p><code>path</code>：<code>Path</code> 标识指定了主机下的哪些路径可以接受 Cookie（该 URL 路径必须存在于请求 URL 中）。以字符 <code>%x2F</code> (“/“) 作为路径分隔符，子路径也会被匹配。</p>
+<p>例如，设置 <code>Path=/docs</code>，则以下地址都会匹配：</p>
+<ul>
+<li><code>/docs</code></li>
+<li><code>/docs/Web/</code></li>
+<li><code>/docs/Web/HTTP</code></li>
+</ul>
+</li>
+<li><p><code>Domain</code>：<code>Domain</code> 指定了哪些主机可以接受 Cookie。如果不指定，默认为 <a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Origin" target="_blank" rel="noopener">origin</a>，<strong>不包含子域名</strong>。如果指定了<code>Domain</code>，则一般包含子域名。因此，指定 <code>Domain</code> 比省略它的限制要少。但是，当子域需要共享有关用户的信息时，这可能会有所帮助。</p>
+<p>例如，如果设置 <code>Domain=mozilla.org</code>，则 Cookie 也包含在子域名中（如<code>developer.mozilla.org</code>）。</p>
+</li>
+</ul>
+</li>
+<li><p>Cookie限制访问</p>
+<ul>
+<li><code>Secure</code>：标记为 <code>Secure</code> 的 Cookie 只应通过被 HTTPS 协议加密过的请求发送给服务端，因此可以预防 <a href="https://developer.mozilla.org/zh-CN/docs/Glossary/MitM" target="_blank" rel="noopener">man-in-the-middle</a> 攻击者的攻击，但这样仍然是不安全的，因为攻击者仍可能通过读取本地硬盘来读取Cookie内容。</li>
+<li><code>HttpOnly</code>：JavaScript <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/cookie" target="_blank" rel="noopener"><code>Document.cookie</code></a> API 无法访问带有 <code>HttpOnly</code> 属性的 cookie；此类 Cookie 仅作用于服务器。例如，持久化服务器端会话的 Cookie 不需要对 JavaScript 可用，而应具有 <code>HttpOnly</code> 属性。此预防措施有助于缓解<a href="https://developer.mozilla.org/en-US/docs/Web/Security/Types_of_attacks" target="_blank" rel="noopener">跨站点脚本（XSS） (en-US)</a>攻击。</li>
+</ul>
+</li>
+</ul>
+<p>上面是几个常用的字段，如果需要完整的参考，参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies" target="_blank" rel="noopener">这里</a>。</p>
+<h1 id="1-为什么要分布式Session？"><a href="#1-为什么要分布式Session？" class="headerlink" title="1. 为什么要分布式Session？"></a>1. 为什么要分布式Session？</h1><p>如果服务是单服务器部署的话，分布式Session是不需要的，如下图。</p>
+<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220916004611701.png" alt="image-20220916004611701"></p>
+<p>但是如果是分布式服务，多个tomcat通过nginx服务器做负载均衡，就会出现问题。</p>
+<ul>
+<li>请求1通过nginx服务器请求到了tomcat1，会在tomcat1内生成一个session，并将对应的JSESSIONID通过返回到client。</li>
+<li>短时间内带着第一次返回的JSESSIONID的另一个请求2，通过nginx服务器可能会请求到另外2个tomcat服务器，而这两个服务器没有存储JSESSIONID对应的session，它们会以为这是个未登录请求，可能会报错或者重新发起登录，那就会出现问题。</li>
+</ul>
+<p><img src="https://steve-blog-pics.oss-cn-nanjing.aliyuncs.com/imgs/image-20220916004236166.png" alt="image-20220916004236166"></p>
+<p>解决这个问题有几个思路：</p>
+<ul>
+<li>指定应用服务器：通过客户标识（例如uid）做hash，使得每次相同的客户端访问到特定的服务器。这种处理方式有个问题，就是如果其中一个机器挂了，挂在这个机器上的所有用户必须得重新登录。</li>
+<li>session复制：tomcat自己给定了机制可以实现session复制，通过配置可以实现多个tomcat之间的session复制，但由于大体积session或者session数据频繁变化等问题，导致性能很差，业界使用不广泛，此处不做介绍。　 </li>
+<li>session持久化：将session通过数据库（例如redis、memcached、mysql等，其中redis、memcached由于性能好，用的较多）进行持久化，之后每次访问都从数据库中拿取session信息，这样就可以保证session在集群环境下可以正常使用，但这种处理方式需要注意数据库的单点故障问题。</li>
+<li>token：token也是为了应对在集群环境下，session扩展性不好的问题。它的思路和其它session处理策略不一样，它的思路是把数据保存到客户端，每次请求是带上来，服务端进行校验，确认没问题后放行。常用的有JWT token，具体可参见<a href="ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html">阮一峰的这篇博客</a>，此处只做简单介绍。</li>
+</ul>
+<h2 id="1-1-JWT-token"><a href="#1-1-JWT-token" class="headerlink" title="1.1 JWT token"></a>1.1 JWT token</h2><p>整个JWT token的格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Header.Payload.Signature</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjpbeyJuYW1lIjoiU3RldmUgSm9icyJ9LHsiam9iQ29kZSI6IjAwMDAwMSJ9XSwiaWF0IjoxNjYzNzczMjYyLCJleHAiOjE2NjQ1NTM1OTksImF1ZCI6IiIsImlzcyI6IiIsInN1YiI6IiJ9.ns4Ko5yrNlWtsv9sUyvX3fwNwYcShQH14wXymmB0FV4</span><br></pre></td></tr></table></figure>
+<p>Header和Payload均经过Base64Url算法编码。Base64Url算法相比Base64有一些不同：由于token有时候可能放到url中作为参数传递，Base64算法中有三个字符<code>+</code>, <code>=</code>和<code>/</code>，由于在url中有特殊含义，需要替换掉。Base64Url算法会忽略掉<code>=</code>，<code>+</code>号替换成<code>-</code>，<code>/</code>号替换成<code>_</code>。</p>
+<p>其中Header及含义为：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  密文为eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"alg"</span>: <span class="string">"HS256"</span>,</span><br><span class="line">  <span class="attr">"typ"</span>: <span class="string">"JWT"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Payload为：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 密文为eyJkYXRhIjpbeyJuYW1lIjoiU3RldmUgSm9icyJ9LHsiam9iQ29kZSI6IjAwMDAwMSJ9XSwiaWF0IjoxNjYzNzczMjYyLCJleHAiOjE2NjQ1NTM1OTksImF1ZCI6IiIsImlzcyI6IiIsInN1YiI6IiJ9</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// data为用户自定义数据</span></span><br><span class="line">    <span class="attr">"data"</span>: [&#123;</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"Steve Jobs"</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="attr">"jobCode"</span>: <span class="string">"000001"</span></span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="comment">// iat是签发时间戳</span></span><br><span class="line">    <span class="attr">"iat"</span>: <span class="number">1663773262</span>,</span><br><span class="line">    <span class="comment">// exp是本条token过期的时间</span></span><br><span class="line">    <span class="attr">"exp"</span>: <span class="number">1664553599</span>,</span><br><span class="line">    <span class="attr">"aud"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="attr">"iss"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="attr">"sub"</span>: <span class="string">""</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>密钥secret为<code>JustATestForJwt</code>。</p>
+<p>根据Header、Payload和密钥生成的签名（signature）为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ns4Ko5yrNlWtsv9sUyvX3fwNwYcShQH14wXymmB0FV4</span><br></pre></td></tr></table></figure>
+<p>signature的生成方式为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HMACSHA256(</span><br><span class="line">  base64UrlEncode(header) + <span class="string">"."</span> +</span><br><span class="line">  base64UrlEncode(payload),</span><br><span class="line">  secret)</span><br></pre></td></tr></table></figure>
+<p>Jwt的使用方式一般放在Cookie或者localStorage里，请求的时候放入request header中的Authorization字段中（放入Cookie中不能跨域）例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Authorization: Bearer &lt;token&gt;</span><br></pre></td></tr></table></figure>
+<p>或者直接放到post请求body中。</p>
+<p>Jwt的问题</p>
+<ul>
+<li>不能控制失效时间，签发后在expire date之前一直有效，除非更换secret，但是这样所有之前签发的token都会失效</li>
+<li>其他人获取到token后就可以使用，所以为了安全，token有效期应该设置比较短，重要权限应该使用时重新认证。</li>
+<li>payload默认不加密，所以不要把敏感信息放到payload中。</li>
+</ul>
+<p>总之，JWT token适合对于数据安全要求不是特别高、但是适当需要校验的业务场景，如果对数据安全要求比较高，那么不应该使用JWT token，而是RSA之类的加密算法。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" rel="tag"># 分布式</a>
+              <a href="/tags/Session/" rel="tag"># Session</a>
+              <a href="/tags/Web/" rel="tag"># Web</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/25/Docker%E8%AE%BF%E9%97%AEMySQL/" rel="prev" title="Docker访问MySQL">
+      <i class="fa fa-chevron-left"></i> Docker访问MySQL
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/09/08/nginx%E6%9E%81%E7%AE%80%E5%85%A5%E9%97%A8/" rel="next" title="nginx极简入门">
+      nginx极简入门 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-什么是Cookie和Session"><span class="nav-text">0. 什么是Cookie和Session</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-0-为什么要有Cookie和Session？"><span class="nav-text">0.0 为什么要有Cookie和Session？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-1-Cookie和Session存放在哪里？"><span class="nav-text">0.1 Cookie和Session存放在哪里？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-2-Quick-Cookie-amp-Session"><span class="nav-text">0.2 Quick Cookie &amp; Session</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-为什么要分布式Session？"><span class="nav-text">1. 为什么要分布式Session？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-JWT-token"><span class="nav-text">1.1 JWT token</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Steve Hu"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Steve Hu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Steve Hu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
