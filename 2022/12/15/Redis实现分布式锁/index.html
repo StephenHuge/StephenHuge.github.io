@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"stevehuge.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. 业务场景经常在需要防止重复调用的业务逻辑中（例如秒杀、防止重复消费等逻辑）使用分布式锁，使用redis实现时常见的实现方式。平时只是使用，但是并没有专门总结，今天来做下总结。 2. redis实现先使用docker开启一个redis实例 123456# 开启6379端口映射 对数据和配置进行volume持久化 并且启动后执行# redis-server &#x2F;etc&#x2F;redis&#x2F;redis.co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis实现分布式锁">
+<meta property="og:url" content="https://stevehuge.github.io/2022/12/15/Redis%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/index.html">
+<meta property="og:site_name" content="Steve&#39;s Blog">
+<meta property="og:description" content="1. 业务场景经常在需要防止重复调用的业务逻辑中（例如秒杀、防止重复消费等逻辑）使用分布式锁，使用redis实现时常见的实现方式。平时只是使用，但是并没有专门总结，今天来做下总结。 2. redis实现先使用docker开启一个redis实例 123456# 开启6379端口映射 对数据和配置进行volume持久化 并且启动后执行# redis-server &#x2F;etc&#x2F;redis&#x2F;redis.co">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-15T11:23:09.000Z">
+<meta property="article:modified_time" content="2022-12-15T15:07:16.422Z">
+<meta property="article:author" content="Steve Hu">
+<meta property="article:tag" content="Redis， 分布式">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://stevehuge.github.io/2022/12/15/Redis%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Redis实现分布式锁 | Steve's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Steve's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Talk is cheap, show me the code.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://stevehuge.github.io/2022/12/15/Redis%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Steve Hu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Steve's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Redis实现分布式锁
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-15 19:23:09 / 修改时间：23:07:16" itemprop="dateCreated datePublished" datetime="2022-12-15T19:23:09+08:00">2022-12-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-业务场景"><a href="#1-业务场景" class="headerlink" title="1. 业务场景"></a>1. 业务场景</h1><p>经常在需要防止重复调用的业务逻辑中（例如秒杀、防止重复消费等逻辑）使用分布式锁，使用redis实现时常见的实现方式。平时只是使用，但是并没有专门总结，今天来做下总结。</p>
+<h1 id="2-redis实现"><a href="#2-redis实现" class="headerlink" title="2. redis实现"></a>2. redis实现</h1><p>先使用docker开启一个redis实例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启6379端口映射 对数据和配置进行volume持久化 并且启动后执行</span></span><br><span class="line"><span class="comment"># redis-server /etc/redis/redis.conf命令 </span></span><br><span class="line">$ docker run -d -p 6379:6379 --name my-redis \</span><br><span class="line">-v /mydata/redis/data:/data \</span><br><span class="line">-v /mydata/redis/conf/redis.conf:/etc/redis/redis.conf \</span><br><span class="line">--restart=always --network common-network redis:latest \ redis-server /etc/redis/redis.conf</span><br></pre></td></tr></table></figure>
+<p>进入redis内部</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">exec</span> -it my-redis redis-cli</span><br></pre></td></tr></table></figure>
+<h2 id="a-使用-setnx-expire"><a href="#a-使用-setnx-expire" class="headerlink" title="a. 使用 setnx + expire"></a>a. 使用 setnx + expire</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># setnx设置kv</span></span><br><span class="line">127.0.0.1:6379&gt; setnx test_key dummy</span><br><span class="line">OK</span><br><span class="line"><span class="comment"># expire设置过期时间</span></span><br><span class="line">127.0.0.1:6379&gt; expire test_key 100</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"><span class="comment"># 再次配置，由于key还是没有过期，所以设置返回0，表示失败</span></span><br><span class="line">127.0.0.1:6379&gt; setnx test_key aa</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br></pre></td></tr></table></figure>
+<p>缺点：setnx和expire不是原子操作，如果setnx后还没有expire操作，redis挂了，这个锁将没法过期了，影响业务。</p>
+<h2 id="b-使用set-扩展命令"><a href="#b-使用set-扩展命令" class="headerlink" title="b. 使用set 扩展命令"></a>b. 使用set 扩展命令</h2><p>命令如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># set命令格式</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> key value [NX|XX] [GET] [EX seconds|PX milliseconds|EXAT unix-time-seconds|PXAT unix-time-milliseconds|KEEPTTL]</span><br></pre></td></tr></table></figure>
+<p>例如可以通过以下命令设置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置100秒超时，这是一个原子操作</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> test_key dummy NX EX 100</span><br></pre></td></tr></table></figure>
+<h2 id="c-使用Lua脚本实现"><a href="#c-使用Lua脚本实现" class="headerlink" title="c. 使用Lua脚本实现"></a>c. 使用Lua脚本实现</h2><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> redis.call(<span class="string">'setnx'</span>,KEYS[<span class="number">1</span>],ARGV[<span class="number">1</span>]) == <span class="number">1</span> <span class="keyword">then</span></span><br><span class="line">   redis.call(<span class="string">'expire'</span>,KEYS[<span class="number">1</span>],ARGV[<span class="number">2</span>])</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<p>redis中</p>
+<h1 id="3-Java实现"><a href="#3-Java实现" class="headerlink" title="3. Java实现"></a>3. Java实现</h1>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Redis%EF%BC%8C-%E5%88%86%E5%B8%83%E5%BC%8F/" rel="tag"># Redis， 分布式</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/12/13/Maven%E5%9F%BA%E7%A1%80%E5%BF%AB%E9%80%9F%E6%80%BB%E7%BB%93/" rel="prev" title="Maven基础快速总结">
+      <i class="fa fa-chevron-left"></i> Maven基础快速总结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/12/15/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3Maven%E5%BC%95%E7%94%A8%E5%86%B2%E7%AA%81%EF%BC%9F/" rel="next" title="如何解决Maven引用冲突？">
+      如何解决Maven引用冲突？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-业务场景"><span class="nav-text">1. 业务场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-redis实现"><span class="nav-text">2. redis实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#a-使用-setnx-expire"><span class="nav-text">a. 使用 setnx + expire</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#b-使用set-扩展命令"><span class="nav-text">b. 使用set 扩展命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-使用Lua脚本实现"><span class="nav-text">c. 使用Lua脚本实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Java实现"><span class="nav-text">3. Java实现</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Steve Hu"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Steve Hu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Steve Hu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
